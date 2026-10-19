@@ -17,9 +17,9 @@ gsap.registerPlugin(ScrollTrigger);
 function StudioEnv() {
   return (
     <Environment resolution={256} frames={1}>
-      <Lightformer form="rect" intensity={3} position={[0, 5, 0]} rotation-x={Math.PI / 2} scale={[10, 4, 1]} />
-      <Lightformer form="rect" intensity={2.4} position={[-5, 0.5, 1]} rotation-y={Math.PI / 2} scale={[2.5, 9, 1]} />
-      <Lightformer form="rect" intensity={2.4} position={[5, 0.5, 1]} rotation-y={-Math.PI / 2} scale={[2.5, 9, 1]} />
+      <Lightformer form="rect" intensity={1.4} position={[0, 5, 0]} rotation-x={Math.PI / 2} scale={[12, 6, 1]} />
+      <Lightformer form="rect" intensity={0.9} position={[-5, 0.5, 1]} rotation-y={Math.PI / 2} scale={[6, 9, 1]} />
+      <Lightformer form="rect" intensity={0.9} position={[5, 0.5, 1]} rotation-y={-Math.PI / 2} scale={[6, 9, 1]} />
       <Lightformer form="rect" intensity={0.5} position={[0, 0, 6]} rotation-y={Math.PI} scale={[8, 5, 1]} />
       <Lightformer form="rect" intensity={0.9} position={[0, 3.5, 4]} rotation-x={Math.PI / 3} scale={[6, 0.6, 1]} />
       <Lightformer form="ring" color="#ffffff" intensity={1.6} position={[0, 0, -6]} scale={5} />

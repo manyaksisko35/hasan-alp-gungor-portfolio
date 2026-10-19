@@ -78,7 +78,32 @@ const BACKDROP_FRAG = /* glsl */ `
     col += 0.022 * smoothstep(0.012, 0.0, abs(fract(uv.y * 4.0 + uv.x * 1.5 + t) - 0.5) - 0.47);
     // Same darkening the page applies on top of its light.
     col *= mix(1.0, 0.6, clamp(distance(uv, vec2(0.5, 0.6)) * 1.3, 0.0, 1.0));
+    col = col * 1.15 + 0.012;
     gl_FragColor = vec4(lin(clamp(col, 0.0, 1.0)), 1.0);
+  }
+`;
+
+/** Soft white glow on the edges and a faint milky body, added on top of the glass. */
+const RIM_VERT = /* glsl */ `
+  varying vec3 vNormal;
+  varying vec3 vView;
+  void main() {
+    vec4 mv = modelViewMatrix * vec4(position, 1.0);
+    vNormal = normalize(normalMatrix * normal);
+    vView = normalize(-mv.xyz);
+    gl_Position = projectionMatrix * mv;
+  }
+`;
+const RIM_FRAG = /* glsl */ `
+  varying vec3 vNormal;
+  varying vec3 vView;
+  void main() {
+    float facing = abs(dot(normalize(vNormal), normalize(vView)));
+    float rim = pow(1.0 - facing, 3.0);
+    // Light from above reads as the bright top edge liquid glass has.
+    float top = smoothstep(0.2, 1.0, normalize(vNormal).y) * 0.16;
+    float glow = rim * 0.6 + top + 0.018;
+    gl_FragColor = vec4(vec3(1.0), glow);
   }
 `;
 
@@ -88,25 +113,25 @@ function Glass({ buffer }: { buffer: THREE.Texture }) {
     <MeshTransmissionMaterial
       buffer={buffer}
       resolution={32}
-      samples={8}
+      samples={10}
       transmission={1}
-      thickness={0.42}
-      roughness={0.04}
-      ior={1.5}
-      chromaticAberration={0.14}
-      anisotropicBlur={0.08}
-      distortion={0.45}
-      distortionScale={0.35}
-      temporalDistortion={0.12}
-      clearcoat={1}
-      clearcoatRoughness={0.04}
-      iridescence={0.25}
+      thickness={0.55}
+      roughness={0.09}
+      ior={1.3}
+      chromaticAberration={0.07}
+      anisotropicBlur={0.22}
+      distortion={0.22}
+      distortionScale={0.3}
+      temporalDistortion={0.08}
+      clearcoat={0.4}
+      clearcoatRoughness={0.25}
+      iridescence={0.12}
       iridescenceIOR={1.3}
       iridescenceThicknessRange={[120, 420]}
-      attenuationDistance={6}
-      attenuationColor="#ffffff"
-      color="#ffffff"
-      envMapIntensity={1.2}
+      attenuationDistance={4}
+      attenuationColor="#f4f6fa"
+      color="#f4f6fa"
+      envMapIntensity={0.45}
     />
   );
 }
@@ -116,6 +141,17 @@ const projected = new THREE.Vector3();
 
 export default function Logo() {
   const fbo = useFBO(1024, 1024);
+  const rimMat = useMemo(
+    () =>
+      new THREE.ShaderMaterial({
+        vertexShader: RIM_VERT,
+        fragmentShader: RIM_FRAG,
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      }),
+    [],
+  );
   const backdropMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
@@ -150,13 +186,14 @@ export default function Logo() {
       pieces.forEach((p) => p.geometry.dispose());
       whole.dispose();
       backdropMat.dispose();
+      rimMat.dispose();
     },
-    [pieces, whole, backdropMat],
+    [pieces, whole, backdropMat, rimMat],
   );
 
   const logoRef = useRef<THREE.Group>(null);
   const backdropRef = useRef<THREE.Mesh>(null);
-  const wholeRef = useRef<THREE.Mesh>(null);
+  const wholeRef = useRef<THREE.Group>(null);
   const piecesRef = useRef<THREE.Group>(null);
   const crack = useRef(0);
 
@@ -224,15 +261,19 @@ export default function Logo() {
         <planeGeometry args={[1, 1]} />
       </mesh>
       <group ref={logoRef}>
-      <mesh ref={wholeRef} geometry={whole}>
-        <Glass buffer={fbo.texture} />
-      </mesh>
+      <group ref={wholeRef}>
+        <mesh geometry={whole}>
+          <Glass buffer={fbo.texture} />
+        </mesh>
+        <mesh geometry={whole} material={rimMat} renderOrder={2} />
+      </group>
       <group ref={piecesRef} visible={false}>
       {pieces.map((p, i) => (
         <group key={p.key} ref={(g) => void (groups.current[i] = g)}>
           <mesh geometry={p.geometry}>
             <Glass buffer={fbo.texture} />
           </mesh>
+          <mesh geometry={p.geometry} material={rimMat} renderOrder={2} />
           {p.labelled && (
             <object3D
               position={LABEL_OFFSET[p.id]}
