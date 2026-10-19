@@ -34,8 +34,7 @@ export default function MoreWork() {
             >
               <div
                 aria-hidden
-                className="absolute -top-24 -right-24 w-64 h-64 rounded-full opacity-25 blur-3xl transition-opacity duration-500 group-hover:opacity-45"
-                style={{ background: p.accent }}
+                className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white opacity-[0.07] blur-3xl transition-opacity duration-500 group-hover:opacity-[0.14]"
               />
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-2 ui-label ui-label--plain !text-[0.65rem]">

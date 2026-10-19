@@ -27,7 +27,7 @@ export const CONCEPTS: Concept[] = [
     repo: `${GH}/s26-ultra-concept`,
     img: '/projects/s26-ultra.jpg',
     shot: true,
-    glow: 'radial-gradient(60% 60% at 50% 50%, rgba(239, 68, 68, 0.22), transparent 72%)',
+    glow: 'radial-gradient(60% 60% at 50% 50%, rgba(255, 255, 255, 0.14), transparent 72%)',
     text: {
       tr: 'Telefonu scroll\'ladıkça dönen ve parçalarına ayrılan bir 3D modele dönüştürdüm. S25 Ultra ile karşılaştırma, renk seçici ve AR görüntüleme de ekledim.',
       en: 'I turned the phone into a 3D model that turns and comes apart as you scroll, and added an S25 Ultra comparison, a color picker and AR viewing.',

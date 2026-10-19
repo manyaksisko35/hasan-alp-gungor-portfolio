@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title, description },
 };
 
-export const viewport: Viewport = { themeColor: '#030303' };
+export const viewport: Viewport = { themeColor: '#161618' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" className="antialiased selection:bg-red-500/30" suppressHydrationWarning>
-      <body className="bg-[#030303] text-white" suppressHydrationWarning>
+      <body className="bg-[#161618] text-white" suppressHydrationWarning>
         {children}
       </body>
     </html>

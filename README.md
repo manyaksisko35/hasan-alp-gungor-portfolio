@@ -12,7 +12,7 @@ My personal site and portfolio: who I am, my education, skills, projects and vid
 - **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds.
 - **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.
 - **Turkish and English:** switch from the navbar; the choice is remembered.
-- Liquid glass design: translucent, blurred surfaces with rim highlights over a slowly moving red light, a floating capsule navbar and glass buttons.
+- Liquid glass design: translucent, blurred surfaces with rim highlights over a slowly moving silver light, a floating capsule navbar and glass buttons.
 
 ## Screenshots
 

@@ -84,14 +84,14 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
 }
 .ui-card,
 .glass {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025) 55%, rgba(255, 255, 255, 0.05));
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04) 50%, rgba(255, 255, 255, 0.08));
+  -webkit-backdrop-filter: blur(30px) saturate(160%) brightness(1.08);
+  backdrop-filter: blur(30px) saturate(160%) brightness(1.08);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 0 24px rgba(255, 255, 255, 0.03),
-    0 18px 50px -20px rgba(0, 0, 0, 0.75);
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 32px rgba(255, 255, 255, 0.05),
+    0 20px 50px -22px rgba(0, 0, 0, 0.6);
   transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 .glass { position: relative; }
@@ -103,7 +103,7 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.08) 30%, rgba(255, 255, 255, 0) 55%, rgba(255, 255, 255, 0.08) 75%, rgba(255, 255, 255, 0.32));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.12) 30%, rgba(255, 255, 255, 0.02) 55%, rgba(255, 255, 255, 0.12) 75%, rgba(255, 255, 255, 0.45));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -111,9 +111,9 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
   pointer-events: none;
 }
 .ui-card:hover {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 55%, rgba(255, 255, 255, 0.07));
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.19), rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.1));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
     inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     inset 0 0 30px rgba(255, 255, 255, 0.05),
     0 24px 60px -20px rgba(0, 0, 0, 0.8);
@@ -140,7 +140,7 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.55),
     inset 0 -1px 2px rgba(0, 0, 0, 0.25),
-    0 10px 30px -10px rgba(239, 68, 68, 0.7);
+    0 10px 26px -12px rgba(239, 68, 68, 0.55);
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, background 0.25s ease;
 }
 .ui-btn { --icon-cut: #e0443c; }
@@ -150,7 +150,7 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.65),
     inset 0 -1px 2px rgba(0, 0, 0, 0.25),
-    0 14px 36px -10px rgba(239, 68, 68, 0.85);
+    0 14px 32px -12px rgba(239, 68, 68, 0.7);
 }
 .ui-btn:active { transform: scale(0.97); }
 .ui-btn--ghost {
@@ -347,14 +347,14 @@ a.rounded-full:focus-visible { border-radius: 999px; }
   }
 }
 
-/* Liquid backdrop: slow, blurred red light that the glass refracts. */
+/* Liquid backdrop: slow, blurred silver light that the glass refracts. */
 .liquid-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background: #050304;
+  background: linear-gradient(160deg, #26272b 0%, #161618 45%, #1d1e21 100%);
 }
 .liquid-bg span {
   position: absolute;
@@ -362,16 +362,16 @@ a.rounded-full:focus-visible { border-radius: 999px; }
   will-change: transform;
   animation: liquid-drift 26s ease-in-out infinite alternate;
 }
-.liquid-bg span:nth-child(1) { width: 60vmax; height: 60vmax; left: -12vmax; top: -18vmax; background: radial-gradient(closest-side, rgba(239, 68, 68, 0.55), transparent); }
-.liquid-bg span:nth-child(2) { width: 52vmax; height: 52vmax; right: -16vmax; top: 18vh; background: radial-gradient(closest-side, rgba(249, 115, 22, 0.32), transparent); animation-duration: 32s; animation-delay: -8s; }
-.liquid-bg span:nth-child(3) { width: 58vmax; height: 58vmax; left: 18vw; bottom: -30vmax; background: radial-gradient(closest-side, rgba(190, 18, 60, 0.5), transparent); animation-duration: 38s; animation-delay: -14s; }
-.liquid-bg span:nth-child(4) { width: 34vmax; height: 34vmax; left: 46vw; top: 30vh; background: radial-gradient(closest-side, rgba(255, 140, 120, 0.18), transparent); animation-duration: 22s; animation-delay: -4s; }
-/* Darkens the light so text stays readable. */
+.liquid-bg span:nth-child(1) { width: 62vmax; height: 62vmax; left: -14vmax; top: -20vmax; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.26), transparent); }
+.liquid-bg span:nth-child(2) { width: 54vmax; height: 54vmax; right: -18vmax; top: 16vh; background: radial-gradient(closest-side, rgba(210, 214, 222, 0.22), transparent); animation-duration: 32s; animation-delay: -8s; }
+.liquid-bg span:nth-child(3) { width: 60vmax; height: 60vmax; left: 16vw; bottom: -32vmax; background: radial-gradient(closest-side, rgba(170, 174, 184, 0.24), transparent); animation-duration: 38s; animation-delay: -14s; }
+.liquid-bg span:nth-child(4) { width: 36vmax; height: 36vmax; left: 46vw; top: 28vh; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.14), transparent); animation-duration: 22s; animation-delay: -4s; }
+/* Keeps white text readable on top of the light. */
 .liquid-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 90% at 50% 40%, rgba(3, 3, 3, 0.35), rgba(3, 3, 3, 0.78));
+  background: radial-gradient(120% 90% at 50% 40%, rgba(12, 12, 14, 0.1), rgba(12, 12, 14, 0.5));
 }
 @keyframes liquid-drift {
   0% { transform: translate3d(0, 0, 0) scale(1); }
