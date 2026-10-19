@@ -8,18 +8,18 @@ export default function Videos() {
   const t = useT();
 
   return (
-    <section id="videos" className="ui-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+    <section id="videos" className="relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Videolarım', en: 'My videos' })}</p>
+          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'İçerik', en: 'Content' })}</p>
           <h2 className="ui-title">
-            {t({ tr: "CS2'yi gerçek hayata ", en: 'Bringing CS2 into ' })}
-            <strong className="ui-accent">{t({ tr: 'taşıyorum.', en: 'real life.' })}</strong>
+            {t({ tr: "YouTube'da ", en: 'Technical projects ' })}
+            <strong className="ui-accent">{t({ tr: 'teknik projeler.', en: 'on YouTube.' })}</strong>
           </h2>
           <p className="ui-lead mt-4 lg:mt-6 max-w-md">
             {t({
-              tr: "YouTube kanalımda ESP32 ile yaptığım cihazları, CS2'yi gerçek dünyaya bağlayan projelerimi ve oyun rehberlerimi paylaşıyorum.",
-              en: 'On my YouTube channel I share devices I build with ESP32, projects that connect CS2 to the real world, and gaming guides.',
+              tr: 'Kanalımda ESP32 ve Arduino ile geliştirdiğim donanım projelerini, oyunlarla gerçek dünyayı birleştiren deneylerimi ve teknik rehberleri paylaşıyorum.',
+              en: 'On my channel I share hardware projects built with ESP32 and Arduino, experiments that connect games with the real world, and technical guides.',
             })}
           </p>
           <a href={LINKS.youtube} target="_blank" rel="noopener noreferrer" className="ui-btn mt-8">
@@ -31,7 +31,7 @@ export default function Videos() {
 
         <ol className="ui-card !rounded-[20px] divide-y divide-white/[0.07] overflow-hidden">
           {VIDEOS.map((v, i) => (
-            <li key={v.href}>
+            <li key={v.href} data-reveal>
               <a
                 href={v.href}
                 target="_blank"

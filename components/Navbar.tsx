@@ -65,7 +65,7 @@ export default function Navbar() {
         <div className="ml-auto md:ml-0 flex items-center gap-2">
           <LangToggle className="hidden sm:flex" />
           <a href="#contact" onClick={(e) => go(e, 'contact')} className="ui-btn !py-2 !px-4 !text-sm">
-            {t({ tr: 'Bana ulaş', en: 'Contact' })}
+            {t({ tr: 'İletişim', en: 'Contact' })}
           </a>
           <button
             aria-label="Menu"

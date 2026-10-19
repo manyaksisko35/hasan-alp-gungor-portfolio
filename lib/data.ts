@@ -109,8 +109,8 @@ export const PROJECTS: Project[] = [
     href: `${GH}/GoalDetectorSystem`,
     tag: { tr: 'Donanım', en: 'Hardware' },
     text: {
-      tr: 'Yeğenim için Arduino Uno ve Python ile bir gol algılama sistemi kurdum. Devresini de kodunu da kendim yaptım.',
-      en: 'I built a goal detection system for my nephew with an Arduino Uno and Python, both the circuit and the code.',
+      tr: 'Arduino Uno ve Python ile geliştirdiğim gol algılama sistemi. Devre tasarımını ve yazılımını kendim yaptım.',
+      en: 'A goal detection system I developed with an Arduino Uno and Python, including the circuit design and the software.',
     },
     stack: ['Arduino', 'Python'],
     accent: '#f87171',

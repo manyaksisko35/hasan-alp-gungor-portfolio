@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic';
 import About from '@/components/About';
-import Channels from '@/components/Channels';
 import Contact from '@/components/Contact';
 import HeadlineReveal from '@/components/HeadlineReveal';
 import Hero from '@/components/Hero';
@@ -11,6 +10,7 @@ import Loader from '@/components/Loader';
 import MoreWork from '@/components/MoreWork';
 import Navbar from '@/components/Navbar';
 import ScrollProgress from '@/components/ScrollProgress';
+import Reveal from '@/components/Reveal';
 import Skills from '@/components/Skills';
 import SmoothScroll from '@/components/SmoothScroll';
 import Videos from '@/components/Videos';
@@ -33,6 +33,7 @@ export default function Home() {
       <Navbar />
       <ScrollProgress />
       <HeadlineReveal />
+      <Reveal />
 
       <main className="relative w-full bg-[#030303]">
         <div className="fixed inset-0 z-0 pointer-events-none">
@@ -49,7 +50,6 @@ export default function Home() {
         <Work />
         <MoreWork />
         <Videos />
-        <Channels />
         <Contact />
       </main>
     </>

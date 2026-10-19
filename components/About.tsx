@@ -1,24 +1,25 @@
 'use client';
 
-import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef, useState } from 'react';
 import { useLang, useT, type Localized } from '@/lib/i18n';
 
-gsap.registerPlugin(ScrollTrigger);
-
-/** Words wrapped in *stars* get the gradient. */
-const MANIFESTO: Localized = {
-  tr: "İzmir Ekonomi Üniversitesi'nde Bilgisayar Programcılığı okuyorum ve teknolojinin hem *yazılım* hem *donanım* tarafında projeler üretiyorum. Oyunlar ve web siteleri kodluyorum, ESP32 ve Arduino ile kendi cihazlarımı yapıyorum. YouTube'da da CS2'yi gerçek hayata taşıdığım projelerimi paylaşıyorum.",
-  en: "I study Computer Programming at İzmir University of Economics and build projects on both the *software* and *hardware* side of tech. I code games and websites, make my own devices with ESP32 and Arduino, and share the projects where I bring CS2 into real life on YouTube.",
-};
-
 const STATS: { value: number; suffix?: string; label: Localized }[] = [
-  { value: 12, suffix: '+', label: { tr: "GitHub'daki projem", en: 'Projects on my GitHub' } },
-  { value: 15, suffix: '+', label: { tr: "YouTube'daki videom", en: 'Videos on my YouTube' } },
-  { value: 10, suffix: '+', label: { tr: 'Programlama dili ve teknoloji', en: 'Programming languages and technologies' } },
-  { value: 3, label: { tr: 'Konuştuğum dil: Türkçe, İngilizce, Norveççe', en: 'Languages I speak: Turkish, English, Norwegian' } },
+  { value: 12, suffix: '+', label: { tr: 'Açık kaynak proje', en: 'Open source projects' } },
+  { value: 15, suffix: '+', label: { tr: 'YouTube videosu', en: 'YouTube videos' } },
+  { value: 10, suffix: '+', label: { tr: 'Dil ve teknoloji', en: 'Languages and technologies' } },
+];
+
+const LANGUAGES: { name: Localized; level: Localized }[] = [
+  { name: { tr: 'Türkçe', en: 'Turkish' }, level: { tr: 'Ana dil', en: 'Native' } },
+  { name: { tr: 'İngilizce', en: 'English' }, level: { tr: 'Ana dil / iki dilli', en: 'Native / bilingual' } },
+  { name: { tr: 'Norveççe', en: 'Norwegian' }, level: { tr: 'Profesyonel çalışma', en: 'Professional working' } },
+];
+
+const FOCUS: Localized[] = [
+  { tr: 'Yazılım geliştirme ve tasarımı', en: 'Software development and design' },
+  { tr: 'Oyun geliştirme ve tasarımı', en: 'Game development and design' },
+  { tr: 'Bilgisayar donanımı ve gömülü sistemler', en: 'Computer hardware and embedded systems' },
 ];
 
 function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {
@@ -46,58 +47,113 @@ function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {
   );
 }
 
+/** Live local time in İzmir. */
+function IzmirClock() {
+  const lang = useLang();
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => {
+    const tick = () => setNow(new Date());
+    const first = setTimeout(tick, 0);
+    const id = setInterval(tick, 1000 * 15);
+    return () => {
+      clearTimeout(first);
+      clearInterval(id);
+    };
+  }, []);
+  const time = now
+    ? now.toLocaleTimeString(lang === 'tr' ? 'tr-TR' : 'en-GB', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit' })
+    : '--:--';
+  return <span className="tabular-nums">{time}</span>;
+}
+
+const cell = 'ui-card p-6 lg:p-8';
+
 export default function About() {
   const t = useT();
-  const lang = useLang();
-  const ref = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      const words = gsap.utils.toArray<HTMLElement>('[data-word]');
-      gsap.fromTo(
-        words,
-        { opacity: 0.14 },
-        {
-          opacity: 1,
-          stagger: 0.08,
-          ease: 'none',
-          scrollTrigger: { trigger: '[data-manifesto]', start: 'top 80%', end: 'bottom 45%', scrub: true },
-        },
-      );
-    },
-    { scope: ref, dependencies: [lang], revertOnUpdate: true },
-  );
-
-  const words = t(MANIFESTO).split(' ');
 
   return (
-    <section ref={ref} id="about" className="relative px-6 lg:px-[8%] pt-24 lg:pt-40 pb-24 lg:pb-40">
+    <section id="about" className="relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
-        <div className="lg:max-w-[52%]">
-          <p className="ui-label mb-5 lg:mb-8">{t({ tr: 'Hakkımda', en: 'About me' })}</p>
-          <p data-manifesto className="text-[clamp(1.6rem,1rem+2.6vw,3.3rem)] font-medium leading-[1.12] tracking-[-0.03em]">
-            {words.map((w, i) => {
-              const hl = w.includes('*');
-              return (
-                <span key={`${lang}-${i}`}>
-                  <span data-word className={hl ? 'ui-accent font-semibold' : undefined}>
-                    {w.replaceAll('*', '')}
-                  </span>{' '}
-                </span>
-              );
-            })}
-          </p>
-        </div>
+        <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Hakkımda', en: 'About' })}</p>
+        <h2 className="ui-title max-w-4xl">
+          {t({ tr: 'Yazılım ve donanımın ', en: 'I work where software ' })}
+          <strong className="ui-accent">{t({ tr: 'kesiştiği yerde.', en: 'meets hardware.' })}</strong>
+        </h2>
 
-        <div className="mt-16 lg:mt-24 lg:max-w-[52%] grid grid-cols-2 gap-3 lg:gap-5">
+        <div className="mt-10 lg:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+          <div data-reveal className={`${cell} col-span-2 lg:row-span-2 flex flex-col`}>
+            <p className="font-mono text-xs text-white/40">{t({ tr: 'Özet', en: 'Summary' })}</p>
+            <p className="mt-4 text-lg lg:text-xl leading-relaxed text-white/85">
+              {t({
+                tr: 'İzmir Ekonomi Üniversitesi\'nde Bilgisayar Programcılığı öğrencisiyim ve teknolojinin hem yazılım hem donanım tarafında aktif olarak projeler üretiyorum.',
+                en: "I'm a Computer Programming student at İzmir University of Economics, actively building projects on both the software and hardware side of technology.",
+              })}
+            </p>
+            <p className="mt-4 text-white/55 leading-relaxed">
+              {t({
+                tr: 'C#, Python, Java, PHP, C++, Lua, JavaScript ve SQL ile uygulama geliştiriyor; ESP32 ve Arduino ile sensör tabanlı cihazlar tasarlıyorum. Projelerimi GitHub\'da açık kaynak olarak, geliştirme süreçlerini ise YouTube\'da paylaşıyorum.',
+                en: 'I develop applications with C#, Python, Java, PHP, C++, Lua, JavaScript and SQL, and design sensor-based devices with ESP32 and Arduino. I publish my projects as open source on GitHub and share how they are built on YouTube.',
+              })}
+            </p>
+          </div>
+
+          <div data-reveal className={`${cell} col-span-2`}>
+            <p className="font-mono text-xs text-white/40">{t({ tr: 'Eğitim', en: 'Education' })}</p>
+            <div className="mt-4 flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xl lg:text-2xl font-semibold tracking-tight">{t({ tr: 'İzmir Ekonomi Üniversitesi', en: 'İzmir University of Economics' })}</p>
+                <p className="mt-1 text-white/55">{t({ tr: 'Bilgisayar Programcılığı', en: 'Computer Programming' })}</p>
+              </div>
+              <span className="shrink-0 rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1 font-mono text-[0.7rem] text-red-300">
+                {t({ tr: 'Devam ediyor', en: 'In progress' })}
+              </span>
+            </div>
+          </div>
+
+          <div data-reveal className={`${cell} col-span-2 lg:col-span-1`}>
+            <p className="font-mono text-xs text-white/40">{t({ tr: 'Diller', en: 'Languages' })}</p>
+            <ul className="mt-4 space-y-3">
+              {LANGUAGES.map((l) => (
+                <li key={l.name.en}>
+                  <p className="font-medium">{t(l.name)}</p>
+                  <p className="text-xs text-white/45">{t(l.level)}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div data-reveal className={`${cell} col-span-2 lg:col-span-1 flex flex-col`}>
+            <p className="font-mono text-xs text-white/40">{t({ tr: 'Konum', en: 'Location' })}</p>
+            <p className="mt-4 text-xl font-semibold tracking-tight">İzmir, {t({ tr: 'Türkiye', en: 'Türkiye' })}</p>
+            <p className="mt-auto pt-6 flex items-center gap-2 font-mono text-sm text-white/55">
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-60" />
+                <span className="relative w-2 h-2 rounded-full bg-red-500" />
+              </span>
+              <IzmirClock /> <span className="text-white/30">GMT+3</span>
+            </p>
+          </div>
+
           {STATS.map((s) => (
-            <div key={s.label.en} className="ui-card p-5 lg:p-7 !bg-[#0b0b0d]/80">
-              <p className="text-4xl lg:text-6xl font-semibold tracking-[-0.04em]">
+            <div key={s.label.en} data-reveal className={cell}>
+              <p className="text-4xl lg:text-5xl font-semibold tracking-[-0.04em]">
                 <Counter value={s.value} suffix={s.suffix} />
               </p>
-              <p className="mt-2 text-sm text-white/60 font-light leading-snug">{t(s.label)}</p>
+              <p className="mt-2 text-sm text-white/55">{t(s.label)}</p>
             </div>
           ))}
+
+          <div data-reveal className={cell}>
+            <p className="font-mono text-xs text-white/40">{t({ tr: 'Odak alanları', en: 'Focus areas' })}</p>
+            <ul className="mt-4 space-y-2 text-sm text-white/75">
+              {FOCUS.map((f) => (
+                <li key={f.en} className="flex gap-2">
+                  <span className="mt-2 w-1 h-1 shrink-0 rounded-full bg-red-500" />
+                  {t(f)}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

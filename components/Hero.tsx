@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import { ArrowIcon } from '@/components/Icons';
+import { ArrowIcon, GitHubIcon, ItchIcon, LinkedInIcon, YouTubeIcon } from '@/components/Icons';
+import { LINKS } from '@/lib/data';
 import { useT } from '@/lib/i18n';
 import { spin } from '@/lib/sceneState';
 
@@ -45,7 +46,10 @@ export default function Hero() {
     >
       <div className="max-w-7xl mx-auto h-full flex flex-col justify-start lg:justify-center pt-28 lg:pt-16">
         <div className="lg:max-w-[52%]">
-          <p className="hero-in ui-label mb-5 md:mb-7">{t({ tr: 'Merhaba, ben', en: "Hi, I'm" })}</p>
+          <p className="hero-in ui-label ui-label--plain mb-5 md:mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            {t({ tr: 'Bilgisayar Programcılığı Öğrencisi · Oyun Geliştirici', en: 'Computer Programming Student · Game Developer' })}
+          </p>
 
           <h1 className="hero-in hero-in--2 ui-title text-[17vw] sm:text-[13vw] lg:text-[clamp(4.5rem,8.2vw,8.8rem)] !leading-[0.88]">
             Hasan Alp
@@ -55,33 +59,39 @@ export default function Hero() {
 
           <p className="hero-in hero-in--3 mt-6 md:mt-8 text-base md:text-xl text-white/65 max-w-md leading-relaxed">
             {t({
-              tr: 'Bilgisayar Programcılığı öğrencisiyim. Yazılım ve donanım projeleri üretiyorum.',
-              en: "I'm a Computer Programming student. I build software and hardware projects.",
+              tr: 'İzmir Ekonomi Üniversitesi\'nde Bilgisayar Programcılığı okuyorum. Oyun geliştirme, web teknolojileri ve gömülü sistemler üzerine projeler geliştiriyorum.',
+              en: "I study Computer Programming at İzmir University of Economics and develop projects in game development, web technologies and embedded systems.",
             })}
           </p>
 
           <div className="hero-in hero-in--4 mt-8 flex flex-wrap items-center gap-3">
-            <a href="#about" className="ui-btn">
-              {t({ tr: 'Beni tanı', en: 'About me' })}
+            <a href="#work" className="ui-btn">
+              {t({ tr: 'Projelerimi incele', en: 'View my work' })}
               <ArrowIcon className="rotate-90" />
             </a>
             <a href="#contact" className="ui-btn ui-btn--ghost">
-              {t({ tr: 'Bana ulaş', en: 'Contact me' })}
+              {t({ tr: 'İletişime geç', en: 'Get in touch' })}
             </a>
+            <span className="hidden sm:block w-px h-8 bg-white/10 mx-1" />
+            {[
+              { href: LINKS.linkedin, label: 'LinkedIn', Icon: LinkedInIcon },
+              { href: LINKS.github, label: 'GitHub', Icon: GitHubIcon },
+              { href: LINKS.youtube, label: 'YouTube', Icon: YouTubeIcon },
+              { href: LINKS.itch, label: 'itch.io', Icon: ItchIcon },
+            ].map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="grid place-items-center w-11 h-11 rounded-xl border border-white/10 text-white/70 transition-colors hover:text-white hover:border-white/30 hover:bg-white/5"
+              >
+                <Icon className="w-[18px] h-[18px]" />
+              </a>
+            ))}
           </div>
 
-          <ul className="hero-in hero-in--4 mt-10 hidden sm:flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-white/45">
-            {[
-              { tr: 'İzmir, Türkiye', en: 'İzmir, Türkiye' },
-              { tr: 'İzmir Ekonomi Üniversitesi', en: 'İzmir University of Economics' },
-              { tr: 'Oyun geliştirici', en: 'Game developer' },
-            ].map((f) => (
-              <li key={f.en} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                {t(f)}
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
 

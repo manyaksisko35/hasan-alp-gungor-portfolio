@@ -12,15 +12,15 @@ export default function Skills() {
       <div className="sticky top-0 h-svh px-6 lg:px-[8%] pt-24 lg:pt-28 pb-8 flex flex-col">
         <div className="max-w-7xl w-full mx-auto flex-1 flex flex-col lg:justify-center">
           <div className="lg:max-w-sm">
-            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Neler biliyorum', en: 'What I know' })}</p>
+            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Yetenekler', en: 'Skills' })}</p>
             <h2 className="ui-title">
-              {t({ tr: 'Kullandığım ', en: 'What I ' })}
-              <strong className="ui-accent">{t({ tr: 'teknolojiler.', en: 'work with.' })}</strong>
+              {t({ tr: 'Teknik ', en: 'Technical ' })}
+              <strong className="ui-accent">{t({ tr: 'yetkinlikler.', en: 'skills.' })}</strong>
             </h2>
             <p className="ui-lead mt-4 lg:mt-6 hidden sm:block">
               {t({
-                tr: 'Bu oyun kolunu da hazır model kullanmadan Three.js ile kendim kodladım. Kaydırdıkça parçalarına ayrılıyor; her parça kullandığım bir teknoloji.',
-                en: 'I coded this controller myself with Three.js, without a premade model. It comes apart as you scroll, and each part is something I use.',
+                tr: 'Kullandığım teknolojileri bu modelin parçaları üzerinden gösteriyorum. Model, hazır bir 3D varlık kullanılmadan Three.js ile tamamen kodla oluşturuldu.',
+                en: 'Each part of this model stands for a technology I use. The model itself was built entirely in code with Three.js, without any premade 3D assets.',
               })}
             </p>
           </div>

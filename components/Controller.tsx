@@ -235,7 +235,7 @@ export default function Controller() {
   return (
     <group>
       <mesh ref={backRef} geometry={g.backHalf} material={m.back}>
-        <Anchor onRef={setAnchor} id="back" position={[0.8, -0.65, -0.3]} />
+        <Anchor onRef={setAnchor} id="back" position={[-1.12, 0.12, -0.3]} />
       </mesh>
 
       <mesh ref={boardRef} geometry={g.board} material={boardMat}>
@@ -263,7 +263,7 @@ export default function Controller() {
 
       <group ref={screenRef}>
         <mesh ref={screenMeshRef} geometry={g.screen} material={screenMat} />
-        <Anchor onRef={setAnchor} id="screen" position={[-0.12, 0.3, 0.05]} />
+        <Anchor onRef={setAnchor} id="screen" position={[-0.34, 0.3, 0.05]} />
       </group>
 
       {stick('L')}
@@ -276,7 +276,7 @@ export default function Controller() {
 
       <group ref={buttonsRef}>
         {BUTTON_COLORS.map((_, i) => button(i))}
-        <Anchor onRef={setAnchor} id="buttons" position={[0.22, 0.24, 0.06]} />
+        <Anchor onRef={setAnchor} id="buttons" position={[0.3, -0.12, 0.06]} />
       </group>
 
       <RoundedBox ref={bumperLRef} args={[0.5, 0.12, 0.36]} radius={0.05} smoothness={4} material={m.shell} />

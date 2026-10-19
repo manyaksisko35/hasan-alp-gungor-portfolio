@@ -69,15 +69,15 @@ export default function Work() {
         className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 px-6 lg:px-[8%] py-24 lg:py-0 lg:h-full lg:w-max will-change-transform"
       >
         <div className="lg:w-[34vw] lg:shrink-0 lg:pr-8">
-          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Projelerim', en: 'My projects' })}</p>
+          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Projeler', en: 'Work' })}</p>
           <h2 className="ui-title">
-            {t({ tr: 'Yaptığım ', en: "Sites I've " })}
-            <strong className="ui-accent">{t({ tr: 'siteler.', en: 'built.' })}</strong>
+            {t({ tr: 'Seçili ', en: 'Selected ' })}
+            <strong className="ui-accent">{t({ tr: 'projeler.', en: 'work.' })}</strong>
           </h2>
           <p className="ui-lead mt-4 lg:mt-6 max-w-md">
             {t({
-              tr: 'Samsung Galaxy ürünleri için hazırladığım konsept siteler. Hepsini Next.js ve Three.js ile sıfırdan yaptım; hepsi yayında, kodları da GitHub\'da.',
-              en: 'Concept sites I made for Samsung Galaxy products. I built each one from scratch with Next.js and Three.js; they are all live and the code is on GitHub.',
+              tr: 'Samsung Galaxy ürünleri için geliştirdiğim etkileşimli konsept siteler. Next.js, React Three Fiber ve GSAP ile sıfırdan geliştirildi; tümü yayında ve açık kaynak.',
+              en: 'Interactive concept sites I developed for Samsung Galaxy products. Built from scratch with Next.js, React Three Fiber and GSAP; all live and open source.',
             })}
           </p>
           <p className="mt-6 text-xs text-white/40 font-light max-w-sm">
@@ -139,7 +139,7 @@ export default function Work() {
           className="group ui-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[20px] lg:!rounded-[20px]"
         >
           <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(239,68,68,0.25), transparent 70%)' }} />
-          <p className="ui-label mb-3">GitHub</p>
+          <p className="ui-label ui-label--plain font-mono text-xs text-white/40 mb-3">GitHub</p>
           <p className="text-3xl lg:text-5xl font-medium tracking-[-0.04em] leading-[1.02]">
             {t({ tr: 'Diğer kodlarım ', en: 'The rest of my code is ' })}
             <strong className="ui-accent font-semibold">{t({ tr: "GitHub'da.", en: 'on GitHub.' })}</strong>

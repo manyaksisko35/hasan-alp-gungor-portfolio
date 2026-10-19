@@ -77,10 +77,10 @@ function useScrollStory(layer: React.RefObject<HTMLDivElement | null>, setActive
           ? { x: 0.48, y: -0.02, z: 0, rotX: 0.42, rotY: -0.45, rotZ: 0.06, scale: 0.92, explode: 0, labels: 0, visible: 1 }
           : { x: 0, y: -0.5, z: 0, rotX: 0.62, rotY: -0.2, rotZ: 0.04, scale: 0.95, explode: 0, labels: 0, visible: 1 },
         desktop
-          ? { x: 0.5, y: 0, rotX: 0.2, rotY: -0.62, rotZ: 0.1, scale: 0.82 }
-          : { x: 0, y: 0.5, rotX: 0.3, rotY: -0.5, rotZ: 0.08, scale: 0.62, visible: 0.12 },
+          ? { x: 0.5, y: 0.25, rotX: 0.2, rotY: -0.62, rotZ: 0.1, scale: 0.82, visible: 0 }
+          : { x: 0, y: 0.5, rotX: 0.3, rotY: -0.5, rotZ: 0.08, scale: 0.62, visible: 0 },
         desktop
-          ? { x: 0.27, y: -0.02, rotX: 0.32, rotY: 0.5, rotZ: 0, scale: 0.9 }
+          ? { x: 0.27, y: -0.02, rotX: 0.32, rotY: 0.5, rotZ: 0, scale: 0.9, visible: 1 }
           : { x: 0, y: 0.18, rotX: 0.32, rotY: 0.5, rotZ: 0, scale: 0.7, visible: 1 },
         { rotX: 0.4, rotY: 0.7, explode: 1, labels: 1 },
         { rotX: 0.28, rotY: -0.55, explode: 1, labels: 1 },

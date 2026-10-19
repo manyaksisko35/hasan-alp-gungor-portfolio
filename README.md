@@ -1,6 +1,6 @@
 # Hasan Alp Güngör — Portfolio
 
-My personal site. It introduces me, my skills, my projects and my videos, with a real-time 3D game controller I modeled entirely in code (no downloaded 3D files). Scroll and it turns, then comes apart part by part, and every part is one of my skills.
+My personal site and portfolio: who I am, my education, skills, projects and videos, with a real-time 3D game controller I modeled entirely in code (no downloaded 3D files). Scroll and it turns, then comes apart part by part, and every part is one of my skills.
 
 ![Hero](docs/screenshots/desktop-hero.jpg)
 
@@ -19,11 +19,11 @@ My personal site. It introduces me, my skills, my projects and my videos, with a
 | | |
 |---|---|
 | ![Skills](docs/screenshots/desktop-skills.jpg) | ![Skills, turned](docs/screenshots/desktop-skills-turn.jpg) |
-| **Teardown:** every part is a skill | **...and it turns as you scroll** |
+| **Skills:** every part is a technology | **...and it turns as you scroll** |
 | ![About](docs/screenshots/desktop-about.jpg) | ![Work](docs/screenshots/desktop-work.jpg) |
 | **About** | **My projects** |
-| ![More work](docs/screenshots/desktop-more.jpg) | ![Channels](docs/screenshots/desktop-channels.jpg) |
-| **More work** | **Channels** |
+| ![More work](docs/screenshots/desktop-more.jpg) | ![Content](docs/screenshots/desktop-videos.jpg) |
+| **More work** | **Content** |
 
 <p>
   <img src="docs/screenshots/mobile-hero.jpg" width="24%" alt="Mobile hero" />

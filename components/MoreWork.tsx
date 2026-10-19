@@ -10,15 +10,15 @@ export default function MoreWork() {
   return (
     <section id="more" className="ui-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
-        <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Diğer projelerim', en: 'More projects' })}</p>
+        <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Diğer projeler', en: 'More work' })}</p>
         <h2 className="ui-title max-w-3xl">
-          {t({ tr: 'Başka neler ', en: 'What else have I ' })}
-          <strong>{t({ tr: 'yaptım?', en: 'made?' })}</strong>
+          {t({ tr: 'Diğer ', en: 'Other ' })}
+          <strong>{t({ tr: 'çalışmalar.', en: 'projects.' })}</strong>
         </h2>
         <p className="ui-lead mt-4 lg:mt-6 max-w-xl">
           {t({
-            tr: 'Web konseptleri, oyun yayınları için arayüzler, Arduino projeleri ve okulda yazdığım uygulamalar.',
-            en: 'Web concepts, overlays for game broadcasts, Arduino projects and apps I wrote for school.',
+            tr: 'Web tasarımı, oyun yayın arayüzleri, gömülü sistemler ve masaüstü uygulamaları.',
+            en: 'Web design, game broadcast overlays, embedded systems and desktop applications.',
           })}
         </p>
 
@@ -29,6 +29,7 @@ export default function MoreWork() {
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
+              data-reveal
               className="ui-card group relative overflow-hidden p-6 lg:p-8 flex flex-col min-h-[260px]"
             >
               <div
