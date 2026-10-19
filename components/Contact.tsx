@@ -17,19 +17,19 @@ export default function Contact() {
         <div className="relative max-w-5xl mx-auto">
           <p className="sg-eyebrow mb-5 lg:mb-8">{t({ tr: 'İletişim', en: 'Contact' })}</p>
           <h2 className="sg-title sg-title-xl">
-            {t({ tr: 'Birlikte bir şey ', en: "Let's build something " })}
-            <strong className="sg-ai">{t({ tr: 'yapalım.', en: 'together.' })}</strong>
+            {t({ tr: 'İletişime ', en: 'Get in ' })}
+            <strong className="sg-ai">{t({ tr: 'geçin.', en: 'touch.' })}</strong>
           </h2>
           <p className="sg-lead mt-6 lg:mt-8 max-w-lg mx-auto">
             {t({
-              tr: 'Staj, iş ya da ortak bir proje fikrin varsa LinkedIn\'den yaz. Kodlarıma GitHub\'dan göz at.',
-              en: 'Got an internship, a job or a project idea? Message me on LinkedIn. Browse my code on GitHub.',
+              tr: 'Staj, iş ve proje teklifleri için LinkedIn üzerinden ulaşabilirsiniz.',
+              en: 'For internships, jobs and project inquiries, reach me on LinkedIn.',
             })}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="sg-btn">
               <LinkedInIcon className="w-4 h-4" />
-              {t({ tr: 'LinkedIn\'den yaz', en: 'Message on LinkedIn' })}
+              {t({ tr: 'LinkedIn\'den ulaşın', en: 'Contact on LinkedIn' })}
             </a>
             <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="sg-btn sg-btn--ghost">
               <GitHubIcon className="w-4 h-4" />
@@ -45,8 +45,8 @@ export default function Contact() {
           <p>© 2026 Hasan Alp Güngör</p>
           <p>
             {t({
-              tr: 'Next.js, Three.js ve TypeScript ile yapıldı. Oyun kolu dahil her şey kodla.',
-              en: 'Built with Next.js, Three.js and TypeScript. Everything is code, the controller included.',
+              tr: 'Next.js, Three.js ve TypeScript ile geliştirildi.',
+              en: 'Built with Next.js, Three.js and TypeScript.',
             })}
           </p>
           <div className="flex gap-5">

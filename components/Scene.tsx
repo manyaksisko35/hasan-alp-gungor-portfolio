@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef, useState } from 'react';
 import * as THREE from 'three';
 import Controller from '@/components/Controller';
+import PartLabels from '@/components/PartLabels';
 import { pose, spin, stepSpin, type Pose } from '@/lib/sceneState';
 import { useReducedMotion } from '@/lib/useReducedMotion';
 
@@ -145,6 +146,7 @@ export default function Scene() {
           <Controller />
         </Rig>
       </Canvas>
+      <PartLabels />
     </div>
   );
 }

@@ -245,8 +245,7 @@ a.rounded-full:focus-visible { border-radius: 999px; }
   white-space: nowrap;
   font-family: var(--font-outfit), system-ui, sans-serif;
   opacity: var(--part-labels, 0);
-  transform: translateY(calc((1 - var(--part-labels, 0)) * 8px));
-  visibility: visible;
+  will-change: transform;
 }
 .part-label b {
   display: block;

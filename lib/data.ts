@@ -29,8 +29,8 @@ export const CONCEPTS: Concept[] = [
     shot: true,
     glow: 'radial-gradient(60% 60% at 50% 50%, rgba(103, 232, 249, 0.22), transparent 72%)',
     text: {
-      tr: 'Scroll\'ladıkça dönen ve parçalarına ayrılan gerçek zamanlı 3D telefon. S Pen yuvasından çıkıyor, S25 Ultra ile yan yana karşılaştırma, AR ile odana koy.',
-      en: 'A real-time 3D phone that turns and comes apart as you scroll. The S Pen slides out, a side-by-side with the S25 Ultra, and AR puts it in your room.',
+      tr: 'Scroll ile yönetilen gerçek zamanlı 3D telefon modeli, S25 Ultra karşılaştırması, renk ve hafıza yapılandırıcısı ve AR görüntüleme.',
+      en: 'A scroll-driven real-time 3D phone model, an S25 Ultra comparison, a color and storage configurator, and AR viewing.',
     },
     stack: ['Next.js', 'React Three Fiber', 'GSAP', 'AR'],
   },
@@ -41,8 +41,8 @@ export const CONCEPTS: Concept[] = [
     img: '/projects/buds4-pro-product.webp',
     glow: 'radial-gradient(55% 60% at 50% 55%, rgba(210, 222, 240, 0.2), transparent 72%)',
     text: {
-      tr: 'Gürültü engellemeyi gerçekten duyuyorsun: şehir sesi ve müzik Web Audio ile canlı sentezleniyor. HRTF ile 360 ses.',
-      en: 'Noise cancelling you can actually hear: the city and the music are synthesized live with Web Audio. HRTF 360 Audio.',
+      tr: 'Açılan şarj kutusu animasyonu, Web Audio ile gerçek zamanlı üretilen ANC ve 360 ses demoları.',
+      en: 'An opening charging case animation, plus ANC and 360 Audio demos generated in real time with Web Audio.',
     },
     stack: ['Next.js', 'Three.js', 'Web Audio'],
   },
@@ -53,8 +53,8 @@ export const CONCEPTS: Concept[] = [
     img: '/projects/watch-ultra2-product.webp',
     glow: 'radial-gradient(55% 60% at 50% 55%, rgba(164, 185, 140, 0.26), transparent 72%)',
     text: {
-      tr: 'Saatin tamamı kodla modellendi, tek bir 3D dosya yok. Quick Button ile antrenman, L1 ve L5 GPS farkı şehir simülasyonunda.',
-      en: 'The whole watch is modeled in code, not a single 3D file. Quick Button workouts and L1 vs L5 GPS in a city simulation.',
+      tr: 'Hazır model kullanmadan Three.js ile kodla modellenmiş saat; etkileşimli antrenman ve çift frekanslı GPS simülasyonu.',
+      en: 'A watch modeled in code with Three.js, without a premade model, plus an interactive workout and a dual-frequency GPS simulation.',
     },
     stack: ['Next.js', 'Three.js', 'GSAP'],
   },
@@ -65,8 +65,8 @@ export const CONCEPTS: Concept[] = [
     img: '/projects/galaxy-ring-product.webp',
     glow: 'radial-gradient(55% 60% at 50% 55%, rgba(217, 178, 106, 0.24), transparent 72%)',
     text: {
-      tr: 'Prosedürel üretilen titanyum yüzük ve şeffaf şarj kutusu. Uyku grafiği, Energy Score ve çift çimdikleme demoları.',
-      en: 'A procedurally generated titanium ring and its clear charging case. Sleep charts, Energy Score and double pinch demos.',
+      tr: 'Prosedürel olarak oluşturulan yüzük ve şarj kutusu; uyku takibi ve Energy Score demoları.',
+      en: 'A procedurally generated ring and charging case, with sleep tracking and Energy Score demos.',
     },
     stack: ['Next.js', 'Three.js', 'GSAP'],
   },
@@ -87,8 +87,8 @@ export const PROJECTS: Project[] = [
     href: `${GH}/CounterStrike2MajorHUD`,
     tag: { tr: 'Oyun · Yayın', en: 'Games · Broadcast' },
     text: {
-      tr: 'Valve\'ın Game State Integration\'ı ile saniyede ~10 kez veri alan Major tarzı yayın arayüzü. Canlı HP, para, killfeed, bomba sayacı.',
-      en: 'A Major-style broadcast overlay fed by Valve\'s Game State Integration about 10 times a second. Live HP, money, killfeed, bomb timer.',
+      tr: 'Counter-Strike 2 için Major turnuvası tarzında yayın arayüzü. Valve Game State Integration ile saniyede yaklaşık 10 kez veri alır; can, ekonomi, killfeed ve bomba sayacını canlı gösterir.',
+      en: 'A Major-style broadcast overlay for Counter-Strike 2. It receives data from Valve\'s Game State Integration about 10 times a second and shows health, economy, killfeed and the bomb timer live.',
     },
     stack: ['Python', 'JavaScript', 'HTML', 'CSS'],
     accent: '#fb923c',
@@ -98,8 +98,8 @@ export const PROJECTS: Project[] = [
     href: `${GH}/GoalDetectorSystem`,
     tag: { tr: 'Donanım', en: 'Hardware' },
     text: {
-      tr: 'Arduino Uno ve Python ile gol algılama sistemi. Yeğenim için yaptım, kendisi bayıldı.',
-      en: 'A goal detection system built with an Arduino Uno and Python. Made it for my nephew, and he loved it.',
+      tr: 'Arduino Uno ve Python ile geliştirilmiş gol algılama sistemi. Devre tasarımı ve yazılımı dahil.',
+      en: 'A goal detection system built with an Arduino Uno and Python, including the circuit and the software.',
     },
     stack: ['Arduino', 'Python'],
     accent: '#34d399',
@@ -109,8 +109,8 @@ export const PROJECTS: Project[] = [
     href: `${GH}/database_ile_ogrenci_durumu`,
     tag: { tr: 'Backend', en: 'Backend' },
     text: {
-      tr: 'Vize ve final ağırlığına göre geçti/kaldı hesaplayan PHP sistemi. Biri veritabanıyla, biri kurulumsuz JSON ile iki sürüm.',
-      en: 'A PHP system that works out pass or fail from midterm and final weights. Two versions: one with a database, one with zero-setup JSON.',
+      tr: 'Vize ve final ağırlıklarına göre öğrencinin geçme durumunu hesaplayan PHP uygulaması. Veritabanlı ve JSON tabanlı iki sürümü var.',
+      en: 'A PHP application that calculates whether a student passes from midterm and final weights. Available in a database version and a JSON-based version.',
     },
     stack: ['PHP', 'SQL', 'JSON'],
     accent: '#a78bfa',
@@ -120,8 +120,8 @@ export const PROJECTS: Project[] = [
     href: `${GH}/PcProgramKurucu`,
     tag: { tr: 'Araç', en: 'Tool' },
     text: {
-      tr: 'Bilgisayara program kurmak için yazdığım Batch aracı. Temiz kurulumdan sonra hayat kurtarır. MIT lisanslı.',
-      en: 'A Batch tool I wrote to install programs on a PC. A lifesaver after a clean install. MIT licensed.',
+      tr: 'Windows\'ta program kurulumunu otomatikleştiren Batch betiği. MIT lisanslı.',
+      en: 'A Batch script that automates installing programs on Windows. MIT licensed.',
     },
     stack: ['Batch', 'Windows'],
     accent: '#67e8f9',
@@ -138,13 +138,13 @@ export const MORE_REPOS = [
 
 /** One skill per controller part; the Skills section and the 3D labels share this list. */
 export const PARTS = [
-  { id: 'screen', title: 'UI & Motion', text: { tr: 'GSAP, Lenis, Tailwind', en: 'GSAP, Lenis, Tailwind' } },
-  { id: 'stickL', title: 'TypeScript', text: { tr: 'React, Next.js', en: 'React, Next.js' } },
-  { id: 'stickR', title: 'Three.js', text: { tr: 'React Three Fiber, 3D', en: 'React Three Fiber, 3D' } },
-  { id: 'dpad', title: 'Python & C#', text: { tr: 'Araçlar, oyun mantığı', en: 'Tools, game logic' } },
-  { id: 'buttons', title: { tr: 'Oyun tasarımı', en: 'Game design' }, text: { tr: 'itch.io\'daki oyunlar', en: 'Games on itch.io' } },
-  { id: 'pcb', title: { tr: 'Donanım', en: 'Hardware' }, text: { tr: 'Arduino, sensörler', en: 'Arduino, sensors' } },
-  { id: 'back', title: 'PHP & SQL', text: { tr: 'Backend, veritabanı', en: 'Backend, databases' } },
-] as const satisfies readonly { id: string; title: string | Localized; text: Localized }[];
+  { id: 'screen', title: { tr: 'Arayüz ve animasyon', en: 'UI and animation' }, text: { tr: 'GSAP, Tailwind CSS', en: 'GSAP, Tailwind CSS' } },
+  { id: 'stickL', title: { tr: 'TypeScript ve React', en: 'TypeScript and React' }, text: { tr: 'Next.js', en: 'Next.js' } },
+  { id: 'stickR', title: { tr: '3D grafik', en: '3D graphics' }, text: { tr: 'Three.js, React Three Fiber', en: 'Three.js, React Three Fiber' } },
+  { id: 'dpad', title: { tr: 'Python ve C#', en: 'Python and C#' }, text: { tr: 'Masaüstü uygulamalar ve araçlar', en: 'Desktop apps and tools' } },
+  { id: 'buttons', title: { tr: 'Oyun geliştirme', en: 'Game development' }, text: { tr: 'itch.io\'da yayınlanan oyunlar', en: 'Games published on itch.io' } },
+  { id: 'pcb', title: { tr: 'Gömülü sistemler', en: 'Embedded systems' }, text: { tr: 'Arduino, sensörler', en: 'Arduino, sensors' } },
+  { id: 'back', title: { tr: 'Backend', en: 'Backend' }, text: { tr: 'PHP, SQL', en: 'PHP, SQL' } },
+] as const satisfies readonly { id: string; title: Localized; text: Localized }[];
 
 export type PartId = (typeof PARTS)[number]['id'];

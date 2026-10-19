@@ -122,12 +122,8 @@ export function drawScreen(ctx: CanvasRenderingContext2D) {
   ctx.fillStyle = '#fff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = `700 ${h * 0.34}px ${font}`;
-  ctx.fillText('HAG', w / 2, h * 0.47);
-  ctx.font = `500 ${h * 0.075}px ${font}`;
-  ctx.fillStyle = 'rgba(255,255,255,0.7)';
-  ctx.letterSpacing = `${h * 0.03}px`;
-  ctx.fillText('PLAYER ONE', w / 2, h * 0.78);
+  ctx.font = `700 ${h * 0.36}px ${font}`;
+  ctx.fillText('HAG', w / 2, h * 0.52);
 }
 
 /** The circuit board hidden between the shells. */

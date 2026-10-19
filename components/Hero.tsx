@@ -1,8 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { startFilm } from '@/components/FilmTour';
-import { PlayIcon } from '@/components/Icons';
+import { ArrowIcon } from '@/components/Icons';
 import { useT } from '@/lib/i18n';
 import { spin } from '@/lib/sceneState';
 
@@ -45,7 +44,7 @@ export default function Hero() {
       className="h-svh min-h-[600px] w-full flex flex-col items-center text-center relative px-4 pt-[17svh] md:pt-[15svh] touch-pan-y select-none cursor-grab data-[dragging]:cursor-grabbing"
     >
       <p className="hero-in sg-eyebrow mb-4 md:mb-6 !text-[0.65rem] md:!text-xs">
-        {t({ tr: 'Oyun geliştirici · Yazılım meraklısı', en: 'Game developer · Software enthusiast' })}
+        {t({ tr: 'Yazılım ve oyun geliştirici', en: 'Software and game developer' })}
       </p>
 
       <h1
@@ -56,22 +55,23 @@ export default function Hero() {
       </h1>
 
       <p className="hero-in hero-in--3 mt-4 md:mt-6 text-base md:text-2xl font-light text-white/70 max-w-[22ch] md:max-w-none">
-        {t({ tr: 'Oyunlar, 3D web siteleri ve ', en: 'Games, 3D websites and ' })}
-        <span className="sg-ai font-semibold">{t({ tr: 'tarayıcıyı zorlayan fikirler.', en: 'ideas that push the browser.' })}</span>
+        {t({ tr: 'Etkileşimli ', en: 'I build interactive ' })}
+        <span className="sg-ai font-semibold">{t({ tr: '3D web deneyimleri', en: '3D web experiences' })}</span>
+        {t({ tr: ' ve oyunlar geliştiriyorum.', en: ' and games.' })}
       </p>
 
       <div className="hero-in hero-in--4 mt-7 md:mt-9 flex flex-wrap items-center justify-center gap-3">
-        <button onClick={startFilm} className="sg-btn">
-          <PlayIcon />
-          {t({ tr: 'Turu izle', en: 'Watch the tour' })}
-        </button>
-        <a href="#work" className="sg-btn sg-btn--ghost">
-          {t({ tr: 'Projelerim', en: 'My work' })}
+        <a href="#work" className="sg-btn">
+          {t({ tr: 'Projeleri gör', en: 'View projects' })}
+          <ArrowIcon className="rotate-90" />
+        </a>
+        <a href="#contact" className="sg-btn sg-btn--ghost">
+          {t({ tr: 'İletişim', en: 'Contact' })}
         </a>
       </div>
 
       <div className="hero-in hero-in--4 absolute bottom-8 md:bottom-10 flex flex-col items-center gap-3 text-white/50">
-        <span className="sg-eyebrow !text-[0.65rem]">{t({ tr: 'Sürükle ve çevir · Kaydır', en: 'Drag to spin · Scroll' })}</span>
+        <span className="sg-eyebrow !text-[0.65rem]">{t({ tr: 'Kaydır', en: 'Scroll' })}</span>
         <div className="w-px h-10 bg-gradient-to-b from-white/60 to-transparent" />
       </div>
     </section>

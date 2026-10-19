@@ -69,14 +69,14 @@ export default function Work() {
         className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 px-6 lg:px-[8%] py-24 lg:py-0 lg:h-full lg:w-max will-change-transform"
       >
         <div className="lg:w-[34vw] lg:shrink-0 lg:pr-8">
-          <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Projeler', en: 'Work' })}</p>
+          <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Öne çıkan projeler', en: 'Featured work' })}</p>
           <h2 className="sg-title">
             Galaxy <strong className="sg-ai">{t({ tr: 'konsept serisi.', en: 'concept series.' })}</strong>
           </h2>
           <p className="sg-lead mt-4 lg:mt-6 max-w-md">
             {t({
-              tr: 'Dört ürün, dört etkileşimli site. Hepsi gerçek zamanlı 3D, hepsi canlı ve açık kaynak.',
-              en: 'Four products, four interactive sites. All real-time 3D, all live and open source.',
+              tr: 'Samsung Galaxy ürünleri için tasarlayıp geliştirdiğim dört etkileşimli ürün sitesi. Hepsi yayında ve açık kaynak.',
+              en: 'Four interactive product sites I designed and built for Samsung Galaxy devices. All live and open source.',
             })}
           </p>
           <p className="mt-6 text-xs text-white/40 font-light max-w-sm">
@@ -138,13 +138,13 @@ export default function Work() {
           className="group sg-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[28px] lg:!rounded-[32px]"
         >
           <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(167,139,250,0.25), transparent 70%)' }} />
-          <p className="sg-eyebrow mb-3">{t({ tr: 'Sırada', en: 'Up next' })}</p>
+          <p className="sg-eyebrow mb-3">GitHub</p>
           <p className="text-3xl lg:text-5xl font-medium tracking-[-0.04em] leading-[1.02]">
-            {t({ tr: 'Yeni konsept ', en: 'A new concept is ' })}
-            <strong className="sg-ai font-semibold">{t({ tr: 'yolda.', en: 'on the way.' })}</strong>
+            {t({ tr: 'Tüm projeler ', en: 'Every project is ' })}
+            <strong className="sg-ai font-semibold">{t({ tr: 'açık kaynak.', en: 'open source.' })}</strong>
           </p>
           <span className="mt-6 inline-flex items-center gap-2 text-sm text-white/70 group-hover:text-white transition-colors">
-            {t({ tr: 'GitHub\'da takip et', en: 'Follow on GitHub' })}
+            {t({ tr: 'Profili incele', en: 'View profile' })}
             <ArrowIcon />
           </span>
         </a>

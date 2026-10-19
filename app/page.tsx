@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import About from '@/components/About';
 import Channels from '@/components/Channels';
 import Contact from '@/components/Contact';
-import FilmTour from '@/components/FilmTour';
 import HeadlineReveal from '@/components/HeadlineReveal';
 import Hero from '@/components/Hero';
 import HeroGlow from '@/components/HeroGlow';
@@ -35,7 +34,6 @@ export default function Home() {
       <ScrollProgress />
       <SectionDots />
       <HeadlineReveal />
-      <FilmTour />
 
       <main className="relative w-full bg-[#030303]">
         <div className="fixed inset-0 z-0 pointer-events-none">

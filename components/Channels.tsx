@@ -19,8 +19,8 @@ const CHANNELS: {
     handle: 'hasan-alp-gungor',
     href: LINKS.itch,
     Icon: ItchIcon,
-    text: { tr: 'Yaptığım oyunlar. İndir, oyna, puanla.', en: 'The games I make. Download, play, rate.' },
-    cta: { tr: 'Oyunları oyna', en: 'Play the games' },
+    text: { tr: 'Geliştirdiğim oyunlar.', en: 'Games I have developed.' },
+    cta: { tr: 'Oyunlara göz at', en: 'Browse games' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(250, 92, 92, 0.28), transparent 70%)',
     big: true,
   },
@@ -29,8 +29,8 @@ const CHANNELS: {
     handle: '@hasanalpgungor',
     href: LINKS.youtube,
     Icon: YouTubeIcon,
-    text: { tr: 'Videolarım ve geliştirme süreçleri.', en: 'My videos and behind-the-scenes builds.' },
-    cta: { tr: 'İzle', en: 'Watch' },
+    text: { tr: 'YouTube kanalım.', en: 'My YouTube channel.' },
+    cta: { tr: 'Kanala git', en: 'Visit channel' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(255, 46, 59, 0.26), transparent 70%)',
     big: true,
   },
@@ -39,8 +39,8 @@ const CHANNELS: {
     handle: '@manyaksisko35',
     href: LINKS.github,
     Icon: GitHubIcon,
-    text: { tr: 'Bütün kodlarım ve konsept siteler.', en: 'All my code and the concept sites.' },
-    cta: { tr: 'Repolara bak', en: 'Browse repos' },
+    text: { tr: 'Açık kaynak projelerim.', en: 'My open source projects.' },
+    cta: { tr: 'Profili gör', en: 'View profile' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(203, 213, 225, 0.16), transparent 70%)',
   },
   {
@@ -48,8 +48,8 @@ const CHANNELS: {
     handle: 'Hasan Alp Güngör',
     href: LINKS.linkedin,
     Icon: LinkedInIcon,
-    text: { tr: 'Staj, iş ve ortak projeler için.', en: 'For internships, jobs and collabs.' },
-    cta: { tr: 'Bağlantı kur', en: 'Connect' },
+    text: { tr: 'Profesyonel profilim.', en: 'My professional profile.' },
+    cta: { tr: 'Profili gör', en: 'View profile' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(10, 102, 194, 0.32), transparent 70%)',
   },
 ];
@@ -60,13 +60,13 @@ export default function Channels() {
   return (
     <section id="channels" className="sg-ambient amb-violet relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
-        <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Kanallar', en: 'Channels' })}</p>
+        <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Bağlantılar', en: 'Links' })}</p>
         <h2 className="sg-title max-w-3xl">
-          {t({ tr: 'Oyunlar, videolar, ', en: 'Games, videos, ' })}
-          <strong className="sg-ai">{t({ tr: 'kod.', en: 'code.' })}</strong>
+          {t({ tr: 'Beni ', en: 'Find me ' })}
+          <strong className="sg-ai">{t({ tr: 'takip edin.', en: 'online.' })}</strong>
         </h2>
         <p className="sg-lead mt-4 lg:mt-6 max-w-xl">
-          {t({ tr: 'Ne yaptığımı görmek istersen, hepsi bir tık uzakta.', en: 'If you want to see what I make, it is all one click away.' })}
+          {t({ tr: 'Oyunlarım, videolarım ve kodlarım.', en: 'My games, videos and code.' })}
         </p>
 
         <div className="mt-10 lg:mt-14 grid md:grid-cols-2 gap-4 lg:gap-6">

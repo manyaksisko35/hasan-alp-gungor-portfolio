@@ -12,13 +12,13 @@ export default function MoreWork() {
       <div className="max-w-7xl mx-auto">
         <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Diğer işler', en: 'More work' })}</p>
         <h2 className="sg-title max-w-3xl">
-          {t({ tr: 'Ve geri kalan ', en: 'And everything ' })}
-          <strong>{t({ tr: 'her şey.', en: 'else.' })}</strong>
+          {t({ tr: 'Diğer ', en: 'Other ' })}
+          <strong>{t({ tr: 'çalışmalar.', en: 'projects.' })}</strong>
         </h2>
         <p className="sg-lead mt-4 lg:mt-6 max-w-xl">
           {t({
-            tr: 'Oyun yayınlarından donanıma, backend\'den küçük araçlara. Hepsinin kodu GitHub\'da.',
-            en: 'From game broadcasts to hardware, backends to small tools. All the code is on GitHub.',
+            tr: 'Oyun yayıncılığı, gömülü sistemler, backend ve masaüstü araçları.',
+            en: 'Game broadcasting, embedded systems, backend and desktop tools.',
           })}
         </p>
 

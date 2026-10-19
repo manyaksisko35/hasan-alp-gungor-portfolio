@@ -8,9 +8,9 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000';
 
-const title = 'Hasan Alp Güngör | Game Developer & Software Developer';
+const title = 'Hasan Alp Güngör | Software & Game Developer';
 const description =
-  'Portfolio of Hasan Alp Güngör: game developer and Computer Programming student in İzmir. Galaxy concept sites, a CS2 Major HUD, games and more, with a 3D controller built entirely in code.';
+  'Portfolio of Hasan Alp Güngör, a software and game developer and Computer Programming student at İzmir University of Economics: interactive 3D websites, games and embedded projects.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

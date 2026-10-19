@@ -10,15 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 /** Words wrapped in *stars* get the gradient. */
 const MANIFESTO: Localized = {
-  tr: "İzmir Ekonomi Üniversitesi'nde Bilgisayar Programcılığı okuyorum. *Oyunlar* yapıyorum, scroll'la dönen *3D web siteleri* kuruyorum, Arduino ile sensör bağlıyorum. Bir şey gerçekten çalışana kadar bırakmıyorum.",
-  en: "I study Computer Programming at İzmir University of Economics. I make *games*, build *3D websites* that turn as you scroll and wire sensors to an Arduino. I don't let go of a thing until it actually works.",
+  tr: "İzmir Ekonomi Üniversitesi'nde Bilgisayar Programcılığı öğrencisiyim. Gerçek zamanlı *3D web siteleri*, *oyunlar* ve gömülü sistem projeleri geliştiriyorum. Odağım; hızlı, detaylı ve akıcı kullanıcı deneyimleri.",
+  en: "I'm a Computer Programming student at İzmir University of Economics. I build real-time *3D websites*, *games* and embedded projects, with a focus on fast, detailed and fluid user experiences.",
 };
 
 const STATS: { value: number; suffix?: string; label: Localized }[] = [
-  { value: 12, suffix: '+', label: { tr: 'Açık kaynak repo', en: 'Open source repos' } },
-  { value: 4, label: { tr: 'Galaxy konsept sitesi', en: 'Galaxy concept sites' } },
-  { value: 0, label: { tr: 'İndirilmiş 3D model. Bu kol da kodla yapıldı.', en: 'Downloaded 3D models. This controller is code too.' } },
-  { value: 10, suffix: ' Hz', label: { tr: 'Canlı CS2 HUD verisi', en: 'Live CS2 HUD data' } },
+  { value: 12, suffix: '+', label: { tr: 'Açık kaynak proje', en: 'Open source projects' } },
+  { value: 4, label: { tr: 'Yayında konsept site', en: 'Live concept sites' } },
+  { value: 5, label: { tr: 'Programlama dili', en: 'Programming languages' } },
+  { value: 10, suffix: ' Hz', label: { tr: 'CS2 HUD veri güncellemesi', en: 'CS2 HUD update rate' } },
 ];
 
 function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {

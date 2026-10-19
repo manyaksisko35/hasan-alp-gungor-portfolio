@@ -1,11 +1,10 @@
 'use client';
 
-import { Html, RoundedBox } from '@react-three/drei';
+import { RoundedBox } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
-import { PARTS, type PartId } from '@/lib/data';
-import { useLang } from '@/lib/i18n';
+import type { PartId } from '@/lib/data';
 import {
   canvasTexture,
   controllerShape,
@@ -27,22 +26,9 @@ const BUTTON_OFFSETS: [number, number][] = [
   [-0.13, 0],
 ];
 
-function Label({ id, position }: { id: PartId; position: [number, number, number] }) {
-  const lang = useLang();
-  const index = PARTS.findIndex((p) => p.id === id);
-  const part = PARTS[index];
-  const title = typeof part.title === 'string' ? part.title : part.title[lang];
-  return (
-    <Html position={position} center zIndexRange={[20, 0]} className="pointer-events-none">
-      <div className="part-label">
-        <span className="part-label__num">{String(index + 1).padStart(2, '0')}</span>
-        <span>
-          <b>{title}</b>
-          <small>{part.text[lang]}</small>
-        </span>
-      </div>
-    </Html>
-  );
+/** Empty object marking where a part's label points; PartLabels follows it on screen. */
+function Anchor({ id, position, onRef }: { id: PartId; position: [number, number, number]; onRef: (id: PartId, o: THREE.Object3D | null) => void }) {
+  return <object3D position={position} ref={(o) => onRef(id, o)} />;
 }
 
 function useMaterials() {
@@ -126,8 +112,8 @@ function useGeometries() {
   }, []);
 }
 
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const smooth = (t: number) => t * t * (3 - 2 * t);
+const projected = new THREE.Vector3();
 
 export default function Controller() {
   const m = useMaterials();
@@ -148,6 +134,11 @@ export default function Controller() {
   const labelsRef = useRef(-1);
   const explode = useRef(0);
   const screenMeshRef = useRef<THREE.Mesh>(null);
+  const anchors = useRef(new Map<PartId, THREE.Object3D>());
+  const setAnchor = (id: PartId, o: THREE.Object3D | null) => {
+    if (o) anchors.current.set(id, o);
+    else anchors.current.delete(id);
+  };
 
   useEffect(() => {
     // Materials are reached through the mesh refs: three.js objects are mutable by design.
@@ -189,8 +180,7 @@ export default function Controller() {
     [g, m, screenMat, boardMat],
   );
 
-
-  useFrame((_, dt) => {
+  useFrame((state, dt) => {
     explode.current = THREE.MathUtils.damp(explode.current, pose.explode, 5, dt);
     const e = smooth(Math.min(1, Math.max(0, explode.current)));
     frontRef.current?.position.set(0, 0, e * 0.42);
@@ -208,10 +198,24 @@ export default function Controller() {
     bumperLRef.current?.position.set(-0.66, 0.52 + e * 0.38, -e * 0.1);
     bumperRRef.current?.position.set(0.66, 0.52 + e * 0.38, -e * 0.1);
 
-    const labels = Math.round(lerp(0, 1, pose.labels) * 100) / 100;
+    const labels = Math.round(pose.labels * 100) / 100;
     if (labels !== labelsRef.current) {
       labelsRef.current = labels;
       document.documentElement.style.setProperty('--part-labels', String(labels));
+    }
+
+    // Pin each DOM label (see PartLabels) to its anchor's screen position.
+    if (labels > 0) {
+      const { width, height } = state.size;
+      anchors.current.forEach((anchor, id) => {
+        const el = document.getElementById(`part-label-${id}`);
+        if (!el) return;
+        anchor.updateWorldMatrix(true, false);
+        projected.setFromMatrixPosition(anchor.matrixWorld).project(state.camera);
+        const x = ((projected.x + 1) / 2) * width;
+        const y = ((1 - projected.y) / 2) * height;
+        el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      });
     }
   });
 
@@ -224,18 +228,18 @@ export default function Controller() {
       <mesh geometry={g.shaft} material={m.titanium} rotation-x={Math.PI / 2} position-z={0.06} />
       <mesh geometry={g.cap} material={m.rubber} rotation-x={Math.PI / 2} position-z={0.13} />
       <mesh geometry={g.capRim} material={m.titanium} position-z={0.156} />
-      <Label id={side === 'L' ? 'stickL' : 'stickR'} position={[side === 'L' ? -0.12 : 0.12, -0.32, 0.15]} />
+      <Anchor onRef={setAnchor} id={side === 'L' ? 'stickL' : 'stickR'} position={[side === 'L' ? -0.12 : 0.12, -0.32, 0.15]} />
     </group>
   );
 
   return (
     <group>
       <mesh ref={backRef} geometry={g.backHalf} material={m.back}>
-        <Label id="back" position={[0.8, -0.65, -0.3]} />
+        <Anchor onRef={setAnchor} id="back" position={[0.8, -0.65, -0.3]} />
       </mesh>
 
       <mesh ref={boardRef} geometry={g.board} material={boardMat}>
-        <Label id="pcb" position={[-0.85, -0.55, 0.05]} />
+        <Anchor onRef={setAnchor} id="pcb" position={[-0.85, -0.55, 0.05]} />
       </mesh>
 
       <group ref={frontRef}>
@@ -259,7 +263,7 @@ export default function Controller() {
 
       <group ref={screenRef}>
         <mesh ref={screenMeshRef} geometry={g.screen} material={screenMat} />
-        <Label id="screen" position={[0, 0.3, 0.05]} />
+        <Anchor onRef={setAnchor} id="screen" position={[-0.12, 0.3, 0.05]} />
       </group>
 
       {stick('L')}
@@ -267,12 +271,12 @@ export default function Controller() {
 
       <group ref={dpadRef}>
         <mesh geometry={g.cross} material={m.dpad} />
-        <Label id="dpad" position={[-0.05, 0.3, 0.06]} />
+        <Anchor onRef={setAnchor} id="dpad" position={[-0.05, 0.3, 0.06]} />
       </group>
 
       <group ref={buttonsRef}>
         {BUTTON_COLORS.map((_, i) => button(i))}
-        <Label id="buttons" position={[0.05, 0.36, 0.06]} />
+        <Anchor onRef={setAnchor} id="buttons" position={[0.22, 0.24, 0.06]} />
       </group>
 
       <RoundedBox ref={bumperLRef} args={[0.5, 0.12, 0.36]} radius={0.05} smoothness={4} material={m.shell} />
