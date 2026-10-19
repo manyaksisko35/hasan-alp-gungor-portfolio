@@ -104,7 +104,7 @@ export default function About() {
                 <p className="text-xl lg:text-2xl font-semibold tracking-tight">{t({ tr: 'İzmir Ekonomi Üniversitesi', en: 'İzmir University of Economics' })}</p>
                 <p className="mt-1 text-white/55">{t({ tr: 'Bilgisayar Programcılığı', en: 'Computer Programming' })}</p>
               </div>
-              <span className="shrink-0 rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1 font-mono text-[0.7rem] text-red-300">
+              <span className="shrink-0 rounded-full border border-white/25 bg-white/10 px-3 py-1 font-mono text-[0.7rem] text-zinc-100">
                 {t({ tr: 'Devam ediyor', en: 'In progress' })}
               </span>
             </div>
@@ -127,8 +127,8 @@ export default function About() {
             <p className="mt-4 text-xl font-semibold tracking-tight">İzmir, {t({ tr: 'Türkiye', en: 'Türkiye' })}</p>
             <p className="mt-auto pt-6 flex items-center gap-2 font-mono text-sm text-white/55">
               <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-60" />
-                <span className="relative w-2 h-2 rounded-full bg-red-500" />
+                <span className="absolute inset-0 rounded-full bg-zinc-200 animate-ping opacity-60" />
+                <span className="relative w-2 h-2 rounded-full bg-zinc-200" />
               </span>
               <IzmirClock /> <span className="text-white/30">GMT+3</span>
             </p>
@@ -148,7 +148,7 @@ export default function About() {
             <ul className="mt-4 space-y-2 text-sm text-white/75">
               {FOCUS.map((f) => (
                 <li key={f.en} className="flex gap-2">
-                  <span className="mt-2 w-1 h-1 shrink-0 rounded-full bg-red-500" />
+                  <span className="mt-2 w-1 h-1 shrink-0 rounded-full bg-zinc-200" />
                   {t(f)}
                 </li>
               ))}

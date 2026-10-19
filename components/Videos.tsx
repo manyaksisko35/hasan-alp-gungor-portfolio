@@ -41,9 +41,9 @@ export default function Videos() {
                 <span className="w-6 shrink-0 text-xs tabular-nums text-white/35">{String(i + 1).padStart(2, '0')}</span>
                 <span className="flex-1 min-w-0">
                   <span className="block text-base lg:text-lg font-medium leading-snug">{t(v.title)}</span>
-                  <span className="block mt-1 text-xs text-red-400/80">{t(v.tag)}</span>
+                  <span className="block mt-1 text-xs text-zinc-400">{t(v.tag)}</span>
                 </span>
-                <span className="w-9 h-9 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-white/70 transition-all group-hover:bg-red-500 group-hover:border-red-500 group-hover:text-white">
+                <span className="w-9 h-9 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-white/70 transition-all group-hover:bg-white group-hover:border-white group-hover:text-black">
                   <svg width="10" height="10" viewBox="0 0 14 14" aria-hidden>
                     <path d="M3 1.5v11l9.5-5.5z" fill="currentColor" />
                   </svg>

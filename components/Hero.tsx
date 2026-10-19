@@ -47,7 +47,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto h-full flex flex-col justify-start lg:justify-center pt-28 lg:pt-16">
         <div className="lg:max-w-[52%]">
           <p className="hero-in ui-label ui-label--plain mb-5 md:mb-7 glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            <span className="w-1.5 h-1.5 rounded-full bg-zinc-200 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
             {t({ tr: 'Bilgisayar Programcılığı Öğrencisi · Oyun Geliştirici', en: 'Computer Programming Student · Game Developer' })}
           </p>
 

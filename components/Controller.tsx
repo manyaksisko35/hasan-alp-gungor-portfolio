@@ -18,7 +18,7 @@ import { pose } from '@/lib/sceneState';
 
 /** Front face of the front shell (local z). */
 const FACE = 0.27;
-const BUTTON_COLORS = ['#ff3b3b', '#ff8a80', '#b91c1c', '#e5e5e5'];
+const BUTTON_COLORS = ['#f4f4f5', '#a1a1aa', '#d4d4d8', '#71717a'];
 const BUTTON_OFFSETS: [number, number][] = [
   [0, 0.13],
   [0.13, 0],
@@ -34,9 +34,9 @@ function Anchor({ id, position, onRef }: { id: PartId; position: [number, number
 function useMaterials() {
   return useMemo(() => {
     const shell = new THREE.MeshPhysicalMaterial({
-      color: '#3a3e46',
-      metalness: 0.6,
-      roughness: 0.36,
+      color: '#9aa0a8',
+      metalness: 0.9,
+      roughness: 0.28,
       clearcoat: 1,
       clearcoatRoughness: 0.18,
     });
@@ -50,7 +50,7 @@ function useMaterials() {
     const rubber = new THREE.MeshStandardMaterial({ color: '#0d0e10', roughness: 0.85, metalness: 0.1 });
     const recess = new THREE.MeshStandardMaterial({ color: '#040405', roughness: 0.9 });
     const dpad = new THREE.MeshPhysicalMaterial({ color: '#1d2026', metalness: 0.6, roughness: 0.3, clearcoat: 1 });
-    const glow = new THREE.MeshBasicMaterial({ color: '#ff4d4d', toneMapped: false });
+    const glow = new THREE.MeshBasicMaterial({ color: '#f4f4f5', toneMapped: false });
     const buttons = BUTTON_COLORS.map(
       (c) =>
         new THREE.MeshPhysicalMaterial({

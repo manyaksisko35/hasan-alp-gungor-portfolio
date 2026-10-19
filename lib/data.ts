@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
       en: 'A website concept where I reimagined the digital identity of the Norwegian national football team.',
     },
     stack: ['Web Design', 'UI'],
-    accent: '#ef4444',
+    accent: '#e4e4e7',
   },
   {
     name: 'CS2 Major HUD',
@@ -102,7 +102,7 @@ export const PROJECTS: Project[] = [
       en: 'I made a Major-style broadcast overlay for Counter-Strike 2 matches. It reads game data about 10 times a second and shows health, money, the killfeed and the bomb timer live.',
     },
     stack: ['Python', 'JavaScript', 'HTML', 'CSS'],
-    accent: '#ef4444',
+    accent: '#e4e4e7',
   },
   {
     name: 'Goal Detector System',
@@ -113,7 +113,7 @@ export const PROJECTS: Project[] = [
       en: 'A goal detection system I developed with an Arduino Uno and Python, including the circuit design and the software.',
     },
     stack: ['Arduino', 'Python'],
-    accent: '#f87171',
+    accent: '#a1a1aa',
   },
   {
     name: 'Öğrenci Not Sistemi',
@@ -124,7 +124,7 @@ export const PROJECTS: Project[] = [
       en: 'A PHP app that works out whether a student passes from their midterm and final grades. I wrote two versions: one with a database, one with JSON.',
     },
     stack: ['PHP', 'SQL', 'JSON'],
-    accent: '#dc2626',
+    accent: '#d4d4d8',
   },
   {
     name: 'PcProgramKurucu',
@@ -135,7 +135,7 @@ export const PROJECTS: Project[] = [
       en: 'A Batch script I wrote to install programs on a PC automatically.',
     },
     stack: ['Batch', 'Windows'],
-    accent: '#fca5a5',
+    accent: '#f4f4f5',
   },
   {
     name: 'Mağaza Satış Analiz Programı',
@@ -146,7 +146,7 @@ export const PROJECTS: Project[] = [
       en: 'A program that analyses store sales, written for my C# fundamentals course. The walkthrough is on YouTube.',
     },
     stack: ['C#'],
-    accent: '#b91c1c',
+    accent: '#71717a',
   },
 ];
 

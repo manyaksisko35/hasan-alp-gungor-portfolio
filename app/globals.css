@@ -53,7 +53,7 @@ main { counter-reset: section; }
 .ui-label:not(.ui-label--plain) { counter-increment: section; }
 .ui-label:not(.ui-label--plain)::before {
   content: counter(section, decimal-leading-zero) '  —  ';
-  color: #ef4444;
+  color: #c7cbd2;
 }
 
 .ui-title {
@@ -75,7 +75,20 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
 }
 
 .ui-accent {
-  color: #ff4040;
+  /* Brushed silver: a metallic gradient with a slow sheen passing over it. */
+  background: linear-gradient(100deg, #8f949d 0%, #e9ebef 22%, #ffffff 32%, #b4b8c0 48%, #f4f5f7 66%, #9ea3ab 82%, #d8dbe0 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: silver-sheen 9s ease-in-out infinite alternate;
+}
+@keyframes silver-sheen {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-accent { animation: none; }
 }
 
 .ui-card {
@@ -127,33 +140,34 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
   gap: 0.55rem;
   padding: 0.8rem 1.5rem;
   border-radius: 999px;
-  color: #fff;
+  color: #111214;
   font-weight: 600;
   font-size: 0.92rem;
   line-height: 1.2;
-  /* Tinted glass: red light inside a clear shell. */
+  /* Polished silver capsule with a glass highlight on top. */
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 52%),
-    rgba(239, 68, 68, 0.78);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 55%),
+    linear-gradient(180deg, #e9ebef, #b9bdc5);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   backdrop-filter: blur(16px) saturate(180%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.25),
-    0 10px 26px -12px rgba(239, 68, 68, 0.55);
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.18),
+    0 10px 26px -12px rgba(255, 255, 255, 0.35);
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, background 0.25s ease;
 }
-.ui-btn { --icon-cut: #e0443c; }
+.ui-btn { --icon-cut: #d4d7dc; }
 .ui-btn--ghost { --icon-cut: #1a1a1d; }
 .ui-btn:hover {
   transform: translateY(-1px) scale(1.03);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.65),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.25),
-    0 14px 32px -12px rgba(239, 68, 68, 0.7);
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.18),
+    0 14px 32px -12px rgba(255, 255, 255, 0.5);
 }
 .ui-btn:active { transform: scale(0.97); }
 .ui-btn--ghost {
+  color: #fff;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03) 60%),
     rgba(255, 255, 255, 0.04);
@@ -170,7 +184,7 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
 }
 
 :focus-visible {
-  outline: 2px solid #ff4d4d;
+  outline: 2px solid #d1d5db;
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -250,8 +264,6 @@ a.rounded-full:focus-visible { border-radius: 999px; }
 @media (prefers-reduced-motion: reduce) {
   .ui-ambient::before { animation: none; }
 }
-.amb-red    { --amb-a: rgba(239, 68, 68, 0.16);  --amb-b: rgba(185, 28, 28, 0.12); }
-.amb-ember  { --amb-a: rgba(255, 90, 70, 0.14);  --amb-b: rgba(127, 29, 29, 0.16); }
 
 
 @media (prefers-reduced-motion: no-preference) {
@@ -310,8 +322,8 @@ a.rounded-full:focus-visible { border-radius: 999px; }
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #ff6b6b, #dc2626);
-  color: #fff;
+  background: linear-gradient(180deg, #f4f5f7, #aeb3bb);
+  color: #111214;
   font-size: 0.62rem;
   font-weight: 700;
 }

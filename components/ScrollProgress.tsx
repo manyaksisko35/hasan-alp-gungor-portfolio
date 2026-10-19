@@ -19,7 +19,7 @@ export default function ScrollProgress() {
   return (
     <div
       ref={bar}
-      className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left bg-gradient-to-r from-red-300 via-red-500 to-red-700"
+      className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left bg-gradient-to-r from-zinc-500 via-zinc-100 to-zinc-500"
       style={{ transform: 'scaleX(0)' }}
     />
   );

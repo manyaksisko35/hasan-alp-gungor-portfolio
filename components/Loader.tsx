@@ -50,7 +50,7 @@ export default function Loader() {
       <div className="w-[min(78vw,320px)]">
         <div className="flex items-center gap-3">
           <span
-            className="grid place-items-center w-11 h-11 rounded-xl bg-red-500 text-base font-bold tracking-tight transition-transform duration-500"
+            className="grid place-items-center w-11 h-11 rounded-full bg-gradient-to-b from-zinc-100 to-zinc-400 text-black text-base font-bold tracking-tight transition-transform duration-500"
             style={{ transform: complete ? 'rotate(-8deg) scale(1.06)' : 'none' }}
           >
             HA
@@ -58,7 +58,7 @@ export default function Loader() {
           <span className="text-lg font-semibold tracking-tight">Hasan Alp Güngör</span>
         </div>
         <div className="mt-6 h-px bg-white/10 overflow-hidden">
-          <div className="h-full bg-red-500 origin-left" style={{ transform: `scaleX(${progress})` }} />
+          <div className="h-full bg-zinc-200 origin-left" style={{ transform: `scaleX(${progress})` }} />
         </div>
         <p className="mt-3 flex justify-between font-mono text-[0.7rem] text-white/40 tabular-nums">
           <span>{complete ? 'ready' : 'loading'}</span>

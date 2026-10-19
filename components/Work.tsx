@@ -138,7 +138,7 @@ export default function Work() {
           rel="noopener noreferrer"
           className="group ui-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[28px] lg:!rounded-[28px]"
         >
-          <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(239,68,68,0.25), transparent 70%)' }} />
+          <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(255,255,255,0.14), transparent 70%)' }} />
           <p className="ui-label ui-label--plain font-mono text-xs text-white/40 mb-3">GitHub</p>
           <p className="text-3xl lg:text-5xl font-medium tracking-[-0.04em] leading-[1.02]">
             {t({ tr: 'Diğer kodlarım ', en: 'The rest of my code is ' })}
@@ -152,7 +152,7 @@ export default function Work() {
       </div>
 
       <div className="hidden lg:block absolute bottom-8 left-[8%] right-[8%] h-px bg-white/10">
-        <div ref={bar} className="h-full origin-left bg-gradient-to-r from-red-300 via-red-500 to-red-700" style={{ transform: 'scaleX(0)' }} />
+        <div ref={bar} className="h-full origin-left bg-gradient-to-r from-zinc-500 via-zinc-100 to-zinc-500" style={{ transform: 'scaleX(0)' }} />
       </div>
     </section>
   );

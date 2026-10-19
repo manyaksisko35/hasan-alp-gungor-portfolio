@@ -90,8 +90,8 @@ function fontStack() {
 export function drawScreen(ctx: CanvasRenderingContext2D) {
   const { width: w, height: h } = ctx.canvas;
   const bg = ctx.createLinearGradient(0, 0, w, h);
-  bg.addColorStop(0, '#0a0404');
-  bg.addColorStop(1, '#140606');
+  bg.addColorStop(0, '#08090b');
+  bg.addColorStop(1, '#131418');
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, w, h);
 
@@ -102,9 +102,9 @@ export function drawScreen(ctx: CanvasRenderingContext2D) {
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
   };
-  blob(w * 0.18, h * 0.85, w * 0.5, 'rgba(255, 77, 77, 0.55)');
-  blob(w * 0.62, h * 0.2, w * 0.45, 'rgba(185, 28, 28, 0.6)');
-  blob(w * 0.95, h * 0.9, w * 0.4, 'rgba(255, 140, 120, 0.4)');
+  blob(w * 0.18, h * 0.85, w * 0.5, 'rgba(255, 255, 255, 0.4)');
+  blob(w * 0.62, h * 0.2, w * 0.45, 'rgba(150, 156, 166, 0.55)');
+  blob(w * 0.95, h * 0.9, w * 0.4, 'rgba(220, 223, 229, 0.35)');
 
   ctx.strokeStyle = 'rgba(255,255,255,0.08)';
   ctx.lineWidth = 2;
@@ -129,7 +129,7 @@ export function drawScreen(ctx: CanvasRenderingContext2D) {
 /** The circuit board hidden between the shells. */
 export function drawBoard(ctx: CanvasRenderingContext2D) {
   const { width: w, height: h } = ctx.canvas;
-  ctx.fillStyle = '#0f0707';
+  ctx.fillStyle = '#0c0d0f';
   ctx.fillRect(0, 0, w, h);
 
   // Seeded so every visit gets the same board.
@@ -140,7 +140,7 @@ export function drawBoard(ctx: CanvasRenderingContext2D) {
   for (let i = 0; i < 70; i++) {
     let x = rnd() * w;
     let y = rnd() * h;
-    ctx.strokeStyle = rnd() > 0.7 ? 'rgba(255, 77, 77, 0.85)' : 'rgba(220, 38, 38, 0.3)';
+    ctx.strokeStyle = rnd() > 0.7 ? 'rgba(230, 233, 238, 0.8)' : 'rgba(150, 156, 166, 0.3)';
     ctx.lineWidth = rnd() > 0.8 ? 4 : 2;
     ctx.beginPath();
     ctx.moveTo(x, y);

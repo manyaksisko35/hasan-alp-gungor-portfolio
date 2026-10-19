@@ -20,9 +20,10 @@ function StudioEnv() {
       <Lightformer form="rect" intensity={3} position={[0, 5, 0]} rotation-x={Math.PI / 2} scale={[10, 4, 1]} />
       <Lightformer form="rect" intensity={2.4} position={[-5, 0.5, 1]} rotation-y={Math.PI / 2} scale={[2.5, 9, 1]} />
       <Lightformer form="rect" intensity={2.4} position={[5, 0.5, 1]} rotation-y={-Math.PI / 2} scale={[2.5, 9, 1]} />
-      <Lightformer form="rect" intensity={0.8} position={[0, 0, 6]} rotation-y={Math.PI} scale={[8, 5, 1]} />
-      <Lightformer form="ring" color="#ff4d4d" intensity={1.6} position={[0, 0, -6]} scale={5} />
-      <Lightformer form="ring" color="#b91c1c" intensity={1.2} position={[-4, -2, -4]} scale={3} />
+      <Lightformer form="rect" intensity={2.2} position={[0, 0, 6]} rotation-y={Math.PI} scale={[8, 5, 1]} />
+      <Lightformer form="rect" intensity={1.6} position={[0, 3.5, 4]} rotation-x={Math.PI / 3} scale={[6, 2, 1]} />
+      <Lightformer form="ring" color="#ffffff" intensity={1.6} position={[0, 0, -6]} scale={5} />
+      <Lightformer form="ring" color="#9ca3af" intensity={1.2} position={[-4, -2, -4]} scale={3} />
     </Environment>
   );
 }
@@ -141,9 +142,9 @@ export default function Scene() {
       >
         <StudioEnv />
         <ambientLight intensity={0.25} />
-        <directionalLight position={[0, 2.5, -5]} intensity={2.6} color="#ffe1dc" />
+        <directionalLight position={[0, 2.5, -5]} intensity={2.6} color="#ffffff" />
         <directionalLight position={[3, 4, 5]} intensity={1.4} />
-        <directionalLight position={[-4, 1, 4]} intensity={0.6} color="#ff8a80" />
+        <directionalLight position={[-4, 1, 4]} intensity={0.6} color="#e5e7eb" />
         <Rig>
           <Controller />
         </Rig>

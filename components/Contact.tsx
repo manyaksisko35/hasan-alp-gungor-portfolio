@@ -49,7 +49,7 @@ export default function Contact() {
                   >
                     <span className="flex items-center justify-between">
                       <Icon className="w-7 h-7 text-white" />
-                      <span className="text-white/40 transition-all group-hover:text-red-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <span className="text-white/40 transition-all group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                         <ArrowIcon />
                       </span>
                     </span>
