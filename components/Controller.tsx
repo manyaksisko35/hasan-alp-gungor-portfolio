@@ -18,7 +18,7 @@ import { pose } from '@/lib/sceneState';
 
 /** Front face of the front shell (local z). */
 const FACE = 0.27;
-const BUTTON_COLORS = ['#67e8f9', '#a78bfa', '#f0abfc', '#e2e8f0'];
+const BUTTON_COLORS = ['#ff3b3b', '#ff8a80', '#b91c1c', '#e5e5e5'];
 const BUTTON_OFFSETS: [number, number][] = [
   [0, 0.13],
   [0.13, 0],
@@ -50,7 +50,7 @@ function useMaterials() {
     const rubber = new THREE.MeshStandardMaterial({ color: '#0d0e10', roughness: 0.85, metalness: 0.1 });
     const recess = new THREE.MeshStandardMaterial({ color: '#040405', roughness: 0.9 });
     const dpad = new THREE.MeshPhysicalMaterial({ color: '#1d2026', metalness: 0.6, roughness: 0.3, clearcoat: 1 });
-    const glow = new THREE.MeshBasicMaterial({ color: '#7dd3fc', toneMapped: false });
+    const glow = new THREE.MeshBasicMaterial({ color: '#ff4d4d', toneMapped: false });
     const buttons = BUTTON_COLORS.map(
       (c) =>
         new THREE.MeshPhysicalMaterial({

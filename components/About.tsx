@@ -10,15 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 /** Words wrapped in *stars* get the gradient. */
 const MANIFESTO: Localized = {
-  tr: "İzmir Ekonomi Üniversitesi'nde Bilgisayar Programcılığı öğrencisiyim. Gerçek zamanlı *3D web siteleri*, *oyunlar* ve gömülü sistem projeleri geliştiriyorum. Odağım; hızlı, detaylı ve akıcı kullanıcı deneyimleri.",
-  en: "I'm a Computer Programming student at İzmir University of Economics. I build real-time *3D websites*, *games* and embedded projects, with a focus on fast, detailed and fluid user experiences.",
+  tr: "Ben Hasan. İzmir Ekonomi Üniversitesi'nde Bilgisayar Programcılığı okuyorum. *Oyun* geliştiriyorum, *web siteleri* yapıyorum, boş zamanlarımda da Arduino ile bir şeyler kuruyorum. Öğrendiğim her şeyi bir projeye dönüştürmeye çalışıyorum.",
+  en: "I'm Hasan. I study Computer Programming at İzmir University of Economics. I develop *games*, build *websites* and tinker with Arduino in my spare time. I try to turn everything I learn into a project.",
 };
 
 const STATS: { value: number; suffix?: string; label: Localized }[] = [
-  { value: 12, suffix: '+', label: { tr: 'Açık kaynak proje', en: 'Open source projects' } },
-  { value: 4, label: { tr: 'Yayında konsept site', en: 'Live concept sites' } },
-  { value: 5, label: { tr: 'Programlama dili', en: 'Programming languages' } },
-  { value: 10, suffix: ' Hz', label: { tr: 'CS2 HUD veri güncellemesi', en: 'CS2 HUD update rate' } },
+  { value: 12, suffix: '+', label: { tr: "GitHub'daki projem", en: 'Projects on my GitHub' } },
+  { value: 4, label: { tr: 'Yayındaki sitem', en: 'Sites I have live' } },
+  { value: 5, label: { tr: 'Kullandığım programlama dili', en: 'Programming languages I use' } },
 ];
 
 function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {
@@ -89,7 +88,7 @@ export default function About() {
           </p>
         </div>
 
-        <div className="mt-16 lg:mt-24 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
+        <div className="mt-16 lg:mt-24 lg:max-w-[52%] grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
           {STATS.map((s) => (
             <div key={s.label.en} className="sg-card p-5 lg:p-7 !bg-[#0b0b0d]/80">
               <p className="text-4xl lg:text-6xl font-semibold tracking-[-0.04em]">

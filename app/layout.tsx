@@ -8,9 +8,9 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000';
 
-const title = 'Hasan Alp Güngör | Software & Game Developer';
+const title = 'Hasan Alp Güngör';
 const description =
-  'Portfolio of Hasan Alp Güngör, a software and game developer and Computer Programming student at İzmir University of Economics: interactive 3D websites, games and embedded projects.';
+  "I'm Hasan Alp Güngör, a Computer Programming student at İzmir University of Economics. I make games and websites. Here are my projects and where to find me.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -24,7 +24,7 @@ export const viewport: Viewport = { themeColor: '#030303' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={`${outfit.variable} antialiased selection:bg-cyan-500/30`} suppressHydrationWarning>
+    <html lang="tr" className={`${outfit.variable} antialiased selection:bg-red-500/30`} suppressHydrationWarning>
       <body className="bg-[#030303] text-white" suppressHydrationWarning>
         {children}
       </body>

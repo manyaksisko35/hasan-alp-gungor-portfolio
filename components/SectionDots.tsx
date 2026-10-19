@@ -25,7 +25,7 @@ export default function SectionDots() {
               {t(s.label)}
             </span>
             <span
-              className={`block w-1.5 rounded-full transition-all duration-300 ${on ? 'h-5 bg-gradient-to-b from-cyan-300 to-violet-400' : 'h-1.5 bg-white/30 group-hover:bg-white/70'}`}
+              className={`block w-1.5 rounded-full transition-all duration-300 ${on ? 'h-5 bg-gradient-to-b from-red-400 to-red-600' : 'h-1.5 bg-white/30 group-hover:bg-white/70'}`}
             />
           </button>
         );

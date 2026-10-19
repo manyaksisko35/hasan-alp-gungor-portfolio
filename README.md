@@ -1,6 +1,6 @@
 # Hasan Alp Güngör — Portfolio
 
-My personal site, built in the same style as my Galaxy concept sites: a scroll-driven page with a real-time 3D game controller that is modeled entirely in code (no downloaded 3D files). Scroll and it turns, then comes apart part by part, and every part is one of my skills.
+My personal site. It introduces me, my skills and my projects, with a real-time 3D game controller I modeled entirely in code (no downloaded 3D files). Scroll and it turns, then comes apart part by part, and every part is one of my skills.
 
 ![Hero](docs/screenshots/desktop-hero.jpg)
 
@@ -9,8 +9,7 @@ My personal site, built in the same style as my Galaxy concept sites: a scroll-d
 - **A controller built in code:** the shells, circuit board, glass screen, thumbsticks, d-pad, face buttons and bumpers are all generated with three.js (extruded bezier outlines and canvas textures).
 - **Scroll story:** the controller moves aside for the intro, then explodes into layers with a label pinned to each part, turns around, and flies away.
 - **Drag to spin** in the hero, with inertia and a soft snap back.
-- **Galaxy concept series:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring sites.
-- **Watch the tour:** one button auto-scrolls through the whole page; pause or exit any time.
+- **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.
 - **Turkish and English:** switch from the navbar; the choice is remembered.
 - Loader that draws the controller outline, section dots, scroll progress and ambient lighting per section.
 
@@ -21,7 +20,7 @@ My personal site, built in the same style as my Galaxy concept sites: a scroll-d
 | ![Skills](docs/screenshots/desktop-skills.jpg) | ![Skills, turned](docs/screenshots/desktop-skills-turn.jpg) |
 | **Teardown:** every part is a skill | **...and it turns as you scroll** |
 | ![About](docs/screenshots/desktop-about.jpg) | ![Work](docs/screenshots/desktop-work.jpg) |
-| **About** | **Galaxy concept series** |
+| **About** | **My projects** |
 | ![More work](docs/screenshots/desktop-more.jpg) | ![Channels](docs/screenshots/desktop-channels.jpg) |
 | **More work** | **Channels** |
 

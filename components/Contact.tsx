@@ -17,19 +17,19 @@ export default function Contact() {
         <div className="relative max-w-5xl mx-auto">
           <p className="sg-eyebrow mb-5 lg:mb-8">{t({ tr: 'İletişim', en: 'Contact' })}</p>
           <h2 className="sg-title sg-title-xl">
-            {t({ tr: 'İletişime ', en: 'Get in ' })}
-            <strong className="sg-ai">{t({ tr: 'geçin.', en: 'touch.' })}</strong>
+            {t({ tr: 'Bana ', en: 'Get in ' })}
+            <strong className="sg-ai">{t({ tr: 'ulaş.', en: 'touch.' })}</strong>
           </h2>
           <p className="sg-lead mt-6 lg:mt-8 max-w-lg mx-auto">
             {t({
-              tr: 'Staj, iş ve proje teklifleri için LinkedIn üzerinden ulaşabilirsiniz.',
-              en: 'For internships, jobs and project inquiries, reach me on LinkedIn.',
+              tr: 'Staj, iş ya da birlikte bir proje fikrin varsa LinkedIn\'den yazabilirsin.',
+              en: 'If you have an internship, a job or a project idea, message me on LinkedIn.',
             })}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="sg-btn">
               <LinkedInIcon className="w-4 h-4" />
-              {t({ tr: 'LinkedIn\'den ulaşın', en: 'Contact on LinkedIn' })}
+              {t({ tr: 'LinkedIn\'den yaz', en: 'Message me on LinkedIn' })}
             </a>
             <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="sg-btn sg-btn--ghost">
               <GitHubIcon className="w-4 h-4" />

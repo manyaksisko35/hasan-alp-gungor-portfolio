@@ -57,13 +57,13 @@ export default function Loader() {
       <svg viewBox="-130 -60 260 160" className="w-[min(70vw,340px)] mb-8 overflow-visible">
         <defs>
           <linearGradient id="ld-stroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#67e8f9" />
-            <stop offset="0.6" stopColor="#a78bfa" />
-            <stop offset="1" stopColor="#f0abfc" />
+            <stop offset="0" stopColor="#ff9a8f" />
+            <stop offset="0.6" stopColor="#ff4d4d" />
+            <stop offset="1" stopColor="#d91f26" />
           </linearGradient>
           <linearGradient id="ld-fill" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#1b2533" />
-            <stop offset="1" stopColor="#0d1118" />
+            <stop offset="0" stopColor="#2a1414" />
+            <stop offset="1" stopColor="#120808" />
           </linearGradient>
         </defs>
         <path d={OUTLINE} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1.2" />
@@ -78,7 +78,7 @@ export default function Loader() {
         {[-36, 36].map((x, i) => (
           <circle key={x} cx={x} cy={20} r={15} pathLength={1} fill="none" stroke="url(#ld-stroke)" strokeWidth="1.4" style={stroke(part(0.6 + i * 0.1, 0.8 + i * 0.1))} />
         ))}
-        <rect x={-31} y={-32} width={62} height={32} rx={6} pathLength={1} fill={complete ? '#0b0716' : 'none'} stroke="url(#ld-stroke)" strokeWidth="1.2" style={{ ...stroke(part(0.75, 0.95)), transition: 'fill 0.5s ease' }} />
+        <rect x={-31} y={-32} width={62} height={32} rx={6} pathLength={1} fill={complete ? '#160707' : 'none'} stroke="url(#ld-stroke)" strokeWidth="1.2" style={{ ...stroke(part(0.75, 0.95)), transition: 'fill 0.5s ease' }} />
         <text
           x="0"
           y="-12"

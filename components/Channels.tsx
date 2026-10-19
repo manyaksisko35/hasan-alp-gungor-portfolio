@@ -19,8 +19,8 @@ const CHANNELS: {
     handle: 'hasan-alp-gungor',
     href: LINKS.itch,
     Icon: ItchIcon,
-    text: { tr: 'Geliştirdiğim oyunlar.', en: 'Games I have developed.' },
-    cta: { tr: 'Oyunlara göz at', en: 'Browse games' },
+    text: { tr: 'Yaptığım oyunları burada paylaşıyorum.', en: 'This is where I share the games I make.' },
+    cta: { tr: 'Oyunlarım', en: 'My games' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(250, 92, 92, 0.28), transparent 70%)',
     big: true,
   },
@@ -29,8 +29,8 @@ const CHANNELS: {
     handle: '@hasanalpgungor',
     href: LINKS.youtube,
     Icon: YouTubeIcon,
-    text: { tr: 'YouTube kanalım.', en: 'My YouTube channel.' },
-    cta: { tr: 'Kanala git', en: 'Visit channel' },
+    text: { tr: 'Videolarımı burada paylaşıyorum.', en: 'This is where I post my videos.' },
+    cta: { tr: 'Kanalım', en: 'My channel' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(255, 46, 59, 0.26), transparent 70%)',
     big: true,
   },
@@ -39,18 +39,18 @@ const CHANNELS: {
     handle: '@manyaksisko35',
     href: LINKS.github,
     Icon: GitHubIcon,
-    text: { tr: 'Açık kaynak projelerim.', en: 'My open source projects.' },
-    cta: { tr: 'Profili gör', en: 'View profile' },
-    glow: 'radial-gradient(70% 70% at 80% 10%, rgba(203, 213, 225, 0.16), transparent 70%)',
+    text: { tr: 'Bütün projelerimin kodu.', en: 'The code for all my projects.' },
+    cta: { tr: 'Profilim', en: 'My profile' },
+    glow: 'radial-gradient(70% 70% at 80% 10%, rgba(255, 255, 255, 0.12), transparent 70%)',
   },
   {
     name: 'LinkedIn',
     handle: 'Hasan Alp Güngör',
     href: LINKS.linkedin,
     Icon: LinkedInIcon,
-    text: { tr: 'Profesyonel profilim.', en: 'My professional profile.' },
-    cta: { tr: 'Profili gör', en: 'View profile' },
-    glow: 'radial-gradient(70% 70% at 80% 10%, rgba(10, 102, 194, 0.32), transparent 70%)',
+    text: { tr: 'Eğitimim ve profesyonel profilim.', en: 'My education and professional profile.' },
+    cta: { tr: 'Profilim', en: 'My profile' },
+    glow: 'radial-gradient(70% 70% at 80% 10%, rgba(239, 68, 68, 0.22), transparent 70%)',
   },
 ];
 
@@ -58,15 +58,15 @@ export default function Channels() {
   const t = useT();
 
   return (
-    <section id="channels" className="sg-ambient amb-violet relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+    <section id="channels" className="sg-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
-        <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Bağlantılar', en: 'Links' })}</p>
+        <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Beni bul', en: 'Find me' })}</p>
         <h2 className="sg-title max-w-3xl">
-          {t({ tr: 'Beni ', en: 'Find me ' })}
-          <strong className="sg-ai">{t({ tr: 'takip edin.', en: 'online.' })}</strong>
+          {t({ tr: 'Beni nerede ', en: 'Where to ' })}
+          <strong className="sg-ai">{t({ tr: 'bulabilirsin?', en: 'find me.' })}</strong>
         </h2>
         <p className="sg-lead mt-4 lg:mt-6 max-w-xl">
-          {t({ tr: 'Oyunlarım, videolarım ve kodlarım.', en: 'My games, videos and code.' })}
+          {t({ tr: "Oyunlarımı itch.io'da, videolarımı YouTube'da, kodlarımı GitHub'da paylaşıyorum.", en: 'I share my games on itch.io, my videos on YouTube and my code on GitHub.' })}
         </p>
 
         <div className="mt-10 lg:mt-14 grid md:grid-cols-2 gap-4 lg:gap-6">

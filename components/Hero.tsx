@@ -44,7 +44,7 @@ export default function Hero() {
       className="h-svh min-h-[600px] w-full flex flex-col items-center text-center relative px-4 pt-[17svh] md:pt-[15svh] touch-pan-y select-none cursor-grab data-[dragging]:cursor-grabbing"
     >
       <p className="hero-in sg-eyebrow mb-4 md:mb-6 !text-[0.65rem] md:!text-xs">
-        {t({ tr: 'Yazılım ve oyun geliştirici', en: 'Software and game developer' })}
+        {t({ tr: 'Merhaba, ben', en: "Hi, I'm" })}
       </p>
 
       <h1
@@ -55,18 +55,17 @@ export default function Hero() {
       </h1>
 
       <p className="hero-in hero-in--3 mt-4 md:mt-6 text-base md:text-2xl font-light text-white/70 max-w-[22ch] md:max-w-none">
-        {t({ tr: 'Etkileşimli ', en: 'I build interactive ' })}
-        <span className="sg-ai font-semibold">{t({ tr: '3D web deneyimleri', en: '3D web experiences' })}</span>
-        {t({ tr: ' ve oyunlar geliştiriyorum.', en: ' and games.' })}
+        {t({ tr: 'Bilgisayar Programcılığı öğrencisiyim. ', en: "I'm a Computer Programming student. " })}
+        <span className="sg-ai font-semibold">{t({ tr: 'Oyun ve web siteleri yapıyorum.', en: 'I make games and websites.' })}</span>
       </p>
 
       <div className="hero-in hero-in--4 mt-7 md:mt-9 flex flex-wrap items-center justify-center gap-3">
-        <a href="#work" className="sg-btn">
-          {t({ tr: 'Projeleri gör', en: 'View projects' })}
+        <a href="#about" className="sg-btn">
+          {t({ tr: 'Beni tanı', en: 'About me' })}
           <ArrowIcon className="rotate-90" />
         </a>
         <a href="#contact" className="sg-btn sg-btn--ghost">
-          {t({ tr: 'İletişim', en: 'Contact' })}
+          {t({ tr: 'Bana ulaş', en: 'Contact me' })}
         </a>
       </div>
 
