@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+:root {
+  --font-grotesk: 'Space Grotesk Variable';
+  --font-jetbrains: 'JetBrains Mono Variable';
+}
+
 @theme inline {
   --font-sans: var(--font-grotesk), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
