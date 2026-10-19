@@ -1,12 +1,12 @@
 /**
- * Pose of the 3D controller. GSAP ScrollTriggers write it, the render loop
+ * Pose of the 3D logo. GSAP ScrollTriggers write it, the render loop
  * reads it every frame and eases toward it.
  */
 export const pose = {
   x: 0,
-  y: -0.5,
+  y: 0,
   z: 0,
-  rotX: 0.66,
+  rotX: 0.06,
   rotY: 0,
   rotZ: 0,
   scale: 1,

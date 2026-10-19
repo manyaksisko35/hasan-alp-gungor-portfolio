@@ -19,8 +19,8 @@ export default function Skills() {
             </h2>
             <p className="ui-lead mt-4 lg:mt-6 hidden sm:block">
               {t({
-                tr: 'Kullandığım teknolojileri bu modelin parçaları üzerinden gösteriyorum. Model, hazır bir 3D varlık kullanılmadan Three.js ile tamamen kodla oluşturuldu.',
-                en: 'Each part of this model stands for a technology I use. The model itself was built entirely in code with Three.js, without any premade 3D assets.',
+                tr: 'Logomun her parçası kullandığım bir teknolojiyi temsil ediyor. Cam logo, Three.js ile gerçek zamanlı olarak kodla oluşturuldu.',
+                en: 'Each piece of my logo stands for a technology I use. The glass logo is built in code and rendered in real time with Three.js.',
               })}
             </p>
           </div>

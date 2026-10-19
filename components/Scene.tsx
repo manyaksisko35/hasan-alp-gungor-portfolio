@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef, useState } from 'react';
 import * as THREE from 'three';
-import Controller from '@/components/Controller';
+import Logo from '@/components/Logo';
 import PartLabels from '@/components/PartLabels';
 import { pose, spin, stepSpin, type Pose } from '@/lib/sceneState';
 import { useReducedMotion } from '@/lib/useReducedMotion';
@@ -48,7 +48,8 @@ function Rig({ children }: { children: React.ReactNode }) {
 
     const t = state.clock.elapsedTime;
     const float = reduce ? 0 : 1;
-    const fit = THREE.MathUtils.clamp(viewport.width / 3.3, 0.5, 1.12);
+    // The logo is tall: fit it to whichever side of the viewport is tighter.
+    const fit = THREE.MathUtils.clamp(Math.min(viewport.width / 3.3, viewport.height / 3.4), 0.45, 1.1);
     g.position.set(
       (c.x * viewport.width) / 2,
       (c.y * viewport.height) / 2 + Math.sin(t * 1.1) * 0.035 * float,
@@ -75,17 +76,17 @@ function useScrollStory(layer: React.RefObject<HTMLDivElement | null>, setActive
       const desktop = !!ctx.conditions?.desktop;
       const K: Keyframe[] = [
         desktop
-          ? { x: 0.48, y: -0.02, z: 0, rotX: 0.42, rotY: -0.45, rotZ: 0.06, scale: 0.92, explode: 0, labels: 0, visible: 1 }
-          : { x: 0, y: -0.5, z: 0, rotX: 0.62, rotY: -0.2, rotZ: 0.04, scale: 0.95, explode: 0, labels: 0, visible: 1 },
+          ? { x: 0.5, y: -0.04, z: 0, rotX: 0.06, rotY: -0.38, rotZ: 0, scale: 0.66, explode: 0, labels: 0, visible: 1 }
+          : { x: 0, y: -0.52, z: 0, rotX: 0.06, rotY: -0.25, rotZ: 0, scale: 0.5, explode: 0, labels: 0, visible: 1 },
         desktop
-          ? { x: 0.5, y: 0.25, rotX: 0.2, rotY: -0.62, rotZ: 0.1, scale: 0.82, visible: 0 }
-          : { x: 0, y: 0.5, rotX: 0.3, rotY: -0.5, rotZ: 0.08, scale: 0.62, visible: 0 },
+          ? { x: 0.5, y: 0.3, rotX: 0.1, rotY: -0.9, rotZ: 0.05, scale: 0.8, visible: 0 }
+          : { x: 0, y: 0.5, rotX: 0.1, rotY: -0.7, rotZ: 0.05, scale: 0.5, visible: 0 },
         desktop
-          ? { x: 0.27, y: -0.02, rotX: 0.32, rotY: 0.5, rotZ: 0, scale: 0.9, visible: 1 }
-          : { x: 0, y: 0.18, rotX: 0.32, rotY: 0.5, rotZ: 0, scale: 0.7, visible: 1 },
-        { rotX: 0.4, rotY: 0.7, explode: 1, labels: 1 },
-        { rotX: 0.28, rotY: -0.55, explode: 1, labels: 1 },
-        { y: 1.7, rotX: 0.9, rotY: -0.2, explode: 0, labels: 0, scale: 0.75, visible: 0 },
+          ? { x: 0.32, y: -0.08, rotX: 0.06, rotY: 0.32, rotZ: 0, scale: 0.62, visible: 1 }
+          : { x: 0, y: 0.12, rotX: 0.06, rotY: 0.32, rotZ: 0, scale: 0.45, visible: 1 },
+        { rotX: 0.12, rotY: 0.55, explode: 1, labels: 1 },
+        { rotX: 0.08, rotY: -0.5, explode: 1, labels: 1 },
+        { y: 1.7, rotX: 0.5, rotY: -0.2, explode: 0, labels: 0, scale: 0.7, visible: 0 },
       ];
       // Fill each keyframe from the previous one so every tween has explicit from/to values.
       for (let i = 1; i < K.length; i++) K[i] = { ...K[i - 1], ...K[i] };
@@ -146,7 +147,7 @@ export default function Scene() {
         <directionalLight position={[3, 4, 5]} intensity={1.4} />
         <directionalLight position={[-4, 1, 4]} intensity={0.6} color="#e5e7eb" />
         <Rig>
-          <Controller />
+          <Logo />
         </Rig>
       </Canvas>
       <PartLabels />

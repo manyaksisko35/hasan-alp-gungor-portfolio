@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import LogoMark from '@/components/LogoMark';
 
 const MIN_MS = 1500;
 
@@ -50,10 +51,10 @@ export default function Loader() {
       <div className="w-[min(78vw,320px)]">
         <div className="flex items-center gap-3">
           <span
-            className="grid place-items-center w-11 h-11 rounded-full bg-gradient-to-b from-zinc-100 to-zinc-400 text-black text-base font-bold tracking-tight transition-transform duration-500"
+            className="ui-btn !p-0 w-11 h-11 transition-transform duration-500"
             style={{ transform: complete ? 'rotate(-8deg) scale(1.06)' : 'none' }}
           >
-            HA
+            <LogoMark className="w-6 h-6" />
           </span>
           <span className="text-lg font-semibold tracking-tight">Hasan Alp Güngör</span>
         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import LogoMark from '@/components/LogoMark';
 import { setLang, useLang, useT } from '@/lib/i18n';
 import { scrollToId } from '@/lib/lenis';
 import { SECTIONS } from '@/lib/sections';
@@ -42,7 +43,9 @@ export default function Navbar() {
     <header className="fixed top-3 md:top-4 inset-x-3 md:inset-x-0 z-50 flex justify-center pointer-events-none">
       <div className="glass pointer-events-auto w-full md:w-auto flex items-center gap-2 md:gap-6 rounded-full pl-2 pr-2 py-2">
         <a href="#top" onClick={(e) => go(e, 'top')} className="flex items-center gap-2.5 pr-1">
-          <span className="ui-btn !p-0 grid place-items-center w-9 h-9 !text-sm font-bold tracking-tight">HA</span>
+          <span className="ui-btn !p-0 w-9 h-9">
+            <LogoMark className="w-5 h-5" />
+          </span>
           <span className="text-sm font-semibold tracking-tight whitespace-nowrap">Hasan Alp Güngör</span>
         </a>
 

@@ -3,7 +3,7 @@
 import { PARTS } from '@/lib/data';
 import { useT } from '@/lib/i18n';
 
-/** Plain DOM labels for the exploded controller; Controller moves them every frame. */
+/** Plain DOM labels for the exploded logo; Logo moves them every frame. */
 export default function PartLabels() {
   const t = useT();
   return (

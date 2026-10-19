@@ -1,14 +1,14 @@
 # Hasan Alp Güngör — Portfolio
 
-My personal site and portfolio: who I am, my education, skills, projects and videos, with a real-time 3D game controller I modeled entirely in code (no downloaded 3D files). Scroll and it turns, then comes apart part by part, and every part is one of my skills.
+My personal site and portfolio: who I am, my education, skills, projects and videos, with my logo rendered as real-time 3D liquid glass. Scroll and it turns, then comes apart piece by piece, and every piece is one of my skills.
 
 ![Hero](docs/screenshots/desktop-hero.jpg)
 
 ## Highlights
 
-- **A controller built in code:** the shells, circuit board, glass screen, thumbsticks, d-pad, face buttons and bumpers are all generated with three.js (extruded bezier outlines and canvas textures).
-- **Scroll story:** the controller moves aside for the intro, then explodes into layers with a label pinned to each part, turns around, and flies away.
-- **Drag to spin** in the hero, with inertia and a soft snap back.
+- **Glass logo in 3D:** the logo is traced into polygons, split into seven pieces and extruded with three.js, then rendered with a refractive glass material (chromatic aberration and a slow liquid distortion).
+- **Scroll story:** the logo moves aside for the intro, then comes apart with a label pinned to each piece, turns around, and flies away.
+- **Drag to spin** the logo in the hero, with inertia and a soft snap back.
 - **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds.
 - **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.
 - **Turkish and English:** switch from the navbar; the choice is remembered.
@@ -54,9 +54,9 @@ Import the repo on Vercel. Everything is detected automatically.
 
 ## Where things live
 
-- `components/Controller.tsx` and `lib/controllerModel.ts`: the procedural controller
+- `components/Logo.tsx` and `lib/logoShape.ts`: the 3D glass logo and its traced pieces
 - `components/Scene.tsx`: the canvas, lighting and the scroll story (GSAP keyframes)
-- `lib/data.ts`: projects, links and the skill for each controller part
+- `lib/data.ts`: projects, links and the skill for each logo piece
 - `lib/i18n.ts`: Turkish / English switch
 
 ## Links

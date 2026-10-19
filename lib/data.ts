@@ -158,15 +158,15 @@ export const MORE_REPOS = [
   { name: 'json_ile_ogrenci_durumu', lang: 'PHP', href: `${GH}/json_ile_ogrenci_durumu` },
 ];
 
-/** One skill per controller part; the Skills section and the 3D labels share this list. */
+/** One skill per logo piece; the Skills section and the 3D labels share this list. */
 export const PARTS = [
-  { id: 'screen', title: { tr: 'Web', en: 'Web' }, text: { tr: 'HTML5, CSS, JavaScript, TypeScript', en: 'HTML5, CSS, JavaScript, TypeScript' } },
-  { id: 'stickL', title: { tr: 'C# ve Java', en: 'C# and Java' }, text: { tr: 'Masaüstü uygulamalar', en: 'Desktop apps' } },
-  { id: 'stickR', title: { tr: '3D ve arayüz', en: '3D and UI' }, text: { tr: 'React, Next.js, Three.js', en: 'React, Next.js, Three.js' } },
-  { id: 'dpad', title: { tr: 'Python ve C++', en: 'Python and C++' }, text: { tr: 'Araçlar ve mikrodenetleyiciler', en: 'Tools and microcontrollers' } },
-  { id: 'buttons', title: { tr: 'Oyun geliştirme', en: 'Game development' }, text: { tr: 'Lua, oyun programlama ve tasarım', en: 'Lua, game programming and design' } },
-  { id: 'pcb', title: { tr: 'Donanım', en: 'Hardware' }, text: { tr: 'ESP32, Arduino, MPU-6050', en: 'ESP32, Arduino, MPU-6050' } },
-  { id: 'back', title: { tr: 'Backend', en: 'Backend' }, text: { tr: 'PHP, SQL', en: 'PHP, SQL' } },
+  { id: 'web', title: { tr: 'Web', en: 'Web' }, text: { tr: 'HTML5, CSS, JavaScript, TypeScript', en: 'HTML5, CSS, JavaScript, TypeScript' } },
+  { id: 'csharp', title: { tr: 'C# ve Java', en: 'C# and Java' }, text: { tr: 'Masaüstü uygulamalar', en: 'Desktop apps' } },
+  { id: 'three', title: { tr: '3D ve arayüz', en: '3D and UI' }, text: { tr: 'React, Next.js, Three.js', en: 'React, Next.js, Three.js' } },
+  { id: 'python', title: { tr: 'Python ve C++', en: 'Python and C++' }, text: { tr: 'Araçlar ve mikrodenetleyiciler', en: 'Tools and microcontrollers' } },
+  { id: 'game', title: { tr: 'Oyun geliştirme', en: 'Game development' }, text: { tr: 'Lua, oyun programlama ve tasarım', en: 'Lua, game programming and design' } },
+  { id: 'hardware', title: { tr: 'Donanım', en: 'Hardware' }, text: { tr: 'ESP32, Arduino, MPU-6050', en: 'ESP32, Arduino, MPU-6050' } },
+  { id: 'backend', title: { tr: 'Backend', en: 'Backend' }, text: { tr: 'PHP, SQL', en: 'PHP, SQL' } },
 ] as const satisfies readonly { id: string; title: Localized; text: Localized }[];
 
 export type PartId = (typeof PARTS)[number]['id'];
