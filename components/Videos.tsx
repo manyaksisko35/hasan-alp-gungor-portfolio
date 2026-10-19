@@ -8,7 +8,7 @@ export default function Videos() {
   const t = useT();
 
   return (
-    <section id="videos" className="relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+    <section id="videos" className="relative z-10 px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'İçerik', en: 'Content' })}</p>
@@ -29,7 +29,7 @@ export default function Videos() {
           </a>
         </div>
 
-        <ol className="ui-card !rounded-[20px] divide-y divide-white/[0.07] overflow-hidden">
+        <ol className="ui-card !rounded-[28px] divide-y divide-white/[0.07] overflow-hidden">
           {VIDEOS.map((v, i) => (
             <li key={v.href} data-reveal>
               <a

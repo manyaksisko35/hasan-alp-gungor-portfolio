@@ -46,7 +46,7 @@ export default function Hero() {
     >
       <div className="max-w-7xl mx-auto h-full flex flex-col justify-start lg:justify-center pt-28 lg:pt-16">
         <div className="lg:max-w-[52%]">
-          <p className="hero-in ui-label ui-label--plain mb-5 md:mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
+          <p className="hero-in ui-label ui-label--plain mb-5 md:mb-7 glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
             {t({ tr: 'Bilgisayar Programcılığı Öğrencisi · Oyun Geliştirici', en: 'Computer Programming Student · Game Developer' })}
           </p>
@@ -85,7 +85,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="grid place-items-center w-11 h-11 rounded-xl border border-white/10 text-white/70 transition-colors hover:text-white hover:border-white/30 hover:bg-white/5"
+                className="ui-btn ui-btn--ghost !p-0 grid place-items-center w-11 h-11 text-white/80"
               >
                 <Icon className="w-[18px] h-[18px]" />
               </a>

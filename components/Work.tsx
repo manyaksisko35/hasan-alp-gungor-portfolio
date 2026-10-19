@@ -63,7 +63,7 @@ export default function Work() {
   );
 
   return (
-    <section ref={section} id="work" className="ui-ambient amb-red relative z-10 bg-[#030303] lg:h-svh lg:overflow-hidden">
+    <section ref={section} id="work" className="relative z-10 lg:h-svh lg:overflow-hidden">
       <div
         ref={track}
         className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 px-6 lg:px-[8%] py-24 lg:py-0 lg:h-full lg:w-max will-change-transform"
@@ -92,7 +92,7 @@ export default function Work() {
           <article
             key={c.name}
             data-card
-            className="group relative flex flex-col overflow-hidden rounded-[20px] lg:rounded-[20px] border border-white/10 bg-[#0b0b0d] transition-colors duration-300 hover:border-white/25 lg:w-[min(58vw,860px)] lg:h-[74svh] lg:shrink-0"
+            className="group relative flex flex-col overflow-hidden ui-card !rounded-[28px] lg:w-[min(58vw,860px)] lg:h-[74svh] lg:shrink-0"
           >
             <div data-media className="relative aspect-[16/10] lg:aspect-auto lg:flex-1 overflow-hidden" style={{ background: c.glow }}>
               <Image
@@ -136,7 +136,7 @@ export default function Work() {
           href={LINKS.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="group ui-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[20px] lg:!rounded-[20px]"
+          className="group ui-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[28px] lg:!rounded-[28px]"
         >
           <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(239,68,68,0.25), transparent 70%)' }} />
           <p className="ui-label ui-label--plain font-mono text-xs text-white/40 mb-3">GitHub</p>

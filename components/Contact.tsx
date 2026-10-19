@@ -16,10 +16,8 @@ export default function Contact() {
 
   return (
     <>
-      <section id="contact" className="relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
-        <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[24px] border border-white/10 bg-[#0a0a0b]">
-          <div aria-hidden className="hero-grid absolute inset-0" />
-          <div aria-hidden className="hero-light absolute -right-40 -top-40 w-[640px] aspect-square rounded-full" />
+      <section id="contact" className="relative z-10 px-6 lg:px-[8%] py-24 lg:py-36">
+        <div className="glass relative max-w-7xl mx-auto overflow-hidden rounded-[32px]">
 
           <div className="relative grid lg:grid-cols-2 gap-12 px-6 py-14 lg:px-14 lg:py-20">
             <div>
@@ -68,7 +66,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <footer className="relative z-10 bg-[#030303] px-6 lg:px-[8%] pb-10">
+      <footer className="relative z-10 px-6 lg:px-[8%] pb-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-3 md:items-center justify-between font-mono text-xs text-white/40">
           <p>© 2026 Hasan Alp Güngör</p>
           <p>

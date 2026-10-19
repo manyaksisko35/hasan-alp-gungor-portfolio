@@ -5,7 +5,6 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import HeadlineReveal from '@/components/HeadlineReveal';
 import Hero from '@/components/Hero';
-import HeroGlow from '@/components/HeroGlow';
 import Loader from '@/components/Loader';
 import MoreWork from '@/components/MoreWork';
 import Navbar from '@/components/Navbar';
@@ -35,9 +34,15 @@ export default function Home() {
       <HeadlineReveal />
       <Reveal />
 
-      <main className="relative w-full bg-[#030303]">
+      <div aria-hidden className="liquid-bg">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+
+      <main className="relative w-full">
         <div className="fixed inset-0 z-0 pointer-events-none">
-          <HeroGlow />
           <Scene />
         </div>
 
