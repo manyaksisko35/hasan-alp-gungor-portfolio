@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { PartId } from '@/lib/data';
-import { LOGO_PIECES } from '@/lib/logoShape';
+import { LOGO_PIECES, LOGO_WHOLE } from '@/lib/logoShape';
 import { pose } from '@/lib/sceneState';
 
 const DEPTH = 0.18;
@@ -34,6 +34,24 @@ const LABEL_OFFSET: Record<PartId, [number, number, number]> = {
 
 const toVec2 = (pts: readonly (readonly number[])[]) => pts.map(([x, y]) => new THREE.Vector2(x, y));
 
+type Outline = { readonly outer: readonly (readonly number[])[]; readonly holes: readonly (readonly (readonly number[])[])[] };
+
+function extrude({ outer, holes }: Outline) {
+  const shape = new THREE.Shape(toVec2(outer));
+  shape.holes = holes.map((h) => new THREE.Path(toVec2(h)));
+  return new THREE.ExtrudeGeometry(shape, {
+    depth: DEPTH,
+    bevelEnabled: true,
+    bevelThickness: BEVEL,
+    bevelSize: BEVEL * 0.8,
+    bevelSegments: 8,
+    curveSegments: 1,
+  });
+}
+
+/** Brightens the glass edges for a moment while it cracks (read by the shader). */
+const crackFlash = { value: 0 };
+
 /**
  * Clear glass: almost invisible where it faces you and bright at grazing angles (Fresnel),
  * so the real page background shows through the transparent canvas.
@@ -56,6 +74,8 @@ function useGlassMaterial() {
       side: THREE.DoubleSide,
     });
     m.onBeforeCompile = (shader) => {
+      shader.uniforms.uCrackFlash = crackFlash;
+      shader.fragmentShader = 'uniform float uCrackFlash;\n' + shader.fragmentShader;
       shader.fragmentShader = shader.fragmentShader.replace(
         '#include <opaque_fragment>',
         `
@@ -63,7 +83,7 @@ function useGlassMaterial() {
         float glint = max(0.0, dot(outgoingLight, vec3(0.299, 0.587, 0.114)) - 0.35) * 1.4;
         float glassAlpha = clamp(0.14 + 0.75 * fresnel + glint, 0.0, 0.95);
         // Luminous rim, like light caught in the edge of thick glass.
-        vec3 rim = vec3(1.0) * pow(fresnel, 1.4) * 0.65;
+        vec3 rim = vec3(1.0) * pow(fresnel, 1.4) * (0.65 + 1.6 * uCrackFlash);
         gl_FragColor = vec4(outgoingLight + rim, glassAlpha);
         `,
       );
@@ -81,16 +101,7 @@ export default function Logo() {
   const pieces = useMemo(
     () =>
       LOGO_PIECES.map((p, i) => {
-        const shape = new THREE.Shape(toVec2(p.outer));
-        shape.holes = p.holes.map((h) => new THREE.Path(toVec2(h)));
-        const geometry = new THREE.ExtrudeGeometry(shape, {
-          depth: DEPTH,
-          bevelEnabled: true,
-          bevelThickness: BEVEL,
-          bevelSize: BEVEL * 0.8,
-          bevelSegments: 8,
-          curveSegments: 1,
-        });
+        const geometry = extrude(p);
         // Centre each piece on its own origin so it can tilt in place.
         geometry.translate(-p.center[0], -p.center[1], -DEPTH / 2);
         return { key: `${p.id}-${i}`, id: p.id as PartId, center: p.center, geometry, labelled: LOGO_PIECES.findIndex((q) => q.id === p.id) === i };
@@ -98,13 +109,24 @@ export default function Logo() {
     [],
   );
 
+  const whole = useMemo(() => {
+    const geometry = extrude(LOGO_WHOLE);
+    geometry.translate(0, 0, -DEPTH / 2);
+    return geometry;
+  }, []);
+
   useEffect(
     () => () => {
       pieces.forEach((p) => p.geometry.dispose());
+      whole.dispose();
       glass.dispose();
     },
-    [pieces, glass],
+    [pieces, whole, glass],
   );
+
+  const wholeRef = useRef<THREE.Mesh>(null);
+  const piecesRef = useRef<THREE.Group>(null);
+  const crack = useRef(0);
 
   const groups = useRef<(THREE.Group | null)[]>([]);
   const anchors = useRef(new Map<PartId, THREE.Object3D>());
@@ -113,14 +135,24 @@ export default function Logo() {
 
   useFrame((state, dt) => {
     explode.current = THREE.MathUtils.damp(explode.current, pose.explode, 5, dt);
+    crack.current = THREE.MathUtils.damp(crack.current, pose.crack, 6, dt);
     const e = smooth(Math.min(1, Math.max(0, explode.current)));
+    // Intact until halfway, then the cracked pieces take over and the cracks open a little.
+    const cracked = crack.current > 0.5 || e > 0.001;
+    const open = smooth(Math.min(1, Math.max(0, (crack.current - 0.5) * 2)));
+    crackFlash.value = Math.sin(open * Math.PI) * (1 - e);
+    if (wholeRef.current) wholeRef.current.visible = !cracked;
+    if (piecesRef.current) piecesRef.current.visible = cracked;
 
     pieces.forEach((p, i) => {
       const g = groups.current[i];
       if (!g) return;
       const { move, tilt } = EXPLODE[p.id];
-      g.position.set(p.center[0] + move[0] * e, p.center[1] + move[1] * e, move[2] * e);
-      g.rotation.set(tilt[0] * e, tilt[1] * e, 0);
+      // Cracks open a hair (with a slight per-piece jitter) before the logo comes apart.
+      const gap = 0.045 * open * (1 + (i % 3) * 0.35);
+      const k = gap + e;
+      g.position.set(p.center[0] + move[0] * k, p.center[1] + move[1] * k, move[2] * k);
+      g.rotation.set(tilt[0] * (0.08 * open + e), tilt[1] * (0.08 * open + e), (i % 2 ? 1 : -1) * 0.015 * open * (1 - e));
     });
 
     const labels = Math.round(pose.labels * 100) / 100;
@@ -143,6 +175,8 @@ export default function Logo() {
 
   return (
     <group>
+      <mesh ref={wholeRef} geometry={whole} material={glass} />
+      <group ref={piecesRef} visible={false}>
       {pieces.map((p, i) => (
         <group key={p.key} ref={(g) => void (groups.current[i] = g)}>
           <mesh geometry={p.geometry} material={glass} renderOrder={i} />
@@ -157,6 +191,7 @@ export default function Logo() {
           )}
         </group>
       ))}
+      </group>
     </group>
   );
 }

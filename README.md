@@ -7,7 +7,7 @@ My personal site and portfolio: who I am, my education, skills, projects and vid
 ## Highlights
 
 - **Glass logo in 3D:** the logo is traced into polygons, split into seven pieces and extruded with three.js, then rendered with a refractive glass material (chromatic aberration and a slow liquid distortion).
-- **Scroll story:** the logo moves aside for the intro, then comes apart with a label pinned to each piece, turns around, and flies away.
+- **Scroll story:** the logo starts intact, cracks along jagged lines as you scroll, then comes apart with a label pinned to each piece, turns around, and flies away.
 - **Drag to spin** the logo in the hero, with inertia and a soft snap back.
 - **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds.
 - **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.

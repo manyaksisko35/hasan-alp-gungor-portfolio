@@ -76,14 +76,15 @@ function useScrollStory(layer: React.RefObject<HTMLDivElement | null>, setActive
       const desktop = !!ctx.conditions?.desktop;
       const K: Keyframe[] = [
         desktop
-          ? { x: 0.5, y: -0.04, z: 0, rotX: 0.06, rotY: -0.38, rotZ: 0, scale: 0.66, explode: 0, labels: 0, visible: 1 }
-          : { x: 0, y: -0.52, z: 0, rotX: 0.06, rotY: -0.25, rotZ: 0, scale: 0.5, explode: 0, labels: 0, visible: 1 },
+          ? { x: 0.5, y: -0.04, z: 0, rotX: 0.06, rotY: -0.38, rotZ: 0, scale: 0.66, crack: 0, explode: 0, labels: 0, visible: 1 }
+          : { x: 0, y: -0.52, z: 0, rotX: 0.06, rotY: -0.25, rotZ: 0, scale: 0.5, crack: 0, explode: 0, labels: 0, visible: 1 },
         desktop
           ? { x: 0.5, y: 0.3, rotX: 0.1, rotY: -0.9, rotZ: 0.05, scale: 0.8, visible: 0 }
           : { x: 0, y: 0.5, rotX: 0.1, rotY: -0.7, rotZ: 0.05, scale: 0.5, visible: 0 },
         desktop
           ? { x: 0.32, y: -0.08, rotX: 0.06, rotY: 0.32, rotZ: 0, scale: 0.62, visible: 1 }
           : { x: 0, y: 0.12, rotX: 0.06, rotY: 0.32, rotZ: 0, scale: 0.45, visible: 1 },
+        { rotX: 0.1, rotY: 0.42, crack: 1 },
         { rotX: 0.12, rotY: 0.55, explode: 1, labels: 1 },
         { rotX: 0.08, rotY: -0.5, explode: 1, labels: 1 },
         { y: 1.7, rotX: 0.5, rotY: -0.2, explode: 0, labels: 0, scale: 0.7, visible: 0 },
@@ -100,10 +101,13 @@ function useScrollStory(layer: React.RefObject<HTMLDivElement | null>, setActive
       const turn = gsap.timeline({
         scrollTrigger: { trigger: '#skills', start: 'top top', end: 'bottom bottom', scrub: true },
       });
+      // Intact → cracked → hold → apart → turn.
       turn
-        .fromTo(pose, { ...K[2] }, { ...K[3], ease: 'power1.inOut', duration: 0.45, immediateRender: false })
-        .fromTo(pose, { ...K[3] }, { ...K[4], ease: 'none', duration: 0.55, immediateRender: false });
-      seg(K[4], K[5], '#skills', 'bottom bottom', 'bottom top');
+        .fromTo(pose, { ...K[2] }, { ...K[3], ease: 'power2.in', duration: 0.18, immediateRender: false })
+        .to({}, { duration: 0.08 })
+        .fromTo(pose, { ...K[3] }, { ...K[4], ease: 'power1.inOut', duration: 0.32, immediateRender: false })
+        .fromTo(pose, { ...K[4] }, { ...K[5], ease: 'none', duration: 0.42, immediateRender: false });
+      seg(K[5], K[6], '#skills', 'bottom bottom', 'bottom top');
     });
 
     ScrollTrigger.create({

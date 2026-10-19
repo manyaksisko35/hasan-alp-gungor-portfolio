@@ -10,6 +10,8 @@ export const pose = {
   rotY: 0,
   rotZ: 0,
   scale: 1,
+  /** 0 = intact, 1 = cracked (pieces visible, cracks open). */
+  crack: 0,
   /** 0 = assembled, 1 = fully exploded. */
   explode: 0,
   /** Opacity of the part labels. */
