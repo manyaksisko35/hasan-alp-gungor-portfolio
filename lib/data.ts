@@ -83,6 +83,17 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Norway National Team Web Concept',
+    href: `${LINKS.linkedin}recent-activity/all/`,
+    tag: { tr: 'Web tasarım', en: 'Web design' },
+    text: {
+      tr: 'Norveç Milli Futbol Takımı\'nın dijital kimliğini yeniden düşündüğüm bir web sitesi konsepti.',
+      en: 'A website concept where I reimagined the digital identity of the Norwegian national football team.',
+    },
+    stack: ['Web Design', 'UI'],
+    accent: '#ef4444',
+  },
+  {
     name: 'CS2 Major HUD',
     href: `${GH}/CounterStrike2MajorHUD`,
     tag: { tr: 'Oyun · Yayın', en: 'Games · Broadcast' },
@@ -126,6 +137,17 @@ export const PROJECTS: Project[] = [
     stack: ['Batch', 'Windows'],
     accent: '#fca5a5',
   },
+  {
+    name: 'Mağaza Satış Analiz Programı',
+    href: `${LINKS.youtube}/search?query=${encodeURIComponent('Mağaza Satış Analiz')}`,
+    tag: { tr: 'Masaüstü', en: 'Desktop' },
+    text: {
+      tr: 'C# programlama temelleri dersi için yazdığım, mağaza satışlarını analiz eden bir program. Anlatım videosu YouTube\'da.',
+      en: 'A program that analyses store sales, written for my C# fundamentals course. The walkthrough is on YouTube.',
+    },
+    stack: ['C#'],
+    accent: '#b91c1c',
+  },
 ];
 
 /** Repos without a public description: listed by name only. */
@@ -138,13 +160,34 @@ export const MORE_REPOS = [
 
 /** One skill per controller part; the Skills section and the 3D labels share this list. */
 export const PARTS = [
-  { id: 'screen', title: { tr: 'Arayüz ve animasyon', en: 'UI and animation' }, text: { tr: 'GSAP, Tailwind CSS', en: 'GSAP, Tailwind CSS' } },
-  { id: 'stickL', title: { tr: 'TypeScript ve React', en: 'TypeScript and React' }, text: { tr: 'Next.js', en: 'Next.js' } },
-  { id: 'stickR', title: { tr: '3D grafik', en: '3D graphics' }, text: { tr: 'Three.js, React Three Fiber', en: 'Three.js, React Three Fiber' } },
-  { id: 'dpad', title: { tr: 'Python ve C#', en: 'Python and C#' }, text: { tr: 'Masaüstü uygulamalar ve araçlar', en: 'Desktop apps and tools' } },
-  { id: 'buttons', title: { tr: 'Oyun geliştirme', en: 'Game development' }, text: { tr: 'itch.io\'da yayınlanan oyunlar', en: 'Games published on itch.io' } },
-  { id: 'pcb', title: { tr: 'Gömülü sistemler', en: 'Embedded systems' }, text: { tr: 'Arduino, sensörler', en: 'Arduino, sensors' } },
+  { id: 'screen', title: { tr: 'Web', en: 'Web' }, text: { tr: 'HTML5, CSS, JavaScript, TypeScript', en: 'HTML5, CSS, JavaScript, TypeScript' } },
+  { id: 'stickL', title: { tr: 'C# ve Java', en: 'C# and Java' }, text: { tr: 'Masaüstü uygulamalar', en: 'Desktop apps' } },
+  { id: 'stickR', title: { tr: '3D ve arayüz', en: '3D and UI' }, text: { tr: 'React, Next.js, Three.js', en: 'React, Next.js, Three.js' } },
+  { id: 'dpad', title: { tr: 'Python ve C++', en: 'Python and C++' }, text: { tr: 'Araçlar ve mikrodenetleyiciler', en: 'Tools and microcontrollers' } },
+  { id: 'buttons', title: { tr: 'Oyun geliştirme', en: 'Game development' }, text: { tr: 'Lua, oyun programlama ve tasarım', en: 'Lua, game programming and design' } },
+  { id: 'pcb', title: { tr: 'Donanım', en: 'Hardware' }, text: { tr: 'ESP32, Arduino, MPU-6050', en: 'ESP32, Arduino, MPU-6050' } },
   { id: 'back', title: { tr: 'Backend', en: 'Backend' }, text: { tr: 'PHP, SQL', en: 'PHP, SQL' } },
 ] as const satisfies readonly { id: string; title: Localized; text: Localized }[];
 
 export type PartId = (typeof PARTS)[number]['id'];
+
+const YT_SEARCH = (q: string) => `${LINKS.youtube}/search?query=${encodeURIComponent(q)}`;
+
+export interface Video {
+  title: Localized;
+  tag: Localized;
+  href: string;
+}
+
+/** A selection from the YouTube channel; each links to a channel search for its title. */
+export const VIDEOS: Video[] = [
+  { title: { tr: 'Gerçek hayatta StatTrak Deagle yaptım', en: 'I made a real-life StatTrak Deagle' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, href: YT_SEARCH('stattrak deagle') },
+  { title: { tr: 'CS2 ama bombayı gerçekten imha ediyorum (ESP32 ile)', en: 'CS2, but I really defuse the bomb (with ESP32)' }, tag: { tr: 'CS2 × ESP32', en: 'CS2 × ESP32' }, href: YT_SEARCH('bombayı gerçekten imha') },
+  { title: { tr: 'CS2 ama gerçekten flash yiyorum', en: 'CS2, but I really get flashed' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, href: YT_SEARCH('gerçekten flash') },
+  { title: { tr: 'Akıllı airsoft hedefi yaptım (ESP32 ile)', en: 'I built a smart airsoft target (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, href: YT_SEARCH('airsoft hedefi') },
+  { title: { tr: 'Kendi ambilight\'ımı yaptım (ESP32 ile)', en: 'I built my own Ambilight (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, href: YT_SEARCH('ambilight') },
+  { title: { tr: 'Assetto Corsa\'ya gerçek radyo bağladım', en: 'I connected a real radio to Assetto Corsa' }, tag: { tr: 'Simülasyon × Donanım', en: 'Sim racing × Hardware' }, href: YT_SEARCH('assetto corsa radyo') },
+  { title: { tr: 'Major arayüzünü kodladım', en: 'I coded a Major broadcast HUD' }, tag: { tr: 'CS2 × Yazılım', en: 'CS2 × Software' }, href: YT_SEARCH('major arayüzü') },
+  { title: { tr: 'AK-47 ile CS2 oynadım', en: 'I played CS2 with an AK-47' }, tag: { tr: 'CS2', en: 'CS2' }, href: YT_SEARCH('AK-47 ile CS2') },
+  { title: { tr: 'Tüm oyunlar için tek tuşla DLSS 5 kurulumu', en: 'One-click DLSS 5 setup for every game' }, tag: { tr: 'Rehber', en: 'Guide' }, href: YT_SEARCH('DLSS 5') },
+];

@@ -56,7 +56,7 @@ export default function Hero() {
 
       <p className="hero-in hero-in--3 mt-4 md:mt-6 text-base md:text-2xl font-light text-white/70 max-w-[22ch] md:max-w-none">
         {t({ tr: 'Bilgisayar Programcılığı öğrencisiyim. ', en: "I'm a Computer Programming student. " })}
-        <span className="sg-ai font-semibold">{t({ tr: 'Oyun ve web siteleri yapıyorum.', en: 'I make games and websites.' })}</span>
+        <span className="sg-ai font-semibold">{t({ tr: 'Yazılım ve donanım projeleri üretiyorum.', en: 'I build software and hardware projects.' })}</span>
       </p>
 
       <div className="hero-in hero-in--4 mt-7 md:mt-9 flex flex-wrap items-center justify-center gap-3">

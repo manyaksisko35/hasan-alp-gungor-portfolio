@@ -8,7 +8,7 @@ export default function MoreWork() {
   const t = useT();
 
   return (
-    <section id="more" className="sg-ambient amb-ember relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+    <section id="more" className="sg-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
         <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Diğer projelerim', en: 'More projects' })}</p>
         <h2 className="sg-title max-w-3xl">
@@ -17,8 +17,8 @@ export default function MoreWork() {
         </h2>
         <p className="sg-lead mt-4 lg:mt-6 max-w-xl">
           {t({
-            tr: 'Oyun yayınları için arayüzler, Arduino projeleri ve okulda yazdığım uygulamalar.',
-            en: 'Overlays for game broadcasts, Arduino projects and apps I wrote for school.',
+            tr: 'Web konseptleri, oyun yayınları için arayüzler, Arduino projeleri ve okulda yazdığım uygulamalar.',
+            en: 'Web concepts, overlays for game broadcasts, Arduino projects and apps I wrote for school.',
           })}
         </p>
 

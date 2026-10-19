@@ -13,6 +13,7 @@ export const SECTIONS: SectionInfo[] = [
   { id: 'skills', label: { tr: 'Yetenekler', en: 'Skills' }, nav: true },
   { id: 'work', label: { tr: 'Projelerim', en: 'Projects' }, nav: true },
   { id: 'more', label: { tr: 'Diğer projelerim', en: 'More projects' } },
+  { id: 'videos', label: { tr: 'Videolarım', en: 'Videos' }, nav: true },
   { id: 'channels', label: { tr: 'Beni bul', en: 'Find me' }, nav: true },
   { id: 'contact', label: { tr: 'İletişim', en: 'Contact' } },
 ];

@@ -14,6 +14,7 @@ import ScrollProgress from '@/components/ScrollProgress';
 import SectionDots from '@/components/SectionDots';
 import Skills from '@/components/Skills';
 import SmoothScroll from '@/components/SmoothScroll';
+import Videos from '@/components/Videos';
 import Work from '@/components/Work';
 
 // WebGL only exists in the browser.
@@ -49,6 +50,7 @@ export default function Home() {
 
         <Work />
         <MoreWork />
+        <Videos />
         <Channels />
         <Contact />
       </main>

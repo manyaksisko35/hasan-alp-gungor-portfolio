@@ -29,7 +29,7 @@ const CHANNELS: {
     handle: '@hasanalpgungor',
     href: LINKS.youtube,
     Icon: YouTubeIcon,
-    text: { tr: 'Videolarımı burada paylaşıyorum.', en: 'This is where I post my videos.' },
+    text: { tr: 'CS2 × donanım projeleri, ESP32 yapımları ve rehberler.', en: 'CS2 × hardware projects, ESP32 builds and guides.' },
     cta: { tr: 'Kanalım', en: 'My channel' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(255, 46, 59, 0.26), transparent 70%)',
     big: true,
@@ -48,7 +48,7 @@ const CHANNELS: {
     handle: 'Hasan Alp Güngör',
     href: LINKS.linkedin,
     Icon: LinkedInIcon,
-    text: { tr: 'Eğitimim ve profesyonel profilim.', en: 'My education and professional profile.' },
+    text: { tr: 'Eğitimim, yeteneklerim ve paylaşımlarım.', en: 'My education, skills and posts.' },
     cta: { tr: 'Profilim', en: 'My profile' },
     glow: 'radial-gradient(70% 70% at 80% 10%, rgba(239, 68, 68, 0.22), transparent 70%)',
   },
@@ -58,7 +58,7 @@ export default function Channels() {
   const t = useT();
 
   return (
-    <section id="channels" className="sg-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+    <section id="channels" className="sg-ambient amb-ember relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
         <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Beni bul', en: 'Find me' })}</p>
         <h2 className="sg-title max-w-3xl">
