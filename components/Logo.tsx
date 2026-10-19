@@ -1,5 +1,6 @@
 'use client';
 
+import { MeshTransmissionMaterial, useFBO } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -49,54 +50,83 @@ function extrude({ outer, holes }: Outline) {
   });
 }
 
-/** Brightens the glass edges for a moment while it cracks (read by the shader). */
-const crackFlash = { value: 0 };
-
 /**
- * Clear glass: almost invisible where it faces you and bright at grazing angles (Fresnel),
- * so the real page background shows through the transparent canvas.
+ * A stand-in for the page background (the silver light behind the canvas). It is drawn
+ * only into an off-screen buffer that the glass refracts, never on screen.
  */
-function useGlassMaterial() {
-  return useMemo(() => {
-    const m = new THREE.MeshPhysicalMaterial({
-      color: '#3a3d44',
-      metalness: 0,
-      roughness: 0.04,
-      clearcoat: 1,
-      clearcoatRoughness: 0.03,
-      iridescence: 0.35,
-      iridescenceIOR: 1.35,
-      iridescenceThicknessRange: [120, 480],
-      envMapIntensity: 2.2,
-      specularIntensity: 1,
-      transparent: true,
-      depthWrite: false,
-      side: THREE.DoubleSide,
-    });
-    m.onBeforeCompile = (shader) => {
-      shader.uniforms.uCrackFlash = crackFlash;
-      shader.fragmentShader = 'uniform float uCrackFlash;\n' + shader.fragmentShader;
-      shader.fragmentShader = shader.fragmentShader.replace(
-        '#include <opaque_fragment>',
-        `
-        float fresnel = pow(1.0 - saturate(abs(dot(normal, geometryViewDir))), 2.2);
-        float glint = max(0.0, dot(outgoingLight, vec3(0.299, 0.587, 0.114)) - 0.35) * 1.4;
-        float glassAlpha = clamp(0.14 + 0.75 * fresnel + glint, 0.0, 0.95);
-        // Luminous rim, like light caught in the edge of thick glass.
-        vec3 rim = vec3(1.0) * pow(fresnel, 1.4) * (0.65 + 1.6 * uCrackFlash);
-        gl_FragColor = vec4(outgoingLight + rim, glassAlpha);
-        `,
-      );
-    };
-    return m;
-  }, []);
+const BACKDROP_VERT = /* glsl */ `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = vec4(position.xy * 2.0, 0.0, 1.0);
+  }
+`;
+const BACKDROP_FRAG = /* glsl */ `
+  uniform float uTime;
+  varying vec2 vUv;
+  vec3 lin(vec3 c) { return pow(c, vec3(2.2)); }
+  float blob(vec2 uv, vec2 c, float r) { return smoothstep(r, 0.0, distance(uv, c)); }
+  void main() {
+    vec2 uv = vUv;
+    float t = uTime * 0.05;
+    vec3 col = mix(vec3(0.15, 0.153, 0.168), vec3(0.086, 0.086, 0.094), clamp(uv.x * 0.5 + (1.0 - uv.y) * 0.5, 0.0, 1.0));
+    col += 0.30 * blob(uv, vec2(0.12 + 0.06 * sin(t * 3.1), 0.86 + 0.05 * cos(t * 2.3)), 0.62);
+    col += 0.22 * blob(uv, vec2(0.92 + 0.05 * cos(t * 2.7), 0.6 + 0.06 * sin(t * 1.9)), 0.55);
+    col += 0.22 * blob(uv, vec2(0.45 + 0.07 * sin(t * 1.7), 0.05 + 0.04 * cos(t * 2.9)), 0.6);
+    col += 0.14 * blob(uv, vec2(0.62 + 0.08 * cos(t * 3.7), 0.55 + 0.05 * sin(t * 2.1)), 0.32);
+    // Thin bright bands give the refraction crisp detail to bend.
+    col += 0.022 * smoothstep(0.012, 0.0, abs(fract(uv.y * 4.0 + uv.x * 1.5 + t) - 0.5) - 0.47);
+    // Same darkening the page applies on top of its light.
+    col *= mix(1.0, 0.6, clamp(distance(uv, vec2(0.5, 0.6)) * 1.3, 0.0, 1.0));
+    gl_FragColor = vec4(lin(clamp(col, 0.0, 1.0)), 1.0);
+  }
+`;
+
+/** Liquid glass: refracts the backdrop with chromatic aberration and a slow, wavy distortion. */
+function Glass({ buffer }: { buffer: THREE.Texture }) {
+  return (
+    <MeshTransmissionMaterial
+      buffer={buffer}
+      resolution={32}
+      samples={8}
+      transmission={1}
+      thickness={0.42}
+      roughness={0.04}
+      ior={1.5}
+      chromaticAberration={0.14}
+      anisotropicBlur={0.08}
+      distortion={0.45}
+      distortionScale={0.35}
+      temporalDistortion={0.12}
+      clearcoat={1}
+      clearcoatRoughness={0.04}
+      iridescence={0.25}
+      iridescenceIOR={1.3}
+      iridescenceThicknessRange={[120, 420]}
+      attenuationDistance={6}
+      attenuationColor="#ffffff"
+      color="#ffffff"
+      envMapIntensity={1.2}
+    />
+  );
 }
 
 const smooth = (t: number) => t * t * (3 - 2 * t);
 const projected = new THREE.Vector3();
 
 export default function Logo() {
-  const glass = useGlassMaterial();
+  const fbo = useFBO(1024, 1024);
+  const backdropMat = useMemo(
+    () =>
+      new THREE.ShaderMaterial({
+        vertexShader: BACKDROP_VERT,
+        fragmentShader: BACKDROP_FRAG,
+        uniforms: { uTime: { value: 0 } },
+        depthTest: false,
+        depthWrite: false,
+      }),
+    [],
+  );
 
   const pieces = useMemo(
     () =>
@@ -119,11 +149,13 @@ export default function Logo() {
     () => () => {
       pieces.forEach((p) => p.geometry.dispose());
       whole.dispose();
-      glass.dispose();
+      backdropMat.dispose();
     },
-    [pieces, whole, glass],
+    [pieces, whole, backdropMat],
   );
 
+  const logoRef = useRef<THREE.Group>(null);
+  const backdropRef = useRef<THREE.Mesh>(null);
   const wholeRef = useRef<THREE.Mesh>(null);
   const piecesRef = useRef<THREE.Group>(null);
   const crack = useRef(0);
@@ -140,7 +172,6 @@ export default function Logo() {
     // Intact until halfway, then the cracked pieces take over and the cracks open a little.
     const cracked = crack.current > 0.5 || e > 0.001;
     const open = smooth(Math.min(1, Math.max(0, (crack.current - 0.5) * 2)));
-    crackFlash.value = Math.sin(open * Math.PI) * (1 - e);
     if (wholeRef.current) wholeRef.current.visible = !cracked;
     if (piecesRef.current) piecesRef.current.visible = cracked;
 
@@ -154,6 +185,20 @@ export default function Logo() {
       g.position.set(p.center[0] + move[0] * k, p.center[1] + move[1] * k, move[2] * k);
       g.rotation.set(tilt[0] * (0.08 * open + e), tilt[1] * (0.08 * open + e), (i % 2 ? 1 : -1) * 0.015 * open * (1 - e));
     });
+
+    // Render the backdrop alone into the buffer the glass refracts.
+    const logo = logoRef.current;
+    const backdrop = backdropRef.current;
+    if (logo && backdrop) {
+      (backdrop.material as THREE.ShaderMaterial).uniforms.uTime.value = state.clock.elapsedTime;
+      logo.visible = false;
+      backdrop.visible = true;
+      state.gl.setRenderTarget(fbo);
+      state.gl.render(state.scene, state.camera);
+      state.gl.setRenderTarget(null);
+      backdrop.visible = false;
+      logo.visible = true;
+    }
 
     const labels = Math.round(pose.labels * 100) / 100;
     if (labels !== labelsRef.current) {
@@ -174,12 +219,20 @@ export default function Logo() {
   });
 
   return (
-    <group>
-      <mesh ref={wholeRef} geometry={whole} material={glass} />
+    <>
+      <mesh ref={backdropRef} material={backdropMat} visible={false} frustumCulled={false} renderOrder={-1}>
+        <planeGeometry args={[1, 1]} />
+      </mesh>
+      <group ref={logoRef}>
+      <mesh ref={wholeRef} geometry={whole}>
+        <Glass buffer={fbo.texture} />
+      </mesh>
       <group ref={piecesRef} visible={false}>
       {pieces.map((p, i) => (
         <group key={p.key} ref={(g) => void (groups.current[i] = g)}>
-          <mesh geometry={p.geometry} material={glass} renderOrder={i} />
+          <mesh geometry={p.geometry}>
+            <Glass buffer={fbo.texture} />
+          </mesh>
           {p.labelled && (
             <object3D
               position={LABEL_OFFSET[p.id]}
@@ -192,6 +245,7 @@ export default function Logo() {
         </group>
       ))}
       </group>
-    </group>
+      </group>
+    </>
   );
 }
