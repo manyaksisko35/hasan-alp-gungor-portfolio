@@ -12,12 +12,12 @@ export default function Skills() {
       <div className="sticky top-0 h-svh px-6 lg:px-[8%] pt-24 lg:pt-28 pb-8 flex flex-col">
         <div className="max-w-7xl w-full mx-auto flex-1 flex flex-col lg:justify-center">
           <div className="lg:max-w-sm">
-            <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Neler biliyorum', en: 'What I know' })}</p>
-            <h2 className="sg-title">
+            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Neler biliyorum', en: 'What I know' })}</p>
+            <h2 className="ui-title">
               {t({ tr: 'Kullandığım ', en: 'What I ' })}
-              <strong className="sg-ai">{t({ tr: 'teknolojiler.', en: 'work with.' })}</strong>
+              <strong className="ui-accent">{t({ tr: 'teknolojiler.', en: 'work with.' })}</strong>
             </h2>
-            <p className="sg-lead mt-4 lg:mt-6 hidden sm:block">
+            <p className="ui-lead mt-4 lg:mt-6 hidden sm:block">
               {t({
                 tr: 'Bu oyun kolunu da hazır model kullanmadan Three.js ile kendim kodladım. Kaydırdıkça parçalarına ayrılıyor; her parça kullandığım bir teknoloji.',
                 en: 'I coded this controller myself with Three.js, without a premade model. It comes apart as you scroll, and each part is something I use.',

@@ -8,14 +8,14 @@ export default function MoreWork() {
   const t = useT();
 
   return (
-    <section id="more" className="sg-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+    <section id="more" className="ui-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
-        <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Diğer projelerim', en: 'More projects' })}</p>
-        <h2 className="sg-title max-w-3xl">
+        <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Diğer projelerim', en: 'More projects' })}</p>
+        <h2 className="ui-title max-w-3xl">
           {t({ tr: 'Başka neler ', en: 'What else have I ' })}
           <strong>{t({ tr: 'yaptım?', en: 'made?' })}</strong>
         </h2>
-        <p className="sg-lead mt-4 lg:mt-6 max-w-xl">
+        <p className="ui-lead mt-4 lg:mt-6 max-w-xl">
           {t({
             tr: 'Web konseptleri, oyun yayınları için arayüzler, Arduino projeleri ve okulda yazdığım uygulamalar.',
             en: 'Web concepts, overlays for game broadcasts, Arduino projects and apps I wrote for school.',
@@ -29,7 +29,7 @@ export default function MoreWork() {
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="sg-card group relative overflow-hidden p-6 lg:p-8 flex flex-col min-h-[260px]"
+              className="ui-card group relative overflow-hidden p-6 lg:p-8 flex flex-col min-h-[260px]"
             >
               <div
                 aria-hidden
@@ -37,7 +37,7 @@ export default function MoreWork() {
                 style={{ background: p.accent }}
               />
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2 sg-eyebrow !text-[0.6rem]">
+                <span className="flex items-center gap-2 ui-label ui-label--plain !text-[0.65rem]">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.accent }} />
                   {t(p.tag)}
                 </span>

@@ -12,7 +12,7 @@ My personal site. It introduces me, my skills, my projects and my videos, with a
 - **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds.
 - **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.
 - **Turkish and English:** switch from the navbar; the choice is remembered.
-- Loader that draws the controller outline, section dots, scroll progress and ambient lighting per section.
+- A small branded loader, a floating navbar and a scroll progress bar.
 
 ## Screenshots
 

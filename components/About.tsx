@@ -74,13 +74,13 @@ export default function About() {
     <section ref={ref} id="about" className="relative px-6 lg:px-[8%] pt-24 lg:pt-40 pb-24 lg:pb-40">
       <div className="max-w-7xl mx-auto">
         <div className="lg:max-w-[52%]">
-          <p className="sg-eyebrow mb-5 lg:mb-8">{t({ tr: 'Hakkımda', en: 'About me' })}</p>
+          <p className="ui-label mb-5 lg:mb-8">{t({ tr: 'Hakkımda', en: 'About me' })}</p>
           <p data-manifesto className="text-[clamp(1.6rem,1rem+2.6vw,3.3rem)] font-medium leading-[1.12] tracking-[-0.03em]">
             {words.map((w, i) => {
               const hl = w.includes('*');
               return (
                 <span key={`${lang}-${i}`}>
-                  <span data-word className={hl ? 'sg-ai font-semibold' : undefined}>
+                  <span data-word className={hl ? 'ui-accent font-semibold' : undefined}>
                     {w.replaceAll('*', '')}
                   </span>{' '}
                 </span>
@@ -91,7 +91,7 @@ export default function About() {
 
         <div className="mt-16 lg:mt-24 lg:max-w-[52%] grid grid-cols-2 gap-3 lg:gap-5">
           {STATS.map((s) => (
-            <div key={s.label.en} className="sg-card p-5 lg:p-7 !bg-[#0b0b0d]/80">
+            <div key={s.label.en} className="ui-card p-5 lg:p-7 !bg-[#0b0b0d]/80">
               <p className="text-4xl lg:text-6xl font-semibold tracking-[-0.04em]">
                 <Counter value={s.value} suffix={s.suffix} />
               </p>

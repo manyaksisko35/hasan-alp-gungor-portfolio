@@ -11,7 +11,6 @@ import Loader from '@/components/Loader';
 import MoreWork from '@/components/MoreWork';
 import Navbar from '@/components/Navbar';
 import ScrollProgress from '@/components/ScrollProgress';
-import SectionDots from '@/components/SectionDots';
 import Skills from '@/components/Skills';
 import SmoothScroll from '@/components/SmoothScroll';
 import Videos from '@/components/Videos';
@@ -33,7 +32,6 @@ export default function Home() {
       <Loader />
       <Navbar />
       <ScrollProgress />
-      <SectionDots />
       <HeadlineReveal />
 
       <main className="relative w-full bg-[#030303]">

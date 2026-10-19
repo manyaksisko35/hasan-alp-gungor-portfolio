@@ -9,39 +9,39 @@ export default function Contact() {
 
   return (
     <>
-      <section id="contact" className="relative z-10 bg-[#030303] overflow-hidden px-6 lg:px-[8%] py-32 lg:py-48 text-center">
-        <div aria-hidden className="hero-glow absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(130vw,1000px)] aspect-square opacity-60" data-live>
-          <div className="hero-glow__halo absolute inset-[18%] rounded-full" />
-          <div className="hero-glow__ring absolute inset-0 rounded-full" />
-        </div>
-        <div className="relative max-w-5xl mx-auto">
-          <p className="sg-eyebrow mb-5 lg:mb-8">{t({ tr: 'İletişim', en: 'Contact' })}</p>
-          <h2 className="sg-title sg-title-xl">
+      <section id="contact" className="relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+        <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[24px] border border-white/10 bg-[#0a0a0b] px-6 py-16 lg:px-16 lg:py-24">
+          <div aria-hidden className="hero-grid absolute inset-0" />
+          <div aria-hidden className="hero-light absolute -right-40 -bottom-40 w-[640px] aspect-square rounded-full" />
+          <div className="relative max-w-3xl">
+          <p className="ui-label mb-5 lg:mb-8">{t({ tr: 'İletişim', en: 'Contact' })}</p>
+          <h2 className="ui-title ui-title-xl">
             {t({ tr: 'Bana ', en: 'Get in ' })}
-            <strong className="sg-ai">{t({ tr: 'ulaş.', en: 'touch.' })}</strong>
+            <strong className="ui-accent">{t({ tr: 'ulaş.', en: 'touch.' })}</strong>
           </h2>
-          <p className="sg-lead mt-6 lg:mt-8 max-w-lg mx-auto">
+          <p className="ui-lead mt-6 lg:mt-8 max-w-lg">
             {t({
               tr: 'Staj, iş ya da birlikte bir proje fikrin varsa LinkedIn\'den yazabilirsin.',
               en: 'If you have an internship, a job or a project idea, message me on LinkedIn.',
             })}
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="sg-btn">
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="ui-btn">
               <LinkedInIcon className="w-4 h-4" />
               {t({ tr: 'LinkedIn\'den yaz', en: 'Message me on LinkedIn' })}
             </a>
-            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="sg-btn sg-btn--ghost">
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="ui-btn ui-btn--ghost">
               <GitHubIcon className="w-4 h-4" />
               GitHub
               <ArrowIcon />
             </a>
           </div>
+          </div>
         </div>
       </section>
 
-      <footer className="relative z-10 bg-[#030303] border-t border-white/10 px-6 lg:px-[8%] py-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-3 md:items-center justify-between text-xs text-white/45">
+      <footer className="relative z-10 bg-[#030303] px-6 lg:px-[8%] pb-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-3 md:items-center justify-between font-mono text-xs text-white/40">
           <p>© 2026 Hasan Alp Güngör</p>
           <p>
             {t({

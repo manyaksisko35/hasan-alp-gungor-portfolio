@@ -8,28 +8,28 @@ export default function Videos() {
   const t = useT();
 
   return (
-    <section id="videos" className="sg-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
+    <section id="videos" className="ui-ambient amb-red relative z-10 bg-[#030303] px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Videolarım', en: 'My videos' })}</p>
-          <h2 className="sg-title">
+          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Videolarım', en: 'My videos' })}</p>
+          <h2 className="ui-title">
             {t({ tr: "CS2'yi gerçek hayata ", en: 'Bringing CS2 into ' })}
-            <strong className="sg-ai">{t({ tr: 'taşıyorum.', en: 'real life.' })}</strong>
+            <strong className="ui-accent">{t({ tr: 'taşıyorum.', en: 'real life.' })}</strong>
           </h2>
-          <p className="sg-lead mt-4 lg:mt-6 max-w-md">
+          <p className="ui-lead mt-4 lg:mt-6 max-w-md">
             {t({
               tr: "YouTube kanalımda ESP32 ile yaptığım cihazları, CS2'yi gerçek dünyaya bağlayan projelerimi ve oyun rehberlerimi paylaşıyorum.",
               en: 'On my YouTube channel I share devices I build with ESP32, projects that connect CS2 to the real world, and gaming guides.',
             })}
           </p>
-          <a href={LINKS.youtube} target="_blank" rel="noopener noreferrer" className="sg-btn mt-8">
+          <a href={LINKS.youtube} target="_blank" rel="noopener noreferrer" className="ui-btn mt-8">
             <YouTubeIcon className="w-5 h-5" />
             {t({ tr: 'Kanala git', en: 'Visit the channel' })}
             <ArrowIcon />
           </a>
         </div>
 
-        <ol className="sg-card !rounded-[28px] divide-y divide-white/[0.07] overflow-hidden">
+        <ol className="ui-card !rounded-[20px] divide-y divide-white/[0.07] overflow-hidden">
           {VIDEOS.map((v, i) => (
             <li key={v.href}>
               <a

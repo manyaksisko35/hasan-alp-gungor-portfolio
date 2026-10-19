@@ -63,18 +63,18 @@ export default function Work() {
   );
 
   return (
-    <section ref={section} id="work" className="sg-ambient amb-red relative z-10 bg-[#030303] lg:h-svh lg:overflow-hidden">
+    <section ref={section} id="work" className="ui-ambient amb-red relative z-10 bg-[#030303] lg:h-svh lg:overflow-hidden">
       <div
         ref={track}
         className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 px-6 lg:px-[8%] py-24 lg:py-0 lg:h-full lg:w-max will-change-transform"
       >
         <div className="lg:w-[34vw] lg:shrink-0 lg:pr-8">
-          <p className="sg-eyebrow mb-3 lg:mb-5">{t({ tr: 'Projelerim', en: 'My projects' })}</p>
-          <h2 className="sg-title">
+          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Projelerim', en: 'My projects' })}</p>
+          <h2 className="ui-title">
             {t({ tr: 'Yaptığım ', en: "Sites I've " })}
-            <strong className="sg-ai">{t({ tr: 'siteler.', en: 'built.' })}</strong>
+            <strong className="ui-accent">{t({ tr: 'siteler.', en: 'built.' })}</strong>
           </h2>
-          <p className="sg-lead mt-4 lg:mt-6 max-w-md">
+          <p className="ui-lead mt-4 lg:mt-6 max-w-md">
             {t({
               tr: 'Samsung Galaxy ürünleri için hazırladığım konsept siteler. Hepsini Next.js ve Three.js ile sıfırdan yaptım; hepsi yayında, kodları da GitHub\'da.',
               en: 'Concept sites I made for Samsung Galaxy products. I built each one from scratch with Next.js and Three.js; they are all live and the code is on GitHub.',
@@ -92,7 +92,7 @@ export default function Work() {
           <article
             key={c.name}
             data-card
-            className="group relative flex flex-col overflow-hidden rounded-[28px] lg:rounded-[32px] border border-white/10 bg-[#0b0b0d] transition-colors duration-300 hover:border-white/25 lg:w-[min(58vw,860px)] lg:h-[74svh] lg:shrink-0"
+            className="group relative flex flex-col overflow-hidden rounded-[20px] lg:rounded-[20px] border border-white/10 bg-[#0b0b0d] transition-colors duration-300 hover:border-white/25 lg:w-[min(58vw,860px)] lg:h-[74svh] lg:shrink-0"
           >
             <div data-media className="relative aspect-[16/10] lg:aspect-auto lg:flex-1 overflow-hidden" style={{ background: c.glow }}>
               <Image
@@ -103,18 +103,18 @@ export default function Work() {
                 className={`transition-transform duration-700 group-hover:scale-[1.04] ${c.shot ? 'object-cover object-[50%_75%]' : 'object-contain p-8 lg:p-12'}`}
                 priority={i === 0}
               />
-              <span className="absolute top-5 left-5 lg:top-6 lg:left-7 sg-eyebrow !text-[0.6rem] !text-white/70 tabular-nums">
+              <span className="absolute top-5 left-5 lg:top-6 lg:left-7 ui-label ui-label--plain !text-[0.6rem] !text-white/70 tabular-nums">
                 {String(i + 1).padStart(2, '0')} / {String(CONCEPTS.length).padStart(2, '0')}
               </span>
             </div>
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 px-5 py-5 lg:px-8 lg:py-7 border-t border-white/5">
               <div className="max-w-xl">
-                <p className="sg-eyebrow !text-[0.6rem] mb-1.5">{c.stack.join(' · ')}</p>
+                <p className="ui-label ui-label--plain !text-[0.65rem] mb-1.5">{c.stack.join(' · ')}</p>
                 <h3 className="text-2xl lg:text-3xl font-semibold tracking-[-0.03em]">{c.name}</h3>
                 <p className="text-sm lg:text-base text-white/60 font-light mt-2 leading-relaxed">{t(c.text)}</p>
               </div>
               <div className="flex gap-2 shrink-0">
-                <a href={c.href} target="_blank" rel="noopener noreferrer" className="sg-btn !py-2.5 !px-5 !text-sm">
+                <a href={c.href} target="_blank" rel="noopener noreferrer" className="ui-btn !py-2.5 !px-5 !text-sm">
                   {t({ tr: 'Siteyi aç', en: 'Open site' })}
                   <ArrowIcon />
                 </a>
@@ -123,7 +123,7 @@ export default function Work() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${c.name} GitHub`}
-                  className="sg-btn sg-btn--ghost !py-2.5 !px-3.5"
+                  className="ui-btn ui-btn--ghost !py-2.5 !px-3.5"
                 >
                   <GitHubIcon className="w-4 h-4" />
                 </a>
@@ -136,13 +136,13 @@ export default function Work() {
           href={LINKS.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="group sg-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[28px] lg:!rounded-[32px]"
+          className="group ui-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[20px] lg:!rounded-[20px]"
         >
           <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(239,68,68,0.25), transparent 70%)' }} />
-          <p className="sg-eyebrow mb-3">GitHub</p>
+          <p className="ui-label mb-3">GitHub</p>
           <p className="text-3xl lg:text-5xl font-medium tracking-[-0.04em] leading-[1.02]">
             {t({ tr: 'Diğer kodlarım ', en: 'The rest of my code is ' })}
-            <strong className="sg-ai font-semibold">{t({ tr: "GitHub'da.", en: 'on GitHub.' })}</strong>
+            <strong className="ui-accent font-semibold">{t({ tr: "GitHub'da.", en: 'on GitHub.' })}</strong>
           </p>
           <span className="mt-6 inline-flex items-center gap-2 text-sm text-white/70 group-hover:text-white transition-colors">
             {t({ tr: 'Profilime bak', en: 'See my profile' })}

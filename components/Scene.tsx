@@ -73,7 +73,9 @@ function useScrollStory(layer: React.RefObject<HTMLDivElement | null>, setActive
     mm.add({ desktop: '(min-width: 1024px)', mobile: '(max-width: 1023px)' }, (ctx) => {
       const desktop = !!ctx.conditions?.desktop;
       const K: Keyframe[] = [
-        { x: 0, y: desktop ? -0.5 : -0.42, z: 0, rotX: 0.66, rotY: 0, rotZ: 0, scale: desktop ? 0.86 : 1, explode: 0, labels: 0, visible: 1 },
+        desktop
+          ? { x: 0.48, y: -0.02, z: 0, rotX: 0.42, rotY: -0.45, rotZ: 0.06, scale: 0.92, explode: 0, labels: 0, visible: 1 }
+          : { x: 0, y: -0.5, z: 0, rotX: 0.62, rotY: -0.2, rotZ: 0.04, scale: 0.95, explode: 0, labels: 0, visible: 1 },
         desktop
           ? { x: 0.5, y: 0, rotX: 0.2, rotY: -0.62, rotZ: 0.1, scale: 0.82 }
           : { x: 0, y: 0.5, rotX: 0.3, rotY: -0.5, rotZ: 0.08, scale: 0.62, visible: 0.12 },

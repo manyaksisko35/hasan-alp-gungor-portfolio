@@ -41,38 +41,53 @@ export default function Hero() {
       onPointerUp={onUp}
       onPointerCancel={onUp}
       onPointerLeave={onUp}
-      className="h-svh min-h-[600px] w-full flex flex-col items-center text-center relative px-4 pt-[17svh] md:pt-[15svh] touch-pan-y select-none cursor-grab data-[dragging]:cursor-grabbing"
+      className="h-svh min-h-[640px] w-full relative px-6 lg:px-[8%] touch-pan-y select-none cursor-grab data-[dragging]:cursor-grabbing"
     >
-      <p className="hero-in sg-eyebrow mb-4 md:mb-6 !text-[0.65rem] md:!text-xs">
-        {t({ tr: 'Merhaba, ben', en: "Hi, I'm" })}
-      </p>
+      <div className="max-w-7xl mx-auto h-full flex flex-col justify-start lg:justify-center pt-28 lg:pt-16">
+        <div className="lg:max-w-[52%]">
+          <p className="hero-in ui-label mb-5 md:mb-7">{t({ tr: 'Merhaba, ben', en: "Hi, I'm" })}</p>
 
-      <h1
-        className="hero-in hero-in--2 sg-title text-[15vw] md:text-[8vw] xl:text-[7.4vw]"
-        style={{ filter: 'drop-shadow(0px 20px 40px rgba(0,0,0,0.9))' }}
-      >
-        Hasan Alp <strong>Güngör</strong>
-      </h1>
+          <h1 className="hero-in hero-in--2 ui-title text-[17vw] sm:text-[13vw] lg:text-[clamp(4.5rem,8.2vw,8.8rem)] !leading-[0.88]">
+            Hasan Alp
+            <br />
+            <strong className="ui-accent">Güngör</strong>
+          </h1>
 
-      <p className="hero-in hero-in--3 mt-4 md:mt-6 text-base md:text-2xl font-light text-white/70 max-w-[22ch] md:max-w-none">
-        {t({ tr: 'Bilgisayar Programcılığı öğrencisiyim. ', en: "I'm a Computer Programming student. " })}
-        <span className="sg-ai font-semibold">{t({ tr: 'Yazılım ve donanım projeleri üretiyorum.', en: 'I build software and hardware projects.' })}</span>
-      </p>
+          <p className="hero-in hero-in--3 mt-6 md:mt-8 text-base md:text-xl text-white/65 max-w-md leading-relaxed">
+            {t({
+              tr: 'Bilgisayar Programcılığı öğrencisiyim. Yazılım ve donanım projeleri üretiyorum.',
+              en: "I'm a Computer Programming student. I build software and hardware projects.",
+            })}
+          </p>
 
-      <div className="hero-in hero-in--4 mt-7 md:mt-9 flex flex-wrap items-center justify-center gap-3">
-        <a href="#about" className="sg-btn">
-          {t({ tr: 'Beni tanı', en: 'About me' })}
-          <ArrowIcon className="rotate-90" />
-        </a>
-        <a href="#contact" className="sg-btn sg-btn--ghost">
-          {t({ tr: 'Bana ulaş', en: 'Contact me' })}
-        </a>
+          <div className="hero-in hero-in--4 mt-8 flex flex-wrap items-center gap-3">
+            <a href="#about" className="ui-btn">
+              {t({ tr: 'Beni tanı', en: 'About me' })}
+              <ArrowIcon className="rotate-90" />
+            </a>
+            <a href="#contact" className="ui-btn ui-btn--ghost">
+              {t({ tr: 'Bana ulaş', en: 'Contact me' })}
+            </a>
+          </div>
+
+          <ul className="hero-in hero-in--4 mt-10 hidden sm:flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-white/45">
+            {[
+              { tr: 'İzmir, Türkiye', en: 'İzmir, Türkiye' },
+              { tr: 'İzmir Ekonomi Üniversitesi', en: 'İzmir University of Economics' },
+              { tr: 'Oyun geliştirici', en: 'Game developer' },
+            ].map((f) => (
+              <li key={f.en} className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                {t(f)}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      <div className="hero-in hero-in--4 absolute bottom-8 md:bottom-10 flex flex-col items-center gap-3 text-white/50">
-        <span className="sg-eyebrow !text-[0.65rem]">{t({ tr: 'Kaydır', en: 'Scroll' })}</span>
-        <div className="w-px h-10 bg-gradient-to-b from-white/60 to-transparent" />
-      </div>
+      <span className="hero-in hero-in--4 absolute bottom-6 left-6 lg:left-[8%] font-mono text-[0.7rem] text-white/40">
+        {t({ tr: 'aşağı kaydır ↓', en: 'scroll down ↓' })}
+      </span>
     </section>
   );
 }

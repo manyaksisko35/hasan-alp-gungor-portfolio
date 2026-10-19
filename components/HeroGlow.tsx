@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
+/** Dotted grid with a red light behind the controller; fades out as the hero scrolls away. */
 export default function HeroGlow() {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -11,14 +12,9 @@ export default function HeroGlow() {
       raf = 0;
       const el = ref.current;
       if (!el) return;
-      const t = Math.min(1, window.scrollY / (window.innerHeight * 0.8));
+      const t = Math.min(1, window.scrollY / (window.innerHeight * 0.9));
       el.style.opacity = String(1 - t);
       el.style.visibility = t >= 1 ? 'hidden' : 'visible';
-      const glow = el.firstElementChild as HTMLElement | null;
-      if (glow) {
-        if (t < 1) glow.dataset.live = '1';
-        else delete glow.dataset.live;
-      }
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -33,10 +29,8 @@ export default function HeroGlow() {
 
   return (
     <div ref={ref} aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="hero-glow absolute left-1/2 top-[70%] -translate-x-1/2 -translate-y-1/2 w-[min(120vw,980px)] aspect-square">
-        <div className="hero-glow__halo absolute inset-[18%] rounded-full" />
-        <div className="hero-glow__ring absolute inset-0 rounded-full" />
-      </div>
+      <div className="hero-grid absolute inset-0" />
+      <div className="hero-light absolute left-1/2 top-[72%] lg:left-[74%] lg:top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(110vw,820px)] aspect-square rounded-full" />
     </div>
   );
 }

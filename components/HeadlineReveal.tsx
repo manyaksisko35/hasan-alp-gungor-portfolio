@@ -13,7 +13,7 @@ export default function HeadlineReveal() {
     let raf = 0;
     const check = () => {
       raf = 0;
-      const pending = document.querySelectorAll<HTMLElement>('h2.sg-title:not([data-in])');
+      const pending = document.querySelectorAll<HTMLElement>('h2.ui-title:not([data-in])');
       if (pending.length === 0) {
         window.removeEventListener('scroll', onScroll);
         window.removeEventListener('resize', onScroll);
