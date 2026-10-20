@@ -1,4 +1,4 @@
-import { LINKS } from '@/lib/data';
+import { LINKS, LOCAGEN_ITCH } from '@/lib/data';
 import type { Localized } from '@/lib/i18n';
 
 const GH = LINKS.github;
@@ -322,7 +322,7 @@ export const DETAILS: ProjectDetail[] = [
       { src: '/projects/locagen/banner.jpg', caption: { tr: 'LocaGen: Universal Game Translator', en: 'LocaGen: Universal Game Translator' } },
     ],
     links: [
-      { kind: 'itch', label: { tr: "itch.io'da indir", en: 'Get it on itch.io' }, href: LINKS.itch },
+      { kind: 'itch', label: { tr: "itch.io'da indir", en: 'Get it on itch.io' }, href: LOCAGEN_ITCH },
       { kind: 'github', label: { tr: 'Ücretsiz sürüm', en: 'Free version' }, href: `${GH}/LocaGenFree` },
       { kind: 'github', label: { tr: 'PRO web sürümü', en: 'PRO web version' }, href: `${GH}/LocaGenPHP` },
     ],

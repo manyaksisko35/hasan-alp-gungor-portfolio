@@ -9,6 +9,8 @@ export const LINKS = {
   linkedin: 'https://www.linkedin.com/in/hasan-alp-g%C3%BCng%C3%B6r-b1085131a/',
 };
 
+export const LOCAGEN_ITCH = 'https://hasan-alp-gungor.itch.io/locagen-pro-universal-game-localization-tool';
+
 export interface Concept {
   slug: string;
   name: string;
@@ -92,7 +94,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'locagen',
     name: 'LocaGen',
-    href: LINKS.itch,
+    href: LOCAGEN_ITCH,
     tag: { tr: 'Oyun · Yerelleştirme', en: 'Games · Localization' },
     text: {
       tr: 'Oyunların JSON dil dosyalarını değişkenleri bozmadan başka dillere çeviren aracım. Python ile yazılmış ücretsiz bir masaüstü sürümü ve Gemini kullanan bir PHP web sürümü var.',
@@ -208,13 +210,13 @@ const video = (v: Omit<Video, 'href'> & { search: string }): Video => {
 
 /** A selection from the YouTube channel. */
 export const VIDEOS: Video[] = [
-  video({ key: 'stattrak', title: { tr: 'Gerçek hayatta StatTrak Deagle yaptım', en: 'I made a real-life StatTrak Deagle' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, search: 'stattrak deagle' }),
-  video({ key: 'bomb-defuse', title: { tr: 'CS2 ama bombayı gerçekten imha ediyorum (ESP32 ile)', en: 'CS2, but I really defuse the bomb (with ESP32)' }, tag: { tr: 'CS2 × ESP32', en: 'CS2 × ESP32' }, search: 'bombayı gerçekten imha' }),
-  video({ key: 'flash', title: { tr: 'CS2 ama gerçekten flash yiyorum', en: 'CS2, but I really get flashed' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, search: 'gerçekten flash' }),
-  video({ key: 'airsoft', title: { tr: 'Akıllı airsoft hedefi yaptım (ESP32 ile)', en: 'I built a smart airsoft target (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, search: 'airsoft hedefi' }),
-  video({ key: 'ambilight', title: { tr: 'Kendi ambilight\'ımı yaptım (ESP32 ile)', en: 'I built my own Ambilight (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, search: 'ambilight' }),
-  video({ key: 'assetto-radio', title: { tr: 'Assetto Corsa\'ya gerçek radyo bağladım', en: 'I connected a real radio to Assetto Corsa' }, tag: { tr: 'Simülasyon × Donanım', en: 'Sim racing × Hardware' }, search: 'assetto corsa radyo' }),
-  video({ key: 'major-hud', title: { tr: 'Major arayüzünü kodladım', en: 'I coded a Major broadcast HUD' }, tag: { tr: 'CS2 × Yazılım', en: 'CS2 × Software' }, search: 'major arayüzü' }),
-  video({ key: 'ak47', title: { tr: 'AK-47 ile CS2 oynadım', en: 'I played CS2 with an AK-47' }, tag: { tr: 'CS2', en: 'CS2' }, search: 'AK-47 ile CS2' }),
-  video({ key: 'dlss', title: { tr: 'Tüm oyunlar için tek tuşla DLSS 5 kurulumu', en: 'One-click DLSS 5 setup for every game' }, tag: { tr: 'Rehber', en: 'Guide' }, search: 'DLSS 5' }),
+  video({ key: 'stattrak', id: 'PpB316eWN50', title: { tr: 'Gerçek hayatta StatTrak Deagle yaptım', en: 'I made a real-life StatTrak Deagle' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, search: 'stattrak deagle' }),
+  video({ key: 'bomb-defuse', id: 'O-jkg_6Dc4g', title: { tr: 'CS2 ama bombayı gerçekten imha ediyorum (ESP32 ile)', en: 'CS2, but I really defuse the bomb (with ESP32)' }, tag: { tr: 'CS2 × ESP32', en: 'CS2 × ESP32' }, search: 'bombayı gerçekten imha' }),
+  video({ key: 'flash', id: 'OMoCkNgwNuU', title: { tr: 'CS2 ama gerçekten flash yiyorum', en: 'CS2, but I really get flashed' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, search: 'gerçekten flash' }),
+  video({ key: 'airsoft', id: 'p2PEDqa-tOc', title: { tr: 'Akıllı airsoft hedefi yaptım (ESP32 ile)', en: 'I built a smart airsoft target (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, search: 'airsoft hedefi' }),
+  video({ key: 'ambilight', id: '2vbKNMWsXUE', title: { tr: 'Kendi ambilight\'ımı yaptım (ESP32 ile)', en: 'I built my own Ambilight (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, search: 'ambilight' }),
+  video({ key: 'assetto-radio', id: '2VQ2itUknSA', title: { tr: 'Assetto Corsa\'ya gerçek radyo bağladım', en: 'I connected a real radio to Assetto Corsa' }, tag: { tr: 'Simülasyon × Donanım', en: 'Sim racing × Hardware' }, search: 'assetto corsa radyo' }),
+  video({ key: 'major-hud', id: 'OVez-eQmrAc', title: { tr: 'Major arayüzünü kodladım', en: 'I coded a Major broadcast HUD' }, tag: { tr: 'CS2 × Yazılım', en: 'CS2 × Software' }, search: 'major arayüzü' }),
+  video({ key: 'ak47', id: 'DKzpmteFwCs', title: { tr: 'AK-47 ile CS2 oynadım', en: 'I played CS2 with an AK-47' }, tag: { tr: 'CS2', en: 'CS2' }, search: 'AK-47 ile CS2' }),
+  video({ key: 'dlss', id: 'VaehYsHO0-I', title: { tr: 'Tüm oyunlar için tek tuşla DLSS 5 kurulumu', en: 'One-click DLSS 5 setup for every game' }, tag: { tr: 'Rehber', en: 'Guide' }, search: 'DLSS 5' }),
 ];
