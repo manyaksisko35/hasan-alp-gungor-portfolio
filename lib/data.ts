@@ -10,6 +10,7 @@ export const LINKS = {
 };
 
 export interface Concept {
+  slug: string;
   name: string;
   href: string;
   repo: string;
@@ -22,6 +23,7 @@ export interface Concept {
 
 export const CONCEPTS: Concept[] = [
   {
+    slug: 's26-ultra',
     name: 'Galaxy S26 Ultra',
     href: 'https://s26-ultra-concept.vercel.app',
     repo: `${GH}/s26-ultra-concept`,
@@ -35,6 +37,7 @@ export const CONCEPTS: Concept[] = [
     stack: ['Next.js', 'React Three Fiber', 'GSAP', 'AR'],
   },
   {
+    slug: 'buds4-pro',
     name: 'Galaxy Buds4 Pro',
     href: 'https://buds4-pro-concept.vercel.app',
     repo: `${GH}/buds4-pro-concept`,
@@ -47,6 +50,7 @@ export const CONCEPTS: Concept[] = [
     stack: ['Next.js', 'Three.js', 'Web Audio'],
   },
   {
+    slug: 'watch-ultra2',
     name: 'Galaxy Watch Ultra2',
     href: 'https://watch-ultra2-concept.vercel.app',
     repo: `${GH}/watch-ultra2-concept`,
@@ -59,6 +63,7 @@ export const CONCEPTS: Concept[] = [
     stack: ['Next.js', 'Three.js', 'GSAP'],
   },
   {
+    slug: 'galaxy-ring',
     name: 'Galaxy Ring',
     href: 'https://galaxy-ring-concept.vercel.app',
     repo: `${GH}/galaxy-ring-concept`,
@@ -73,6 +78,8 @@ export const CONCEPTS: Concept[] = [
 ];
 
 export interface Project {
+  /** Set when the project has its own page. */
+  slug?: string;
   name: string;
   href: string;
   tag: Localized;
@@ -83,17 +90,19 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Norway National Team Web Concept',
-    href: `${LINKS.linkedin}recent-activity/all/`,
-    tag: { tr: 'Web tasarım', en: 'Web design' },
+    slug: 'locagen',
+    name: 'LocaGen',
+    href: LINKS.itch,
+    tag: { tr: 'Oyun · Yerelleştirme', en: 'Games · Localization' },
     text: {
-      tr: 'Norveç Milli Futbol Takımı\'nın dijital kimliğini yeniden düşündüğüm bir web sitesi konsepti.',
-      en: 'A website concept where I reimagined the digital identity of the Norwegian national football team.',
+      tr: 'Oyunların JSON dil dosyalarını değişkenleri bozmadan başka dillere çeviren aracım. Python ile yazılmış ücretsiz bir masaüstü sürümü ve Gemini kullanan bir PHP web sürümü var.',
+      en: 'My tool that translates game JSON language files into other languages without breaking placeholders. There is a free desktop version in Python and a PHP web version that uses Gemini.',
     },
-    stack: ['Web Design', 'UI'],
+    stack: ['Python', 'PHP', 'MySQL', 'Gemini API'],
     accent: '#e4e4e7',
   },
   {
+    slug: 'cs2-major-hud',
     name: 'CS2 Major HUD',
     href: `${GH}/CounterStrike2MajorHUD`,
     tag: { tr: 'Oyun · Yayın', en: 'Games · Broadcast' },
@@ -105,6 +114,7 @@ export const PROJECTS: Project[] = [
     accent: '#e4e4e7',
   },
   {
+    slug: 'goal-detector',
     name: 'Goal Detector System',
     href: `${GH}/GoalDetectorSystem`,
     tag: { tr: 'Donanım', en: 'Hardware' },
@@ -114,6 +124,17 @@ export const PROJECTS: Project[] = [
     },
     stack: ['Arduino', 'Python'],
     accent: '#a1a1aa',
+  },
+  {
+    name: 'Norway National Team Web Concept',
+    href: `${LINKS.linkedin}recent-activity/all/`,
+    tag: { tr: 'Web tasarım', en: 'Web design' },
+    text: {
+      tr: 'Norveç Milli Futbol Takımı\'nın dijital kimliğini yeniden düşündüğüm bir web sitesi konsepti.',
+      en: 'A website concept where I reimagined the digital identity of the Norwegian national football team.',
+    },
+    stack: ['Web Design', 'UI'],
+    accent: '#e4e4e7',
   },
   {
     name: 'Öğrenci Not Sistemi',
@@ -153,8 +174,6 @@ export const PROJECTS: Project[] = [
 /** Repos without a public description: listed by name only. */
 export const MORE_REPOS = [
   { name: 'SkinVault', lang: 'C#', href: `${GH}/SkinVault` },
-  { name: 'LocaGenFree', lang: 'Python', href: `${GH}/LocaGenFree` },
-  { name: 'LocaGenPHP', lang: 'PHP', href: `${GH}/LocaGenPHP` },
   { name: 'json_ile_ogrenci_durumu', lang: 'PHP', href: `${GH}/json_ile_ogrenci_durumu` },
 ];
 
@@ -174,20 +193,28 @@ export type PartId = (typeof PARTS)[number]['id'];
 const YT_SEARCH = (q: string) => `${LINKS.youtube}/search?query=${encodeURIComponent(q)}`;
 
 export interface Video {
+  key: string;
+  /** YouTube video id. Without one the card links to a channel search for the title. */
+  id?: string;
   title: Localized;
   tag: Localized;
   href: string;
 }
 
-/** A selection from the YouTube channel; each links to a channel search for its title. */
+const video = (v: Omit<Video, 'href'> & { search: string }): Video => {
+  const { search, ...rest } = v;
+  return { ...rest, href: v.id ? `https://www.youtube.com/watch?v=${v.id}` : YT_SEARCH(search) };
+};
+
+/** A selection from the YouTube channel. */
 export const VIDEOS: Video[] = [
-  { title: { tr: 'Gerçek hayatta StatTrak Deagle yaptım', en: 'I made a real-life StatTrak Deagle' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, href: YT_SEARCH('stattrak deagle') },
-  { title: { tr: 'CS2 ama bombayı gerçekten imha ediyorum (ESP32 ile)', en: 'CS2, but I really defuse the bomb (with ESP32)' }, tag: { tr: 'CS2 × ESP32', en: 'CS2 × ESP32' }, href: YT_SEARCH('bombayı gerçekten imha') },
-  { title: { tr: 'CS2 ama gerçekten flash yiyorum', en: 'CS2, but I really get flashed' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, href: YT_SEARCH('gerçekten flash') },
-  { title: { tr: 'Akıllı airsoft hedefi yaptım (ESP32 ile)', en: 'I built a smart airsoft target (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, href: YT_SEARCH('airsoft hedefi') },
-  { title: { tr: 'Kendi ambilight\'ımı yaptım (ESP32 ile)', en: 'I built my own Ambilight (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, href: YT_SEARCH('ambilight') },
-  { title: { tr: 'Assetto Corsa\'ya gerçek radyo bağladım', en: 'I connected a real radio to Assetto Corsa' }, tag: { tr: 'Simülasyon × Donanım', en: 'Sim racing × Hardware' }, href: YT_SEARCH('assetto corsa radyo') },
-  { title: { tr: 'Major arayüzünü kodladım', en: 'I coded a Major broadcast HUD' }, tag: { tr: 'CS2 × Yazılım', en: 'CS2 × Software' }, href: YT_SEARCH('major arayüzü') },
-  { title: { tr: 'AK-47 ile CS2 oynadım', en: 'I played CS2 with an AK-47' }, tag: { tr: 'CS2', en: 'CS2' }, href: YT_SEARCH('AK-47 ile CS2') },
-  { title: { tr: 'Tüm oyunlar için tek tuşla DLSS 5 kurulumu', en: 'One-click DLSS 5 setup for every game' }, tag: { tr: 'Rehber', en: 'Guide' }, href: YT_SEARCH('DLSS 5') },
+  video({ key: 'stattrak', title: { tr: 'Gerçek hayatta StatTrak Deagle yaptım', en: 'I made a real-life StatTrak Deagle' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, search: 'stattrak deagle' }),
+  video({ key: 'bomb-defuse', title: { tr: 'CS2 ama bombayı gerçekten imha ediyorum (ESP32 ile)', en: 'CS2, but I really defuse the bomb (with ESP32)' }, tag: { tr: 'CS2 × ESP32', en: 'CS2 × ESP32' }, search: 'bombayı gerçekten imha' }),
+  video({ key: 'flash', title: { tr: 'CS2 ama gerçekten flash yiyorum', en: 'CS2, but I really get flashed' }, tag: { tr: 'CS2 × Donanım', en: 'CS2 × Hardware' }, search: 'gerçekten flash' }),
+  video({ key: 'airsoft', title: { tr: 'Akıllı airsoft hedefi yaptım (ESP32 ile)', en: 'I built a smart airsoft target (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, search: 'airsoft hedefi' }),
+  video({ key: 'ambilight', title: { tr: 'Kendi ambilight\'ımı yaptım (ESP32 ile)', en: 'I built my own Ambilight (with ESP32)' }, tag: { tr: 'ESP32', en: 'ESP32' }, search: 'ambilight' }),
+  video({ key: 'assetto-radio', title: { tr: 'Assetto Corsa\'ya gerçek radyo bağladım', en: 'I connected a real radio to Assetto Corsa' }, tag: { tr: 'Simülasyon × Donanım', en: 'Sim racing × Hardware' }, search: 'assetto corsa radyo' }),
+  video({ key: 'major-hud', title: { tr: 'Major arayüzünü kodladım', en: 'I coded a Major broadcast HUD' }, tag: { tr: 'CS2 × Yazılım', en: 'CS2 × Software' }, search: 'major arayüzü' }),
+  video({ key: 'ak47', title: { tr: 'AK-47 ile CS2 oynadım', en: 'I played CS2 with an AK-47' }, tag: { tr: 'CS2', en: 'CS2' }, search: 'AK-47 ile CS2' }),
+  video({ key: 'dlss', title: { tr: 'Tüm oyunlar için tek tuşla DLSS 5 kurulumu', en: 'One-click DLSS 5 setup for every game' }, tag: { tr: 'Rehber', en: 'Guide' }, search: 'DLSS 5' }),
 ];

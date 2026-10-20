@@ -9,7 +9,7 @@ import { useActiveSection } from '@/lib/useActiveSection';
 
 const NAV = SECTIONS.filter((s) => s.nav);
 
-function LangToggle({ className = '' }: { className?: string }) {
+export function LangToggle({ className = '' }: { className?: string }) {
   const lang = useLang();
   return (
     <div className={`flex rounded-full bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] p-0.5 font-mono text-[0.7rem] ${className}`} role="group" aria-label="Language">

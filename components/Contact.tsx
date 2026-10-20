@@ -8,7 +8,7 @@ const PLATFORMS: { name: string; handle: string; href: string; Icon: (p: { class
   { name: 'LinkedIn', handle: 'Hasan Alp Güngör', href: LINKS.linkedin, Icon: LinkedInIcon, text: { tr: 'Profesyonel profil', en: 'Professional profile' } },
   { name: 'GitHub', handle: '@manyaksisko35', href: LINKS.github, Icon: GitHubIcon, text: { tr: 'Açık kaynak projeler', en: 'Open source projects' } },
   { name: 'YouTube', handle: '@hasanalpgungor', href: LINKS.youtube, Icon: YouTubeIcon, text: { tr: 'Teknik proje videoları', en: 'Technical project videos' } },
-  { name: 'itch.io', handle: 'hasan-alp-gungor', href: LINKS.itch, Icon: ItchIcon, text: { tr: 'Yayınlanan oyunlar', en: 'Published games' } },
+  { name: 'itch.io', handle: 'hasan-alp-gungor', href: LINKS.itch, Icon: ItchIcon, text: { tr: 'Oyun yerelleştirme aracım', en: 'My game localization tool' } },
 ];
 
 export default function Contact() {

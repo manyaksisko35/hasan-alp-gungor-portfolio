@@ -12,7 +12,8 @@ My personal site and portfolio: who I am, my education, skills, projects and vid
 - **Interactive glass:** move the cursor over the logo and the glass bends and ripples right where the pointer is.
 - **Runs on weak phones too:** the 3D quality picks itself (high, medium or lite) from the device, and steps down on its own if the frame rate drops.
 - **Search friendly:** sitemap, robots.txt, structured data that tells search engines who I am, and share images for LinkedIn, WhatsApp and X.
-- **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds.
+- **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds. Videos play right on the page.
+- **Project pages:** every main project has its own page at `/projeler/<name>` with what I built, how it works, screenshots and links, so each one can also be found on Google.
 - **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.
 - **Turkish and English:** switch from the navbar; the choice is remembered.
 - Liquid glass design: translucent, blurred surfaces with rim highlights over a slowly moving silver light, a floating capsule navbar and brushed silver accents.
@@ -63,7 +64,8 @@ On a custom domain, set `NEXT_PUBLIC_SITE_URL` (for example `https://hasanalpgun
 
 - `components/Logo.tsx` and `lib/logoShape.ts`: the 3D glass logo and its traced pieces
 - `components/Scene.tsx`: the canvas, lighting and the scroll story (GSAP keyframes)
-- `lib/data.ts`: projects, links and the skill for each logo piece
+- `lib/data.ts`: projects, videos, links and the skill for each logo piece
+- `lib/projects.ts` and `app/projeler/[slug]`: the project pages
 - `lib/i18n.ts`: Turkish / English switch
 - `lib/quality.ts`: device-based 3D quality levels
 - `lib/site.ts`, `app/sitemap.ts`, `app/robots.ts`: site URL, structured data and search engine files

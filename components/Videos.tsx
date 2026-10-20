@@ -1,58 +1,49 @@
 'use client';
 
+import { useCallback, useState } from 'react';
 import { ArrowIcon, YouTubeIcon } from '@/components/Icons';
-import { LINKS, VIDEOS } from '@/lib/data';
+import { VideoCard, VideoModal } from '@/components/VideoCard';
+import { LINKS, VIDEOS, type Video } from '@/lib/data';
 import { useT } from '@/lib/i18n';
 
 export default function Videos() {
   const t = useT();
+  const [playing, setPlaying] = useState<Video | null>(null);
+  const close = useCallback(() => setPlaying(null), []);
 
   return (
     <section id="videos" className="relative z-10 px-6 lg:px-[8%] py-24 lg:py-36">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'İçerik', en: 'Content' })}</p>
-          <h2 className="ui-title">
-            {t({ tr: "YouTube'da ", en: 'Technical projects ' })}
-            <strong className="ui-accent">{t({ tr: 'teknik projeler.', en: 'on YouTube.' })}</strong>
-          </h2>
-          <p className="ui-lead mt-4 lg:mt-6 max-w-md">
-            {t({
-              tr: 'Kanalımda ESP32 ve Arduino ile geliştirdiğim donanım projelerini, oyunlarla gerçek dünyayı birleştiren deneylerimi ve teknik rehberleri paylaşıyorum.',
-              en: 'On my channel I share hardware projects built with ESP32 and Arduino, experiments that connect games with the real world, and technical guides.',
-            })}
-          </p>
-          <a href={LINKS.youtube} target="_blank" rel="noopener noreferrer" className="ui-btn mt-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-16">
+          <div>
+            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'İçerik', en: 'Content' })}</p>
+            <h2 className="ui-title">
+              {t({ tr: "YouTube'da ", en: 'Technical projects ' })}
+              <strong className="ui-accent">{t({ tr: 'teknik projeler.', en: 'on YouTube.' })}</strong>
+            </h2>
+            <p className="ui-lead mt-4 lg:mt-6 max-w-xl">
+              {t({
+                tr: 'Kanalımda ESP32 ve Arduino ile geliştirdiğim donanım projelerini, oyunlarla gerçek dünyayı birleştiren deneylerimi ve teknik rehberleri paylaşıyorum.',
+                en: 'On my channel I share hardware projects built with ESP32 and Arduino, experiments that connect games with the real world, and technical guides.',
+              })}
+            </p>
+          </div>
+          <a href={LINKS.youtube} target="_blank" rel="noopener noreferrer" className="ui-btn shrink-0 self-start lg:self-end">
             <YouTubeIcon className="w-5 h-5" />
             {t({ tr: 'Kanala git', en: 'Visit the channel' })}
             <ArrowIcon />
           </a>
         </div>
 
-        <ol className="ui-card !rounded-[28px] divide-y divide-white/[0.07] overflow-hidden">
+        <ul className="mt-10 lg:mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-5 lg:gap-y-10">
           {VIDEOS.map((v, i) => (
-            <li key={v.href} data-reveal>
-              <a
-                href={v.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 lg:gap-6 px-5 py-4 lg:px-7 lg:py-5 transition-colors hover:bg-white/[0.04]"
-              >
-                <span className="w-6 shrink-0 text-xs tabular-nums text-white/35">{String(i + 1).padStart(2, '0')}</span>
-                <span className="flex-1 min-w-0">
-                  <span className="block text-base lg:text-lg font-medium leading-snug">{t(v.title)}</span>
-                  <span className="block mt-1 text-xs text-zinc-400">{t(v.tag)}</span>
-                </span>
-                <span className="w-9 h-9 shrink-0 rounded-full border border-white/15 flex items-center justify-center text-white/70 transition-all group-hover:bg-white group-hover:border-white group-hover:text-black">
-                  <svg width="10" height="10" viewBox="0 0 14 14" aria-hidden>
-                    <path d="M3 1.5v11l9.5-5.5z" fill="currentColor" />
-                  </svg>
-                </span>
-              </a>
+            <li key={v.key} data-reveal className={i === 0 ? 'sm:col-span-2 lg:row-span-2' : ''}>
+              <VideoCard video={v} index={i} big={i === 0} onPlay={setPlaying} />
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
+      <VideoModal video={playing} onClose={close} />
     </section>
   );
 }

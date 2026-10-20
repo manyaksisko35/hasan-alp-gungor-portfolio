@@ -3,6 +3,7 @@
 import { ArrowIcon } from '@/components/Icons';
 import { MORE_REPOS, PROJECTS } from '@/lib/data';
 import { useT } from '@/lib/i18n';
+import { detailHref } from '@/lib/projects';
 
 export default function MoreWork() {
   const t = useT();
@@ -17,8 +18,8 @@ export default function MoreWork() {
         </h2>
         <p className="ui-lead mt-4 lg:mt-6 max-w-xl">
           {t({
-            tr: 'Web tasarımı, oyun yayın arayüzleri, gömülü sistemler ve masaüstü uygulamaları.',
-            en: 'Web design, game broadcast overlays, embedded systems and desktop applications.',
+            tr: 'Oyun yerelleştirme aracı, oyun yayın arayüzü, gömülü sistemler, web tasarımı ve masaüstü uygulamaları.',
+            en: 'A game localization tool, a game broadcast overlay, embedded systems, web design and desktop applications.',
           })}
         </p>
 
@@ -26,9 +27,8 @@ export default function MoreWork() {
           {PROJECTS.map((p) => (
             <a
               key={p.name}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={p.slug ? detailHref(p.slug) : p.href}
+              {...(!p.slug && { target: '_blank', rel: 'noopener noreferrer' })}
               data-reveal
               className="ui-card group relative overflow-hidden p-6 lg:p-8 flex flex-col min-h-[260px]"
             >
@@ -41,8 +41,11 @@ export default function MoreWork() {
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.accent }} />
                   {t(p.tag)}
                 </span>
-                <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/70 transition-all group-hover:bg-white group-hover:text-black group-hover:border-white">
-                  <ArrowIcon />
+                <span className="flex items-center gap-2">
+                  {p.slug && <span className="text-xs text-white/45 transition-colors group-hover:text-white">{t({ tr: 'Detaylar', en: 'Details' })}</span>}
+                  <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/70 transition-all group-hover:bg-white group-hover:text-black group-hover:border-white">
+                    <ArrowIcon className={p.slug ? 'rotate-45' : ''} />
+                  </span>
                 </span>
               </div>
               <h3 className="mt-8 text-2xl lg:text-3xl font-semibold tracking-[-0.03em]">{p.name}</h3>

@@ -8,6 +8,7 @@ import { useRef } from 'react';
 import { ArrowIcon, GitHubIcon } from '@/components/Icons';
 import { CONCEPTS, LINKS } from '@/lib/data';
 import { useT } from '@/lib/i18n';
+import { detailHref } from '@/lib/projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,7 +115,11 @@ export default function Work() {
                 <p className="text-sm lg:text-base text-white/60 font-light mt-2 leading-relaxed">{t(c.text)}</p>
               </div>
               <div className="flex gap-2 shrink-0">
-                <a href={c.href} target="_blank" rel="noopener noreferrer" className="ui-btn !py-2.5 !px-5 !text-sm">
+                <a href={detailHref(c.slug)} className="ui-btn !py-2.5 !px-5 !text-sm">
+                  {t({ tr: 'Detaylar', en: 'Details' })}
+                  <ArrowIcon className="rotate-45" />
+                </a>
+                <a href={c.href} target="_blank" rel="noopener noreferrer" className="ui-btn ui-btn--ghost !py-2.5 !px-4 !text-sm">
                   {t({ tr: 'Siteyi aç', en: 'Open site' })}
                   <ArrowIcon />
                 </a>
