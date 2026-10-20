@@ -7,13 +7,14 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { ArrowIcon, GitHubIcon } from '@/components/Icons';
 import { CONCEPTS, LINKS } from '@/lib/data';
-import { useT } from '@/lib/i18n';
-import { detailHref } from '@/lib/projects';
+import { useLang, useT } from '@/lib/i18n';
+import { detailHref } from '@/lib/lang';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Work() {
   const t = useT();
+  const lang = useLang();
   const section = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLDivElement>(null);
@@ -81,7 +82,7 @@ export default function Work() {
               en: 'Interactive concept sites I developed for Samsung Galaxy products. Built from scratch with Next.js, React Three Fiber and GSAP; all live and open source.',
             })}
           </p>
-          <p className="mt-6 text-xs text-white/40 font-light max-w-sm">
+          <p className="mt-6 text-xs text-white/55 font-light max-w-sm">
             {t({
               tr: 'Hayran yapımı konseptlerdir. Samsung ile bağlantılı değildir.',
               en: 'Fan-made concepts. Not affiliated with Samsung.',
@@ -115,7 +116,7 @@ export default function Work() {
                 <p className="text-sm lg:text-base text-white/60 font-light mt-2 leading-relaxed">{t(c.text)}</p>
               </div>
               <div className="flex gap-2 shrink-0">
-                <a href={detailHref(c.slug)} className="ui-btn !py-2.5 !px-5 !text-sm">
+                <a href={detailHref(c.slug, lang)} className="ui-btn !py-2.5 !px-5 !text-sm">
                   {t({ tr: 'Detaylar', en: 'Details' })}
                   <ArrowIcon className="rotate-45" />
                 </a>
@@ -144,7 +145,7 @@ export default function Work() {
           className="group ui-card relative flex flex-col justify-end p-7 lg:p-10 min-h-64 lg:w-[30vw] lg:h-[74svh] lg:shrink-0 overflow-hidden !rounded-[28px] lg:!rounded-[28px]"
         >
           <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(255,255,255,0.14), transparent 70%)' }} />
-          <p className="ui-label ui-label--plain font-mono text-xs text-white/40 mb-3">GitHub</p>
+          <p className="ui-label ui-label--plain font-mono text-xs text-white/55 mb-3">GitHub</p>
           <p className="text-3xl lg:text-5xl font-medium tracking-[-0.04em] leading-[1.02]">
             {t({ tr: 'Diğer kodlarım ', en: 'The rest of my code is ' })}
             <strong className="ui-accent font-semibold">{t({ tr: "GitHub'da.", en: 'on GitHub.' })}</strong>

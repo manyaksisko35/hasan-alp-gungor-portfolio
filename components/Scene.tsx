@@ -151,7 +151,10 @@ export default function Scene() {
         frameloop={active ? 'always' : 'never'}
         camera={{ fov: 30, position: [0, 0, 7], near: 0.1, far: 50 }}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        onCreated={() => {
+        onCreated={({ gl }) => {
+          // Checking shader errors makes the browser wait for every shader to compile on the main
+          // thread; without it compiles run in the background, which matters on phones.
+          gl.debug.checkShaderErrors = process.env.NODE_ENV !== 'production';
           document.documentElement.dataset.sceneReady = '1';
           window.dispatchEvent(new Event('scene-ready'));
         }}

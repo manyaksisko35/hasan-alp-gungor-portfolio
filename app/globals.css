@@ -273,7 +273,7 @@ a.rounded-full:focus-visible { border-radius: 999px; }
 
 
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-loaded]) .hero-in { opacity: 0; animation: hero-fallback 0.6s 6s forwards; }
+  html:not([data-loaded]) .hero-in { opacity: 0; animation: hero-fallback 0.6s 3.5s forwards; }
   html[data-loaded] .hero-in {
     animation: hero-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
   }
@@ -398,4 +398,18 @@ a.rounded-full:focus-visible { border-radius: 999px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .liquid-bg span { animation: none; }
+}
+
+/* 404: the logo pieces drift slowly. */
+.nf-shard {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nf-drift 7s ease-in-out infinite alternate;
+}
+@keyframes nf-drift {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(0, 0.06px) rotate(4deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nf-shard { animation: none; }
 }

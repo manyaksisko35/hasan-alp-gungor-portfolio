@@ -2,11 +2,12 @@
 
 import { ArrowIcon } from '@/components/Icons';
 import { MORE_REPOS, PROJECTS } from '@/lib/data';
-import { useT } from '@/lib/i18n';
-import { detailHref } from '@/lib/projects';
+import { useLang, useT } from '@/lib/i18n';
+import { detailHref } from '@/lib/lang';
 
 export default function MoreWork() {
   const t = useT();
+  const lang = useLang();
 
   return (
     <section id="more" className="relative z-10 px-6 lg:px-[8%] py-24 lg:py-36">
@@ -27,7 +28,7 @@ export default function MoreWork() {
           {PROJECTS.map((p) => (
             <a
               key={p.name}
-              href={p.slug ? detailHref(p.slug) : p.href}
+              href={p.slug ? detailHref(p.slug, lang) : p.href}
               {...(!p.slug && { target: '_blank', rel: 'noopener noreferrer' })}
               data-reveal
               className="ui-card group relative overflow-hidden p-6 lg:p-8 flex flex-col min-h-[260px]"
@@ -42,7 +43,7 @@ export default function MoreWork() {
                   {t(p.tag)}
                 </span>
                 <span className="flex items-center gap-2">
-                  {p.slug && <span className="text-xs text-white/45 transition-colors group-hover:text-white">{t({ tr: 'Detaylar', en: 'Details' })}</span>}
+                  {p.slug && <span className="text-xs text-white/55 transition-colors group-hover:text-white">{t({ tr: 'Detaylar', en: 'Details' })}</span>}
                   <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/70 transition-all group-hover:bg-white group-hover:text-black group-hover:border-white">
                     <ArrowIcon className={p.slug ? 'rotate-45' : ''} />
                   </span>
@@ -62,7 +63,7 @@ export default function MoreWork() {
         </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <span className="text-sm text-white/40 mr-1">{t({ tr: 'Ayrıca:', en: 'Also:' })}</span>
+          <span className="text-sm text-white/55 mr-1">{t({ tr: 'Ayrıca:', en: 'Also:' })}</span>
           {MORE_REPOS.map((r) => (
             <a
               key={r.name}
@@ -71,7 +72,7 @@ export default function MoreWork() {
               rel="noopener noreferrer"
               className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70 hover:text-white hover:border-white/30 transition-colors"
             >
-              {r.name} <span className="text-white/35 text-xs ml-1">{r.lang}</span>
+              {r.name} <span className="text-white/55 text-xs ml-1">{r.lang}</span>
             </a>
           ))}
         </div>

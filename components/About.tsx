@@ -82,7 +82,7 @@ export default function About() {
 
         <div className="mt-10 lg:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
           <div data-reveal className={`${cell} col-span-2 lg:row-span-2 flex flex-col`}>
-            <p className="font-mono text-xs text-white/40">{t({ tr: 'Özet', en: 'Summary' })}</p>
+            <p className="font-mono text-xs text-white/55">{t({ tr: 'Özet', en: 'Summary' })}</p>
             <p className="mt-4 text-lg lg:text-xl leading-relaxed text-white/85">
               {t({
                 tr: 'İzmir Ekonomi Üniversitesi\'nde Bilgisayar Programcılığı öğrencisiyim ve teknolojinin hem yazılım hem donanım tarafında aktif olarak projeler üretiyorum.',
@@ -98,7 +98,7 @@ export default function About() {
           </div>
 
           <div data-reveal className={`${cell} col-span-2`}>
-            <p className="font-mono text-xs text-white/40">{t({ tr: 'Eğitim', en: 'Education' })}</p>
+            <p className="font-mono text-xs text-white/55">{t({ tr: 'Eğitim', en: 'Education' })}</p>
             <div className="mt-4 flex items-start justify-between gap-4">
               <div>
                 <p className="text-xl lg:text-2xl font-semibold tracking-tight">{t({ tr: 'İzmir Ekonomi Üniversitesi', en: 'İzmir University of Economics' })}</p>
@@ -111,26 +111,26 @@ export default function About() {
           </div>
 
           <div data-reveal className={`${cell} col-span-2 lg:col-span-1`}>
-            <p className="font-mono text-xs text-white/40">{t({ tr: 'Diller', en: 'Languages' })}</p>
+            <p className="font-mono text-xs text-white/55">{t({ tr: 'Diller', en: 'Languages' })}</p>
             <ul className="mt-4 space-y-3">
               {LANGUAGES.map((l) => (
                 <li key={l.name.en}>
                   <p className="font-medium">{t(l.name)}</p>
-                  <p className="text-xs text-white/45">{t(l.level)}</p>
+                  <p className="text-xs text-white/55">{t(l.level)}</p>
                 </li>
               ))}
             </ul>
           </div>
 
           <div data-reveal className={`${cell} col-span-2 lg:col-span-1 flex flex-col`}>
-            <p className="font-mono text-xs text-white/40">{t({ tr: 'Konum', en: 'Location' })}</p>
+            <p className="font-mono text-xs text-white/55">{t({ tr: 'Konum', en: 'Location' })}</p>
             <p className="mt-4 text-xl font-semibold tracking-tight">İzmir, {t({ tr: 'Türkiye', en: 'Türkiye' })}</p>
             <p className="mt-auto pt-6 flex items-center gap-2 font-mono text-sm text-white/55">
               <span className="relative flex w-2 h-2">
                 <span className="absolute inset-0 rounded-full bg-zinc-200 animate-ping opacity-60" />
                 <span className="relative w-2 h-2 rounded-full bg-zinc-200" />
               </span>
-              <IzmirClock /> <span className="text-white/30">GMT+3</span>
+              <IzmirClock /> <span className="text-white/55">GMT+3</span>
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export default function About() {
           ))}
 
           <div data-reveal className={cell}>
-            <p className="font-mono text-xs text-white/40">{t({ tr: 'Odak alanları', en: 'Focus areas' })}</p>
+            <p className="font-mono text-xs text-white/55">{t({ tr: 'Odak alanları', en: 'Focus areas' })}</p>
             <ul className="mt-4 space-y-2 text-sm text-white/75">
               {FOCUS.map((f) => (
                 <li key={f.en} className="flex gap-2">

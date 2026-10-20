@@ -49,13 +49,13 @@ export default function Contact() {
                   >
                     <span className="flex items-center justify-between">
                       <Icon className="w-7 h-7 text-white" />
-                      <span className="text-white/40 transition-all group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <span className="text-white/55 transition-all group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                         <ArrowIcon />
                       </span>
                     </span>
                     <span>
                       <span className="block font-semibold">{p.name}</span>
-                      <span className="block font-mono text-[0.7rem] text-white/40 mt-0.5">{p.handle}</span>
+                      <span className="block font-mono text-[0.7rem] text-white/55 mt-0.5">{p.handle}</span>
                       <span className="block text-sm text-white/55 mt-2">{t(p.text)}</span>
                     </span>
                   </a>
@@ -67,7 +67,7 @@ export default function Contact() {
       </section>
 
       <footer className="relative z-10 px-6 lg:px-[8%] pb-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-3 md:items-center justify-between font-mono text-xs text-white/40">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-3 md:items-center justify-between font-mono text-xs text-white/55">
           <p>© 2026 Hasan Alp Güngör</p>
           <p>
             {t({

@@ -15,7 +15,9 @@ My personal site and portfolio: who I am, my education, skills, projects and vid
 - **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds. Videos play right on the page.
 - **Project pages:** every main project has its own page at `/projeler/<name>` with what I built, how it works, screenshots and links, so each one can also be found on Google.
 - **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.
-- **Turkish and English:** switch from the navbar; the choice is remembered.
+- **Turkish and English:** Turkish lives at `/`, English at `/en` (project pages at `/projeler/<name>` and `/en/projects/<name>`), so search engines index both. The navbar switch remembers the choice, and English-speaking visitors are sent to the English pages.
+- **404 page:** the logo, broken into pieces.
+- **Analytics:** Vercel Web Analytics and Speed Insights (turn both on in the Vercel dashboard).
 - Liquid glass design: translucent, blurred surfaces with rim highlights over a slowly moving silver light, a floating capsule navbar and brushed silver accents.
 
 ## Screenshots

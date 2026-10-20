@@ -409,5 +409,3 @@ export const DETAILS: ProjectDetail[] = [
 ];
 
 export const getDetail = (slug: string) => DETAILS.find((d) => d.slug === slug);
-
-export const detailHref = (slug: string) => `/projeler/${slug}`;

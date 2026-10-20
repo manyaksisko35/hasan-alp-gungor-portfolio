@@ -95,7 +95,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <span className="hero-in hero-in--4 absolute bottom-6 left-6 lg:left-[8%] font-mono text-[0.7rem] text-white/40">
+      <span className="hero-in hero-in--4 absolute bottom-6 left-6 lg:left-[8%] font-mono text-[0.7rem] text-white/55">
         {t({ tr: 'aşağı kaydır ↓', en: 'scroll down ↓' })}
       </span>
     </section>

@@ -56,10 +56,10 @@ export function VideoCard({ video, index, big = false, onPlay }: { video: Video;
 
   const caption = (
     <span className="block px-1 pt-3">
-      <span className="block font-mono text-[0.65rem] text-white/40">{t(video.tag)}</span>
+      <span className="block font-mono text-[0.65rem] text-white/55">{t(video.tag)}</span>
       <span className={`mt-1 flex items-start justify-between gap-3 font-medium leading-snug ${big ? 'text-lg lg:text-xl' : 'text-base'}`}>
         {t(video.title)}
-        {!video.id && <ArrowIcon className="mt-1.5 shrink-0 text-white/40" />}
+        {!video.id && <ArrowIcon className="mt-1.5 shrink-0 text-white/55" />}
       </span>
     </span>
   );

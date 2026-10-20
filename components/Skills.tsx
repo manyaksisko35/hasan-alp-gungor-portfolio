@@ -28,7 +28,7 @@ export default function Skills() {
           <ol className="mt-auto lg:mt-10 lg:max-w-sm grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-2 lg:gap-y-3">
             {PARTS.map((p, i) => (
               <li key={p.id} className="flex items-baseline gap-3 text-sm lg:text-base">
-                <span className="text-[0.65rem] tabular-nums text-white/40">{String(i + 1).padStart(2, '0')}</span>
+                <span className="text-[0.65rem] tabular-nums text-white/55">{String(i + 1).padStart(2, '0')}</span>
                 <span>
                   <span className="font-medium">{p.title[lang]}</span>
                   <span className="hidden lg:inline text-white/50 font-light"> · {p.text[lang]}</span>

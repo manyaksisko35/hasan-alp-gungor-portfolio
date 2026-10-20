@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react';
 import LogoMark from '@/components/LogoMark';
 
-const MIN_MS = 1500;
+// Short on purpose: the hero text waits for the loader, and that decides how fast the page feels.
+const MIN_MS = 800;
+const MAX_WAIT_MS = 2500;
 
 export default function Loader() {
   const [progress, setProgress] = useState(0);
@@ -19,8 +21,8 @@ export default function Loader() {
     const scene = new Promise<void>((r) =>
       document.documentElement.dataset.sceneReady ? r() : window.addEventListener('scene-ready', () => r(), { once: true }),
     );
-    // Never hang on a device without WebGL.
-    Promise.race([Promise.all([fonts, scene]), new Promise((r) => setTimeout(r, 5000))]).then(markReady);
+    // Never hold the page for a slow device or one without WebGL; the scene fades in when it's ready.
+    Promise.race([Promise.all([fonts, scene]), new Promise((r) => setTimeout(r, MAX_WAIT_MS))]).then(markReady);
 
     const tick = (now: number) => {
       const timeP = Math.min(1, (now - start) / MIN_MS);
@@ -31,7 +33,7 @@ export default function Loader() {
         setTimeout(() => {
           setDone(true);
           document.documentElement.dataset.loaded = '1';
-        }, 1000);
+        }, 450);
         return;
       }
       raf = requestAnimationFrame(tick);
@@ -61,7 +63,7 @@ export default function Loader() {
         <div className="mt-6 h-px bg-white/10 overflow-hidden">
           <div className="h-full bg-zinc-200 origin-left" style={{ transform: `scaleX(${progress})` }} />
         </div>
-        <p className="mt-3 flex justify-between font-mono text-[0.7rem] text-white/40 tabular-nums">
+        <p className="mt-3 flex justify-between font-mono text-[0.7rem] text-white/55 tabular-nums">
           <span>{complete ? 'ready' : 'loading'}</span>
           <span>{Math.round(progress * 100)}%</span>
         </p>
