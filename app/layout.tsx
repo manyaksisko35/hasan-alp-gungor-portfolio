@@ -3,20 +3,48 @@ import type { Metadata, Viewport } from 'next';
 // Fonts ship with the app (no network needed at build time).
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/jetbrains-mono';
+import { PERSON_JSON_LD, PERSON_NAME, SITE_URL } from '@/lib/site';
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : 'http://localhost:3000';
-
-const title = 'Hasan Alp Güngör';
+const title = 'Hasan Alp Güngör | Yazılım ve Oyun Geliştirici';
 const description =
-  "I'm Hasan Alp Güngör, a Computer Programming student at İzmir University of Economics, game developer and software enthusiast. I build software and hardware projects and share them on YouTube.";
+  "Hasan Alp Güngör: İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı öğrencisi, oyun geliştirici ve yazılım meraklısı. Oyunlar, 3D web siteleri ve ESP32 / Arduino donanım projeleri.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title,
+  metadataBase: new URL(SITE_URL),
+  title: { default: title, template: `%s | ${PERSON_NAME}` },
   description,
-  openGraph: { title, description, type: 'website' },
+  applicationName: PERSON_NAME,
+  authors: [{ name: PERSON_NAME, url: SITE_URL }],
+  creator: PERSON_NAME,
+  keywords: [
+    'Hasan Alp Güngör',
+    'Hasan Alp Gungor',
+    'manyaksisko35',
+    'portfolyo',
+    'portfolio',
+    'oyun geliştirici',
+    'game developer',
+    'yazılım geliştirici',
+    'İzmir Ekonomi Üniversitesi',
+    'Bilgisayar Programcılığı',
+    'Next.js',
+    'Three.js',
+    'ESP32',
+  ],
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
+  openGraph: {
+    type: 'profile',
+    url: '/',
+    siteName: PERSON_NAME,
+    title,
+    description,
+    locale: 'tr_TR',
+    alternateLocale: ['en_US'],
+    firstName: 'Hasan Alp',
+    lastName: 'Güngör',
+    username: 'manyaksisko35',
+  },
   twitter: { card: 'summary_large_image', title, description },
 };
 
@@ -26,6 +54,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className="antialiased selection:bg-white/25" suppressHydrationWarning>
       <body className="bg-[#161618] text-white" suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          // Static, trusted object: serialised once at build time.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSON_LD).replace(/</g, '\\u003c') }}
+        />
         {children}
       </body>
     </html>

@@ -6,6 +6,8 @@ import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { PartId } from '@/lib/data';
 import { LOGO_PIECES, LOGO_WHOLE } from '@/lib/logoShape';
+import { pointer } from '@/lib/pointer';
+import { useQuality, type Quality } from '@/lib/quality';
 import { pose } from '@/lib/sceneState';
 
 const DEPTH = 0.18;
@@ -63,11 +65,20 @@ const BACKDROP_VERT = /* glsl */ `
 `;
 const BACKDROP_FRAG = /* glsl */ `
   uniform float uTime;
+  uniform vec2 uMouse;
+  uniform float uHover;
+  uniform float uAspect;
   varying vec2 vUv;
   vec3 lin(vec3 c) { return pow(c, vec3(2.2)); }
   float blob(vec2 uv, vec2 c, float r) { return smoothstep(r, 0.0, distance(uv, c)); }
   void main() {
     vec2 uv = vUv;
+    // Ripples spread from the cursor; the glass only shows this buffer, so it looks
+    // like the glass itself bends where you point at it.
+    vec2 toMouse = (uv - uMouse) * vec2(uAspect, 1.0);
+    float dist = length(toMouse);
+    float wave = sin(dist * 70.0 - uTime * 7.0) * exp(-dist * 7.0) * uHover;
+    uv += normalize(toMouse + 1e-5) * wave * 0.03;
     float t = uTime * 0.05;
     vec3 col = mix(vec3(0.15, 0.153, 0.168), vec3(0.086, 0.086, 0.094), clamp(uv.x * 0.5 + (1.0 - uv.y) * 0.5, 0.0, 1.0));
     col += 0.30 * blob(uv, vec2(0.12 + 0.06 * sin(t * 3.1), 0.86 + 0.05 * cos(t * 2.3)), 0.62);
@@ -79,6 +90,8 @@ const BACKDROP_FRAG = /* glsl */ `
     // Same darkening the page applies on top of its light.
     col *= mix(1.0, 0.6, clamp(distance(uv, vec2(0.5, 0.6)) * 1.3, 0.0, 1.0));
     col = col * 1.15 + 0.012;
+    // A soft lens of light under the cursor.
+    col += uHover * (0.18 * exp(-dist * dist * 70.0) + 0.07 * wave);
     gl_FragColor = vec4(lin(clamp(col, 0.0, 1.0)), 1.0);
   }
 `;
@@ -108,12 +121,28 @@ const RIM_FRAG = /* glsl */ `
 `;
 
 /** Liquid glass: refracts the backdrop with chromatic aberration and a slow, wavy distortion. */
-function Glass({ buffer }: { buffer: THREE.Texture }) {
+function Glass({ buffer, quality }: { buffer: THREE.Texture; quality: Quality }) {
+  if (quality === 'lite') {
+    // No refraction pass: a light, translucent shell (the rim overlay does the rest).
+    return (
+      <meshPhysicalMaterial
+        color="#cfd3da"
+        roughness={0.25}
+        metalness={0}
+        clearcoat={0.4}
+        envMapIntensity={0.6}
+        transparent
+        opacity={0.3}
+        depthWrite={false}
+      />
+    );
+  }
   return (
     <MeshTransmissionMaterial
+      key={quality}
       buffer={buffer}
       resolution={32}
-      samples={10}
+      samples={quality === 'high' ? 10 : 4}
       transmission={1}
       thickness={0.55}
       roughness={0.09}
@@ -139,8 +168,12 @@ function Glass({ buffer }: { buffer: THREE.Texture }) {
 const smooth = (t: number) => t * t * (3 - 2 * t);
 const projected = new THREE.Vector3();
 
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+
 export default function Logo() {
-  const fbo = useFBO(1024, 1024);
+  const quality = useQuality();
+  const fbo = useFBO(quality === 'high' ? 1024 : 512, quality === 'high' ? 1024 : 512);
   const rimMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
@@ -157,7 +190,12 @@ export default function Logo() {
       new THREE.ShaderMaterial({
         vertexShader: BACKDROP_VERT,
         fragmentShader: BACKDROP_FRAG,
-        uniforms: { uTime: { value: 0 } },
+        uniforms: {
+          uTime: { value: 0 },
+          uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+          uHover: { value: 0 },
+          uAspect: { value: 1 },
+        },
         depthTest: false,
         depthWrite: false,
       }),
@@ -198,6 +236,8 @@ export default function Logo() {
   const crack = useRef(0);
 
   const groups = useRef<(THREE.Group | null)[]>([]);
+  const glassMeshes = useRef<(THREE.Mesh | null)[]>([]);
+  const hover = useRef(0);
   const anchors = useRef(new Map<PartId, THREE.Object3D>());
   const explode = useRef(0);
   const labelsRef = useRef(-1);
@@ -223,11 +263,27 @@ export default function Logo() {
       g.rotation.set(tilt[0] * (0.08 * open + e), tilt[1] * (0.08 * open + e), (i % 2 ? 1 : -1) * 0.015 * open * (1 - e));
     });
 
+    // Is the pointer over the glass? (The canvas gets no events, so raycast by hand.)
+    const targets = glassMeshes.current.filter((m): m is THREE.Mesh => !!m && m.parent?.visible !== false && m.parent?.parent?.visible !== false);
+    let hit = false;
+    if (pointer.active && targets.length) {
+      ndc.set(pointer.x, pointer.y);
+      raycaster.setFromCamera(ndc, state.camera);
+      hit = raycaster.intersectObjects(targets, false).length > 0;
+    }
+    hover.current = THREE.MathUtils.damp(hover.current, hit ? 1 : 0, hit ? 6 : 2.5, dt);
+
     // Render the backdrop alone into the buffer the glass refracts.
     const logo = logoRef.current;
     const backdrop = backdropRef.current;
-    if (logo && backdrop) {
-      (backdrop.material as THREE.ShaderMaterial).uniforms.uTime.value = state.clock.elapsedTime;
+    if (logo) logo.scale.setScalar(1 + hover.current * 0.025);
+    if (logo && backdrop && quality !== 'lite') {
+      const u = (backdrop.material as THREE.ShaderMaterial).uniforms;
+      u.uTime.value = state.clock.elapsedTime;
+      u.uHover.value = hover.current;
+      u.uAspect.value = state.size.width / Math.max(1, state.size.height);
+      const mouse = u.uMouse.value as THREE.Vector2;
+      mouse.lerp(ndc.set((pointer.x + 1) / 2, (pointer.y + 1) / 2), 1 - Math.exp(-dt * 10));
       logo.visible = false;
       backdrop.visible = true;
       state.gl.setRenderTarget(fbo);
@@ -262,16 +318,16 @@ export default function Logo() {
       </mesh>
       <group ref={logoRef}>
       <group ref={wholeRef}>
-        <mesh geometry={whole}>
-          <Glass buffer={fbo.texture} />
+        <mesh geometry={whole} ref={(m) => void (glassMeshes.current[pieces.length] = m)}>
+          <Glass buffer={fbo.texture} quality={quality} />
         </mesh>
         <mesh geometry={whole} material={rimMat} renderOrder={2} />
       </group>
       <group ref={piecesRef} visible={false}>
       {pieces.map((p, i) => (
         <group key={p.key} ref={(g) => void (groups.current[i] = g)}>
-          <mesh geometry={p.geometry}>
-            <Glass buffer={fbo.texture} />
+          <mesh geometry={p.geometry} ref={(m) => void (glassMeshes.current[i] = m)}>
+            <Glass buffer={fbo.texture} quality={quality} />
           </mesh>
           <mesh geometry={p.geometry} material={rimMat} renderOrder={2} />
           {p.labelled && (

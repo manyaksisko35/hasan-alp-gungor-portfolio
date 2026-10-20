@@ -1,14 +1,16 @@
 'use client';
 
-import { Environment, Lightformer } from '@react-three/drei';
+import { Environment, Lightformer, PerformanceMonitor } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import Logo from '@/components/Logo';
 import PartLabels from '@/components/PartLabels';
+import { pointer, trackPointer } from '@/lib/pointer';
+import { lowerQuality, useQuality } from '@/lib/quality';
 import { pose, spin, stepSpin, type Pose } from '@/lib/sceneState';
 import { useReducedMotion } from '@/lib/useReducedMotion';
 
@@ -57,8 +59,8 @@ function Rig({ children }: { children: React.ReactNode }) {
     );
     g.scale.setScalar(fit * c.scale);
     g.rotation.set(
-      c.rotX - state.pointer.y * 0.08 * float,
-      c.rotY + spin.angle + state.pointer.x * 0.14 * float,
+      c.rotX - pointer.y * 0.08 * float,
+      c.rotY + spin.angle + pointer.x * 0.14 * float,
       c.rotZ + Math.sin(t * 0.7) * 0.025 * float,
     );
   });
@@ -132,12 +134,20 @@ function useScrollStory(layer: React.RefObject<HTMLDivElement | null>, setActive
 export default function Scene() {
   const layer = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(true);
+  const quality = useQuality();
   useScrollStory(layer, setActive);
+  useEffect(trackPointer, []);
+  // Start watching the frame rate only after the first heavy frames (shader compile, loader).
+  const [monitor, setMonitor] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMonitor(true), 4000);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div ref={layer} className="absolute inset-0" style={{ visibility: active ? 'visible' : 'hidden' }}>
       <Canvas
-        dpr={[1, 1.75]}
+        dpr={quality === 'high' ? [1, 1.75] : quality === 'medium' ? [1, 1.4] : 1}
         frameloop={active ? 'always' : 'never'}
         camera={{ fov: 30, position: [0, 0, 7], near: 0.1, far: 50 }}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
@@ -146,6 +156,10 @@ export default function Scene() {
           window.dispatchEvent(new Event('scene-ready'));
         }}
       >
+        {/* Drop to a lighter tier if the frame rate stays under ~30 fps. */}
+        {monitor && (
+          <PerformanceMonitor bounds={() => [30, 1000]} flipflops={2} onDecline={lowerQuality} onFallback={lowerQuality} />
+        )}
         <StudioEnv />
         <ambientLight intensity={0.25} />
         <directionalLight position={[0, 2.5, -5]} intensity={2.6} color="#ffffff" />
