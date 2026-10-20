@@ -16,9 +16,9 @@ export const PERSON_JSON_LD = {
   alternateName: ['Hasan Alp Gungor', 'Hasan Güngör', 'manyaksisko35'],
   url: SITE_URL,
   image: `${SITE_URL}/opengraph-image.jpg`,
-  jobTitle: 'Computer Programming Student · Game Developer · Software Enthusiast',
+  jobTitle: ['Yazılım Geliştirici', 'Oyun Geliştirici', 'YouTuber'],
   description:
-    'Computer Programming student at İzmir University of Economics who builds games, interactive 3D websites and ESP32 / Arduino hardware projects.',
+    'Yazılım ve oyun geliştirici, YouTuber. İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı öğrencisi; oyunlar, 3D web siteleri ve ESP32 / Arduino donanım projeleri geliştirip YouTube kanalında paylaşıyor.',
   affiliation: {
     '@type': 'CollegeOrUniversity',
     name: 'İzmir Ekonomi Üniversitesi',
@@ -29,6 +29,8 @@ export const PERSON_JSON_LD = {
   knowsAbout: [
     'Software Development',
     'Game Development',
+    'YouTube',
+    'Content Creation',
     'Web Development',
     'TypeScript',
     'React',

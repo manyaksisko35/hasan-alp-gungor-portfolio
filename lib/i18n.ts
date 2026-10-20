@@ -17,7 +17,10 @@ function read(): Lang {
   } catch {
     /* storage blocked */
   }
-  current = saved === 'tr' || saved === 'en' ? saved : navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
+  // Crawlers browse in English; keep them on the Turkish page the title and description describe.
+  const crawler = /bot|crawl|spider|slurp|facebookexternalhit|embedly|preview/i.test(navigator.userAgent);
+  current =
+    saved === 'tr' || saved === 'en' ? saved : crawler || navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
   document.documentElement.lang = current;
   return current;
 }

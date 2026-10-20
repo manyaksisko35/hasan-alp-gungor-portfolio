@@ -48,7 +48,7 @@ export default function Hero() {
         <div className="lg:max-w-[52%]">
           <p className="hero-in ui-label ui-label--plain mb-5 md:mb-7 glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-zinc-200 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
-            {t({ tr: 'Bilgisayar Programcılığı Öğrencisi · Oyun Geliştirici', en: 'Computer Programming Student · Game Developer' })}
+            {t({ tr: 'Yazılım ve Oyun Geliştirici · YouTuber', en: 'Software & Game Developer · YouTuber' })}
           </p>
 
           <h1 className="hero-in hero-in--2 ui-title text-[17vw] sm:text-[13vw] lg:text-[clamp(4.5rem,8.2vw,8.8rem)] !leading-[0.88]">
@@ -59,8 +59,8 @@ export default function Hero() {
 
           <p className="hero-in hero-in--3 mt-6 md:mt-8 text-base md:text-xl text-white/65 max-w-md leading-relaxed">
             {t({
-              tr: 'İzmir Ekonomi Üniversitesi\'nde Bilgisayar Programcılığı okuyorum. Oyun geliştirme, web teknolojileri ve gömülü sistemler üzerine projeler geliştiriyorum.',
-              en: "I study Computer Programming at İzmir University of Economics and develop projects in game development, web technologies and embedded systems.",
+              tr: 'İzmir Ekonomi Üniversitesi\'nde Bilgisayar Programcılığı okuyorum. Oyun geliştirme, web teknolojileri ve gömülü sistemler üzerine projeler geliştiriyor, bunları YouTube kanalımda paylaşıyorum.',
+              en: "I study Computer Programming at İzmir University of Economics and build projects in game development, web technologies and embedded systems, which I share on my YouTube channel.",
             })}
           </p>
 

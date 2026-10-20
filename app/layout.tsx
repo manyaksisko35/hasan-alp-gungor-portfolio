@@ -5,9 +5,9 @@ import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/jetbrains-mono';
 import { PERSON_JSON_LD, PERSON_NAME, SITE_URL } from '@/lib/site';
 
-const title = 'Hasan Alp Güngör | Yazılım ve Oyun Geliştirici';
+const title = 'Hasan Alp Güngör | Yazılım ve Oyun Geliştirici, YouTuber';
 const description =
-  "Hasan Alp Güngör: İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı öğrencisi, oyun geliştirici ve yazılım meraklısı. Oyunlar, 3D web siteleri ve ESP32 / Arduino donanım projeleri.";
+  "Hasan Alp Güngör: yazılım ve oyun geliştirici, YouTuber. İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı öğrencisi. Oyunlar, 3D web siteleri ve ESP32 / Arduino donanım projelerini YouTube'da paylaşıyor.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -24,6 +24,8 @@ export const metadata: Metadata = {
     'portfolio',
     'oyun geliştirici',
     'game developer',
+    'YouTuber',
+    'Hasan Alp Güngör YouTube',
     'yazılım geliştirici',
     'İzmir Ekonomi Üniversitesi',
     'Bilgisayar Programcılığı',
