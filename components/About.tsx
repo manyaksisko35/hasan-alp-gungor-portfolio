@@ -1,6 +1,7 @@
 'use client';
 
 import gsap from 'gsap';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { useLang, useT, type Localized } from '@/lib/i18n';
 
@@ -82,7 +83,19 @@ export default function About() {
 
         <div className="mt-10 lg:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
           <div data-reveal className={`${cell} col-span-2 lg:row-span-2 flex flex-col`}>
-            <p className="font-mono text-xs text-white/55">{t({ tr: 'Özet', en: 'Summary', no: 'Kort fortalt' })}</p>
+            <div className="flex items-center gap-4">
+              <Image
+                src="/hasan-alp-gungor.jpg"
+                alt="Hasan Alp Güngör"
+                width={88}
+                height={88}
+                className="w-[72px] h-[72px] lg:w-[88px] lg:h-[88px] rounded-[22px] object-cover ring-1 ring-white/25 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+              />
+              <div>
+                <p className="text-lg font-semibold tracking-tight">Hasan Alp Güngör</p>
+                <p className="font-mono text-xs text-white/55">{t({ tr: 'Özet', en: 'Summary', no: 'Kort fortalt' })}</p>
+              </div>
+            </div>
             <p className="mt-4 text-lg lg:text-xl leading-relaxed text-white/85">
               {t({
                 tr: 'İzmir Ekonomi Üniversitesi\'nde Bilgisayar Programcılığı öğrencisiyim ve teknolojinin hem yazılım hem donanım tarafında aktif olarak projeler üretiyorum.',

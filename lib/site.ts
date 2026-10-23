@@ -15,7 +15,7 @@ export const PERSON_JSON_LD = {
   name: PERSON_NAME,
   alternateName: ['Hasan Alp Gungor', 'Hasan Güngör', 'manyaksisko35'],
   url: SITE_URL,
-  image: `${SITE_URL}/opengraph-image.jpg`,
+  image: `${SITE_URL}/hasan-alp-gungor.jpg`,
   jobTitle: ['Yazılım Geliştirici', 'Oyun Geliştirici', 'YouTuber'],
   description:
     'Yazılım ve oyun geliştirici, YouTuber. İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı öğrencisi; oyunlar, 3D web siteleri ve ESP32 / Arduino donanım projeleri geliştirip YouTube kanalında paylaşıyor.',
