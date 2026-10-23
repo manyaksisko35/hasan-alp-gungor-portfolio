@@ -3,11 +3,17 @@ import { notFound } from 'next/navigation';
 import LangRedirect from '@/components/LangRedirect';
 import ProjectPage from '@/components/ProjectPage';
 import { LangProvider } from '@/lib/i18n';
-import { detailHref, homeHref, type Lang } from '@/lib/lang';
+import { detailHref, homeHref, LANG_INFO, languageAlternates, type Lang } from '@/lib/lang';
 import { getDetail } from '@/lib/projects';
 import { PERSON_NAME, SITE_URL } from '@/lib/site';
 
-// Server side of the project pages, shared by /projeler/[slug] and /en/projects/[slug].
+// Server side of the project pages, shared by /projeler/[slug], /en/projects/[slug] and /no/prosjekter/[slug].
+
+const CRUMBS: Record<Lang, { home: string; projects: string }> = {
+  tr: { home: 'Ana sayfa', projects: 'Projeler' },
+  en: { home: 'Home', projects: 'Projects' },
+  no: { home: 'Hjem', projects: 'Prosjekter' },
+};
 
 export function projectMetadata(slug: string, lang: Lang): Metadata {
   const project = getDetail(slug);
@@ -19,15 +25,12 @@ export function projectMetadata(slug: string, lang: Lang): Metadata {
   return {
     title: { absolute: `${project.name}: ${project.kind[lang]} | ${PERSON_NAME}` },
     description,
-    alternates: {
-      canonical: url,
-      languages: { tr: detailHref(slug, 'tr'), en: detailHref(slug, 'en'), 'x-default': detailHref(slug, 'tr') },
-    },
+    alternates: { canonical: url, languages: languageAlternates((l) => detailHref(slug, l)) },
     openGraph: {
       type: 'article',
       url,
       siteName: PERSON_NAME,
-      locale: lang === 'en' ? 'en_US' : 'tr_TR',
+      locale: LANG_INFO[lang].ogLocale,
       title: shareTitle,
       description,
       images: [{ url: image, alt: project.name }],
@@ -40,7 +43,7 @@ export function ProjectRoute({ slug, lang }: { slug: string; lang: Lang }) {
   const project = getDetail(slug);
   if (!project) notFound();
 
-  const home = `${SITE_URL}${homeHref(lang) === '/' ? '' : homeHref(lang)}`;
+  const home = `${SITE_URL}${lang === 'tr' ? '' : homeHref(lang)}`;
   const url = `${SITE_URL}${detailHref(slug, lang)}`;
   const repo = project.links.find((l) => l.kind === 'github')?.href;
   const jsonLd = {
@@ -60,8 +63,8 @@ export function ProjectRoute({ slug, lang }: { slug: string; lang: Lang }) {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: lang === 'en' ? 'Home' : 'Ana sayfa', item: home },
-          { '@type': 'ListItem', position: 2, name: lang === 'en' ? 'Projects' : 'Projeler', item: `${home}#work` },
+          { '@type': 'ListItem', position: 1, name: CRUMBS[lang].home, item: home },
+          { '@type': 'ListItem', position: 2, name: CRUMBS[lang].projects, item: `${home}#work` },
           { '@type': 'ListItem', position: 3, name: project.name, item: url },
         ],
       },
@@ -70,7 +73,7 @@ export function ProjectRoute({ slug, lang }: { slug: string; lang: Lang }) {
 
   return (
     <>
-      {lang === 'tr' && <LangRedirect to={detailHref(slug, 'en')} />}
+      {lang === 'tr' && <LangRedirect en={detailHref(slug, 'en')} no={detailHref(slug, 'no')} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
       <LangProvider lang={lang}>
         <ProjectPage project={project} />

@@ -48,7 +48,7 @@ export default function Hero() {
         <div className="lg:max-w-[52%]">
           <p className="hero-in ui-label ui-label--plain mb-5 md:mb-7 glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-zinc-200 shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
-            {t({ tr: 'Yazılım ve Oyun Geliştirici · YouTuber', en: 'Software & Game Developer · YouTuber' })}
+            {t({ tr: 'Yazılım ve Oyun Geliştirici · YouTuber', en: 'Software & Game Developer · YouTuber', no: 'Programvare- og spillutvikler · YouTuber' })}
           </p>
 
           <h1 className="hero-in hero-in--2 ui-title text-[17vw] sm:text-[13vw] lg:text-[clamp(4.5rem,8.2vw,8.8rem)] !leading-[0.88]">
@@ -61,16 +61,17 @@ export default function Hero() {
             {t({
               tr: 'İzmir Ekonomi Üniversitesi\'nde Bilgisayar Programcılığı okuyorum. Oyun geliştirme, web teknolojileri ve gömülü sistemler üzerine projeler geliştiriyor, bunları YouTube kanalımda paylaşıyorum.',
               en: "I study Computer Programming at İzmir University of Economics and build projects in game development, web technologies and embedded systems, which I share on my YouTube channel.",
+              no: 'Jeg studerer dataprogrammering ved İzmir University of Economics og lager prosjekter innen spillutvikling, webteknologi og innebygde systemer, som jeg deler på YouTube-kanalen min.',
             })}
           </p>
 
           <div className="hero-in hero-in--4 mt-8 flex flex-wrap items-center gap-3">
             <a href="#work" className="ui-btn">
-              {t({ tr: 'Projelerimi incele', en: 'View my work' })}
+              {t({ tr: 'Projelerimi incele', en: 'View my work', no: 'Se prosjektene mine' })}
               <ArrowIcon className="rotate-90" />
             </a>
             <a href="#contact" className="ui-btn ui-btn--ghost">
-              {t({ tr: 'İletişime geç', en: 'Get in touch' })}
+              {t({ tr: 'İletişime geç', en: 'Get in touch', no: 'Ta kontakt' })}
             </a>
             <span className="hidden sm:block w-px h-8 bg-white/10 mx-1" />
             {[
@@ -96,7 +97,7 @@ export default function Hero() {
       </div>
 
       <span className="hero-in hero-in--4 absolute bottom-6 left-6 lg:left-[8%] font-mono text-[0.7rem] text-white/55">
-        {t({ tr: 'aşağı kaydır ↓', en: 'scroll down ↓' })}
+        {t({ tr: 'aşağı kaydır ↓', en: 'scroll down ↓', no: 'scroll ned ↓' })}
       </span>
     </section>
   );

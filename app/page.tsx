@@ -1,16 +1,14 @@
-import type { Metadata } from 'next';
 import Home from '@/components/Home';
 import LangRedirect from '@/components/LangRedirect';
 import { LangProvider } from '@/lib/i18n';
+import { homeMetadata } from '@/lib/meta';
 
-export const metadata: Metadata = {
-  alternates: { canonical: '/', languages: { tr: '/', en: '/en', 'x-default': '/' } },
-};
+export const metadata = homeMetadata('tr');
 
 export default function Page() {
   return (
     <>
-      <LangRedirect to="/en" />
+      <LangRedirect en="/en" no="/no" />
       <LangProvider lang="tr">
         <Home />
       </LangProvider>

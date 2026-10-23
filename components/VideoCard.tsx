@@ -66,7 +66,7 @@ export function VideoCard({ video, index, big = false, onPlay }: { video: Video;
 
   if (video.id) {
     return (
-      <button type="button" onClick={() => onPlay(video)} className="group block w-full text-left" aria-label={`${t(video.title)}, ${t({ tr: 'videoyu oynat', en: 'play video' })}`}>
+      <button type="button" onClick={() => onPlay(video)} className="group block w-full text-left" aria-label={`${t(video.title)}, ${t({ tr: 'videoyu oynat', en: 'play video', no: 'spill av video' })}`}>
         {media}
         {caption}
       </button>
@@ -119,7 +119,7 @@ export function VideoModal({ video, onClose }: { video: Video | null; onClose: (
               YouTube <ArrowIcon />
             </a>
             <button ref={close} type="button" onClick={onClose} className="ui-btn !py-2 !px-4 !text-sm">
-              {t({ tr: 'Kapat', en: 'Close' })}
+              {t({ tr: 'Kapat', en: 'Close', no: 'Lukk' })}
             </button>
           </div>
         </div>

@@ -28,7 +28,7 @@ export default function Home() {
         href="#about"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:rounded-full focus:bg-white focus:px-5 focus:py-2.5 focus:text-black focus:font-semibold"
       >
-        {t({ tr: 'İçeriğe geç', en: 'Skip to content' })}
+        {t({ tr: 'İçeriğe geç', en: 'Skip to content', no: 'Hopp til innholdet' })}
       </a>
       <SmoothScroll />
       <Loader />

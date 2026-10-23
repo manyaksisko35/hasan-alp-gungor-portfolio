@@ -12,15 +12,16 @@ export default function MoreWork() {
   return (
     <section id="more" className="relative z-10 px-6 lg:px-[8%] py-24 lg:py-36">
       <div className="max-w-7xl mx-auto">
-        <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Diğer projeler', en: 'More work' })}</p>
+        <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Diğer projeler', en: 'More work', no: 'Flere prosjekter' })}</p>
         <h2 className="ui-title max-w-3xl">
-          {t({ tr: 'Diğer ', en: 'Other ' })}
-          <strong>{t({ tr: 'çalışmalar.', en: 'projects.' })}</strong>
+          {t({ tr: 'Diğer ', en: 'Other ', no: 'Andre ' })}
+          <strong>{t({ tr: 'çalışmalar.', en: 'projects.', no: 'prosjekter.' })}</strong>
         </h2>
         <p className="ui-lead mt-4 lg:mt-6 max-w-xl">
           {t({
             tr: 'Oyun yerelleştirme aracı, oyun yayın arayüzü, gömülü sistemler, web tasarımı ve masaüstü uygulamaları.',
             en: 'A game localization tool, a game broadcast overlay, embedded systems, web design and desktop applications.',
+            no: 'Et lokaliseringsverktøy for spill, et broadcast-overlay for spill, innebygde systemer, webdesign og skrivebordsapper.',
           })}
         </p>
 
@@ -43,7 +44,7 @@ export default function MoreWork() {
                   {t(p.tag)}
                 </span>
                 <span className="flex items-center gap-2">
-                  {p.slug && <span className="text-xs text-white/55 transition-colors group-hover:text-white">{t({ tr: 'Detaylar', en: 'Details' })}</span>}
+                  {p.slug && <span className="text-xs text-white/55 transition-colors group-hover:text-white">{t({ tr: 'Detaylar', en: 'Details', no: 'Detaljer' })}</span>}
                   <span className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/70 transition-all group-hover:bg-white group-hover:text-black group-hover:border-white">
                     <ArrowIcon className={p.slug ? 'rotate-45' : ''} />
                   </span>
@@ -63,7 +64,7 @@ export default function MoreWork() {
         </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <span className="text-sm text-white/55 mr-1">{t({ tr: 'Ayrıca:', en: 'Also:' })}</span>
+          <span className="text-sm text-white/55 mr-1">{t({ tr: 'Ayrıca:', en: 'Also:', no: 'Også:' })}</span>
           {MORE_REPOS.map((r) => (
             <a
               key={r.name}

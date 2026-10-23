@@ -8,12 +8,12 @@ export interface SectionInfo {
 }
 
 export const SECTIONS: SectionInfo[] = [
-  { id: 'top', label: { tr: 'Giriş', en: 'Home' } },
-  { id: 'about', label: { tr: 'Hakkımda', en: 'About' }, nav: true },
-  { id: 'skills', label: { tr: 'Yetenekler', en: 'Skills' }, nav: true },
-  { id: 'work', label: { tr: 'Projeler', en: 'Work' }, nav: true },
-  { id: 'more', label: { tr: 'Diğer projeler', en: 'More work' } },
-  { id: 'videos', label: { tr: 'İçerik', en: 'Content' }, nav: true },
-  { id: 'blog', label: { tr: 'Blog', en: 'Blog' }, nav: true },
-  { id: 'contact', label: { tr: 'İletişim', en: 'Contact' } },
+  { id: 'top', label: { tr: 'Giriş', en: 'Home', no: 'Hjem' } },
+  { id: 'about', label: { tr: 'Hakkımda', en: 'About', no: 'Om meg' }, nav: true },
+  { id: 'skills', label: { tr: 'Yetenekler', en: 'Skills', no: 'Ferdigheter' }, nav: true },
+  { id: 'work', label: { tr: 'Projeler', en: 'Work', no: 'Prosjekter' }, nav: true },
+  { id: 'more', label: { tr: 'Diğer projeler', en: 'More work', no: 'Flere prosjekter' } },
+  { id: 'videos', label: { tr: 'İçerik', en: 'Content', no: 'Innhold' }, nav: true },
+  { id: 'blog', label: { tr: 'Blog', en: 'Blog', no: 'Blogg' }, nav: true },
+  { id: 'contact', label: { tr: 'İletişim', en: 'Contact', no: 'Kontakt' } },
 ];

@@ -1,8 +1,8 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { useSyncExternalStore } from 'react';
 import { ArrowIcon } from '@/components/Icons';
-import { homeHref, type Lang } from '@/lib/lang';
+import { homeHref, LANGS, type Lang } from '@/lib/lang';
 import { LOGO_PIECES } from '@/lib/logoShape';
 
 type Ring = readonly (readonly [number, number])[];
@@ -11,6 +11,13 @@ const ring = (pts: Ring) => `M${pts.map(([x, y]) => `${x} ${y}`).join('L')}Z`;
 // How far each piece drifts from the middle of the logo, and how much it turns.
 const SPREAD = 0.42;
 const TILT = [-14, 9, -6, 12, -10, 7, -8];
+
+// The 404 page is prerendered once, so the language comes from the address in the browser.
+const noop = () => () => {};
+const langFromPath = (): Lang => {
+  const path = window.location.pathname;
+  return LANGS.find((l) => l !== 'tr' && (path === `/${l}` || path.startsWith(`/${l}/`))) ?? 'tr';
+};
 
 const TEXT = {
   tr: {
@@ -25,10 +32,16 @@ const TEXT = {
     home: 'Back to home',
     work: 'See my projects',
   },
+  no: {
+    title: 'Denne siden gikk i stykker.',
+    lead: 'Siden du leter etter kan ha flyttet, eller den har aldri fantes. Du kan fortsette fra forsiden.',
+    home: 'Tilbake til forsiden',
+    work: 'Se prosjektene mine',
+  },
 } satisfies Record<Lang, Record<string, string>>;
 
 export default function NotFoundView() {
-  const lang: Lang = usePathname()?.startsWith('/en') ? 'en' : 'tr';
+  const lang = useSyncExternalStore(noop, langFromPath, () => 'tr' as Lang);
   const t = TEXT[lang];
   const home = homeHref(lang);
 

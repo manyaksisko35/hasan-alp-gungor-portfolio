@@ -15,9 +15,9 @@ My personal site and portfolio: who I am, my education, skills, projects and vid
 - **My videos:** a selection from my YouTube channel, where I bring CS2 into real life with ESP32 builds. Videos play right on the page.
 - **Project pages:** every main project has its own page at `/projeler/<name>` with what I built, how it works, screenshots and links, so each one can also be found on Google.
 - **My projects:** a pinned, horizontally scrolling gallery of my S26 Ultra, Buds4 Pro, Watch Ultra2 and Ring concept sites.
-- **Turkish and English:** Turkish lives at `/`, English at `/en` (project pages at `/projeler/<name>` and `/en/projects/<name>`), so search engines index both. The navbar switch remembers the choice, and English-speaking visitors are sent to the English pages.
+- **Turkish, English and Norwegian:** Turkish lives at `/`, English at `/en`, Norwegian at `/no` (project pages at `/projeler/<name>`, `/en/projects/<name>` and `/no/prosjekter/<name>`), so search engines index each language. The navbar switch remembers the choice, and visitors whose browser is in English or Norwegian are sent to that version.
 - **404 page:** the logo, broken into pieces.
-- **Blog:** posts about how I built my projects at `/blog` (English at `/en/blog`), also listed on the home page.
+- **Blog:** posts about how I built my projects at `/blog` (also `/en/blog` and `/no/blog`), also listed on the home page.
 - **Analytics:** Vercel Web Analytics and Speed Insights (turn both on in the Vercel dashboard).
 - Liquid glass design: translucent, blurred surfaces with rim highlights over a slowly moving silver light, a floating capsule navbar and brushed silver accents.
 
@@ -70,7 +70,7 @@ On a custom domain, set `NEXT_PUBLIC_SITE_URL` (for example `https://hasanalpgun
 - `lib/data.ts`: projects, videos, links and the skill for each logo piece
 - `lib/projects.ts` and `app/projeler/[slug]`: the project pages
 - `lib/blog.ts` and `app/blog`: the blog posts
-- `lib/i18n.ts`: Turkish / English switch
+- `lib/i18n.ts` and `lib/lang.ts`: languages and their addresses
 - `lib/quality.ts`: device-based 3D quality levels
 - `lib/site.ts`, `app/sitemap.ts`, `app/robots.ts`: site URL, structured data and search engine files
 

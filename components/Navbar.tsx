@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import LogoMark from '@/components/LogoMark';
 import { switchLang, useLang, useT } from '@/lib/i18n';
+import { LANGS } from '@/lib/lang';
 import { scrollToId } from '@/lib/lenis';
 import { SECTIONS } from '@/lib/sections';
 import { useActiveSection } from '@/lib/useActiveSection';
@@ -15,7 +16,7 @@ export function LangToggle({ className = '' }: { className?: string }) {
   const path = usePathname();
   return (
     <div className={`flex rounded-full bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] p-0.5 font-mono text-[0.7rem] ${className}`} role="group" aria-label="Language">
-      {(['tr', 'en'] as const).map((l) => (
+      {LANGS.map((l) => (
         <button
           key={l}
           onClick={() => l !== lang && switchLang(l, path)}
@@ -70,7 +71,7 @@ export default function Navbar() {
         <div className="ml-auto md:ml-0 flex items-center gap-2">
           <LangToggle className="hidden sm:flex" />
           <a href="#contact" onClick={(e) => go(e, 'contact')} className="ui-btn !py-2 !px-4 !text-sm">
-            {t({ tr: 'İletişim', en: 'Contact' })}
+            {t({ tr: 'İletişim', en: 'Contact', no: 'Kontakt' })}
           </a>
           <button
             aria-label="Menu"
@@ -96,7 +97,7 @@ export default function Navbar() {
               </a>
             ))}
             <div className="flex items-center justify-between px-4 py-3 text-base text-white/60">
-              <span>{t({ tr: 'Dil', en: 'Language' })}</span>
+              <span>{t({ tr: 'Dil', en: 'Language', no: 'Språk' })}</span>
               <LangToggle />
             </div>
           </nav>

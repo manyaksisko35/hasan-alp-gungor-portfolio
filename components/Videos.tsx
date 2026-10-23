@@ -16,21 +16,22 @@ export default function Videos() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-16">
           <div>
-            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'İçerik', en: 'Content' })}</p>
+            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'İçerik', en: 'Content', no: 'Innhold' })}</p>
             <h2 className="ui-title">
-              {t({ tr: "YouTube'da ", en: 'Technical projects ' })}
-              <strong className="ui-accent">{t({ tr: 'teknik projeler.', en: 'on YouTube.' })}</strong>
+              {t({ tr: "YouTube'da ", en: 'Technical projects ', no: 'Tekniske prosjekter ' })}
+              <strong className="ui-accent">{t({ tr: 'teknik projeler.', en: 'on YouTube.', no: 'på YouTube.' })}</strong>
             </h2>
             <p className="ui-lead mt-4 lg:mt-6 max-w-xl">
               {t({
                 tr: 'Kanalımda ESP32 ve Arduino ile geliştirdiğim donanım projelerini, oyunlarla gerçek dünyayı birleştiren deneylerimi ve teknik rehberleri paylaşıyorum.',
                 en: 'On my channel I share hardware projects built with ESP32 and Arduino, experiments that connect games with the real world, and technical guides.',
+                no: 'På kanalen min deler jeg maskinvareprosjekter bygget med ESP32 og Arduino, eksperimenter som kobler spill til virkeligheten, og tekniske guider.',
               })}
             </p>
           </div>
           <a href={LINKS.youtube} target="_blank" rel="noopener noreferrer" className="ui-btn shrink-0 self-start lg:self-end">
             <YouTubeIcon className="w-5 h-5" />
-            {t({ tr: 'Kanala git', en: 'Visit the channel' })}
+            {t({ tr: 'Kanala git', en: 'Visit the channel', no: 'Gå til kanalen' })}
             <ArrowIcon />
           </a>
         </div>

@@ -4,13 +4,13 @@ import { BlogIndex, BlogPost } from '@/components/BlogPages';
 import LangRedirect from '@/components/LangRedirect';
 import { getPost, POSTS } from '@/lib/blog';
 import { LangProvider } from '@/lib/i18n';
-import { blogHref, homeHref, type Lang } from '@/lib/lang';
+import { blogHref, homeHref, LANG_INFO, languageAlternates, type Lang } from '@/lib/lang';
 import { PERSON_NAME, SITE_URL } from '@/lib/site';
 
-// Server side of the blog pages, shared by /blog and /en/blog.
+// Server side of the blog pages, shared by /blog, /en/blog and /no/blog.
 
 const abs = (path: string) => `${SITE_URL}${path === '/' ? '' : path}`;
-const languages = (slug?: string) => ({ tr: blogHref('tr', slug), en: blogHref('en', slug), 'x-default': blogHref('tr', slug) });
+const languages = (slug?: string) => languageAlternates((l) => blogHref(l, slug));
 const jsonLd = (data: object) => (
   <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }} />
 );
@@ -18,6 +18,7 @@ const jsonLd = (data: object) => (
 const INDEX_TEXT = {
   tr: { title: `Blog | ${PERSON_NAME}`, description: 'Projelerimi yaparken karşılaştığım sorunlar ve onları nasıl çözdüğüm: 3D web, oyun yerelleştirme ve CS2 yayın arayüzü.' },
   en: { title: `Blog | ${PERSON_NAME}`, description: 'The problems I ran into while building my projects and how I solved them: 3D on the web, game localization and a CS2 broadcast overlay.' },
+  no: { title: `Blogg | ${PERSON_NAME}`, description: 'Problemene jeg møtte da jeg bygde prosjektene mine, og hvordan jeg løste dem: 3D på nettet, lokalisering av spill og et sendingsoverlegg for CS2.' },
 } satisfies Record<Lang, { title: string; description: string }>;
 
 export function blogIndexMetadata(lang: Lang): Metadata {
@@ -26,7 +27,7 @@ export function blogIndexMetadata(lang: Lang): Metadata {
     title: { absolute: title },
     description,
     alternates: { canonical: blogHref(lang), languages: languages() },
-    openGraph: { type: 'website', url: blogHref(lang), siteName: PERSON_NAME, title, description, locale: lang === 'en' ? 'en_US' : 'tr_TR', images: [POSTS[0].cover] },
+    openGraph: { type: 'website', url: blogHref(lang), siteName: PERSON_NAME, title, description, locale: LANG_INFO[lang].ogLocale, images: [POSTS[0].cover] },
     twitter: { card: 'summary_large_image', title, description, images: [POSTS[0].cover] },
   };
 }
@@ -34,7 +35,7 @@ export function blogIndexMetadata(lang: Lang): Metadata {
 export function BlogIndexRoute({ lang }: { lang: Lang }) {
   return (
     <>
-      {lang === 'tr' && <LangRedirect to={blogHref('en')} />}
+      {lang === 'tr' && <LangRedirect en={blogHref('en')} no={blogHref('no')} />}
       {jsonLd({
         '@context': 'https://schema.org',
         '@type': 'Blog',
@@ -69,7 +70,7 @@ export function postMetadata(slug: string, lang: Lang): Metadata {
       siteName: PERSON_NAME,
       title,
       description,
-      locale: lang === 'en' ? 'en_US' : 'tr_TR',
+      locale: LANG_INFO[lang].ogLocale,
       publishedTime: post.date,
       authors: [PERSON_NAME],
       tags: post.tags,
@@ -85,7 +86,7 @@ export function PostRoute({ slug, lang }: { slug: string; lang: Lang }) {
   const url = abs(blogHref(lang, slug));
   return (
     <>
-      {lang === 'tr' && <LangRedirect to={blogHref('en', slug)} />}
+      {lang === 'tr' && <LangRedirect en={blogHref('en', slug)} no={blogHref('no', slug)} />}
       {jsonLd({
         '@context': 'https://schema.org',
         '@graph': [
@@ -106,8 +107,8 @@ export function PostRoute({ slug, lang }: { slug: string; lang: Lang }) {
           {
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: lang === 'en' ? 'Home' : 'Ana sayfa', item: abs(homeHref(lang)) },
-              { '@type': 'ListItem', position: 2, name: 'Blog', item: abs(blogHref(lang)) },
+              { '@type': 'ListItem', position: 1, name: { tr: 'Ana sayfa', en: 'Home', no: 'Hjem' }[lang], item: abs(homeHref(lang)) },
+              { '@type': 'ListItem', position: 2, name: lang === 'no' ? 'Blogg' : 'Blog', item: abs(blogHref(lang)) },
               { '@type': 'ListItem', position: 3, name: post.title[lang], item: url },
             ],
           },

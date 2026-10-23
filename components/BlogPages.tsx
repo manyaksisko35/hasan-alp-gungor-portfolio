@@ -8,7 +8,7 @@ import { useLang, useT, type Lang } from '@/lib/i18n';
 import { blogHref, detailHref, homeHref } from '@/lib/lang';
 import { getDetail } from '@/lib/projects';
 
-const LOCALE: Record<Lang, string> = { tr: 'tr-TR', en: 'en-GB' };
+const LOCALE: Record<Lang, string> = { tr: 'tr-TR', en: 'en-GB', no: 'nb-NO' };
 
 export const formatDate = (iso: string, lang: Lang) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(LOCALE[lang], { day: 'numeric', month: 'long', year: 'numeric' });
@@ -38,7 +38,7 @@ export function PostCard({ post, wide = false }: { post: Post; wide?: boolean })
         <span className={`mt-3 block font-semibold tracking-[-0.03em] leading-snug ${wide ? 'text-2xl lg:text-4xl' : 'text-xl'}`}>{t(post.title)}</span>
         <span className="mt-3 block text-sm leading-relaxed text-white/60">{t(post.description)}</span>
         <span className={`${wide ? 'lg:mt-0' : ''} mt-auto pt-6 inline-flex items-center gap-2 text-sm text-white/70 group-hover:text-white transition-colors`}>
-          {t({ tr: 'Yazıyı oku', en: 'Read the post' })}
+          {t({ tr: 'Yazıyı oku', en: 'Read the post', no: 'Les innlegget' })}
           <ArrowIcon className="rotate-45" />
         </span>
       </span>
@@ -52,19 +52,20 @@ export function BlogIndex() {
   const [first, ...rest] = POSTS;
   return (
     <>
-      <PageHeader back={{ href: homeHref(lang), label: t({ tr: 'Ana sayfa', en: 'Home' }) }} />
+      <PageHeader back={{ href: homeHref(lang), label: t({ tr: 'Ana sayfa', en: 'Home', no: 'Hjem' }) }} />
       <PageBackground />
       <main className="relative z-10 px-6 lg:px-[8%] pt-32 lg:pt-40 pb-20">
         <div className="max-w-7xl mx-auto">
           <p className="ui-label ui-label--plain mb-4 lg:mb-6">Blog</p>
           <h1 className="ui-title text-[clamp(2.8rem,1.6rem+5.5vw,6.5rem)]">
-            {t({ tr: 'Nasıl ', en: 'How I ' })}
-            <span className="ui-accent">{t({ tr: 'yaptım.', en: 'built it.' })}</span>
+            {t({ tr: 'Nasıl ', en: 'How I ', no: 'Slik ' })}
+            <span className="ui-accent">{t({ tr: 'yaptım.', en: 'built it.', no: 'laget jeg det.' })}</span>
           </h1>
           <p className="ui-lead mt-5 lg:mt-7 max-w-2xl">
             {t({
               tr: 'Projelerimi yaparken karşılaştığım sorunları ve onları nasıl çözdüğümü yazıyorum.',
               en: 'I write about the problems I ran into while building my projects and how I solved them.',
+              no: 'Jeg skriver om problemene jeg støtte på mens jeg bygde prosjektene mine, og hvordan jeg løste dem.',
             })}
           </p>
           <div className="mt-12 lg:mt-16 grid md:grid-cols-2 gap-4 lg:gap-6">
@@ -127,12 +128,12 @@ export function BlogPost({ post }: { post: Post }) {
 
   return (
     <>
-      <PageHeader back={{ href: blogHref(lang), label: t({ tr: 'Tüm yazılar', en: 'All posts' }) }} />
+      <PageHeader back={{ href: blogHref(lang), label: t({ tr: 'Tüm yazılar', en: 'All posts', no: 'Alle innlegg' }) }} />
       <PageBackground />
       <main className="relative z-10 px-6 lg:px-[8%] pt-32 lg:pt-40 pb-20">
         <article className="max-w-3xl mx-auto">
-          <nav aria-label={t({ tr: 'Sayfa yolu', en: 'Breadcrumb' })} className="font-mono text-xs text-white/55">
-            <a href={homeHref(lang)} className="hover:text-white transition-colors">{t({ tr: 'Ana sayfa', en: 'Home' })}</a>
+          <nav aria-label={t({ tr: 'Sayfa yolu', en: 'Breadcrumb', no: 'Brødsmulesti' })} className="font-mono text-xs text-white/55">
+            <a href={homeHref(lang)} className="hover:text-white transition-colors">{t({ tr: 'Ana sayfa', en: 'Home', no: 'Hjem' })}</a>
             <span className="mx-2">/</span>
             <a href={blogHref(lang)} className="hover:text-white transition-colors">Blog</a>
           </nav>
@@ -162,7 +163,7 @@ export function BlogPost({ post }: { post: Post }) {
           {project && (
             <a href={detailHref(project.slug, lang)} className="group ui-card !rounded-[28px] mt-14 flex items-center justify-between gap-6 p-6 lg:p-8">
               <span>
-                <span className="block font-mono text-xs text-white/55">{t({ tr: 'Proje sayfası', en: 'Project page' })}</span>
+                <span className="block font-mono text-xs text-white/55">{t({ tr: 'Proje sayfası', en: 'Project page', no: 'Prosjektside' })}</span>
                 <span className="mt-2 block text-2xl lg:text-3xl font-semibold tracking-[-0.03em]">{project.name}</span>
                 <span className="mt-1 block text-sm text-white/55">{t(project.kind)}</span>
               </span>
@@ -174,7 +175,7 @@ export function BlogPost({ post }: { post: Post }) {
         </article>
 
         <section className="max-w-7xl mx-auto mt-20 lg:mt-28">
-          <p className="ui-label ui-label--plain mb-6">{t({ tr: 'Diğer yazılar', en: 'More posts' })}</p>
+          <p className="ui-label ui-label--plain mb-6">{t({ tr: 'Diğer yazılar', en: 'More posts', no: 'Flere innlegg' })}</p>
           <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
             {others.map((p) => (
               <PostCard key={p.slug} post={p} />

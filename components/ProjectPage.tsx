@@ -30,15 +30,15 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
 
   return (
     <>
-      <PageHeader back={{ href: `${home}#work`, label: t({ tr: 'Tüm projeler', en: 'All projects' }) }} />
+      <PageHeader back={{ href: `${home}#work`, label: t({ tr: 'Tüm projeler', en: 'All projects', no: 'Alle prosjekter' }) }} />
       <PageBackground />
 
       <main className="relative z-10 px-6 lg:px-[8%] pt-32 lg:pt-40 pb-16">
         <article className="max-w-7xl mx-auto">
-          <nav aria-label={t({ tr: 'Sayfa yolu', en: 'Breadcrumb' })} className="font-mono text-xs text-white/55">
-            <a href={home} className="hover:text-white transition-colors">{t({ tr: 'Ana sayfa', en: 'Home' })}</a>
+          <nav aria-label={t({ tr: 'Sayfa yolu', en: 'Breadcrumb', no: 'Brødsmulesti' })} className="font-mono text-xs text-white/55">
+            <a href={home} className="hover:text-white transition-colors">{t({ tr: 'Ana sayfa', en: 'Home', no: 'Hjem' })}</a>
             <span className="mx-2">/</span>
-            <a href={`${home}#work`} className="hover:text-white transition-colors">{t({ tr: 'Projeler', en: 'Projects' })}</a>
+            <a href={`${home}#work`} className="hover:text-white transition-colors">{t({ tr: 'Projeler', en: 'Projects', no: 'Prosjekter' })}</a>
             <span className="mx-2">/</span>
             <span className="text-white/70">{project.name}</span>
           </nav>
@@ -93,10 +93,10 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
 
           <section className="mt-16 lg:mt-24 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16">
             <div>
-              <p className="ui-label ui-label--plain mb-4">{t({ tr: 'Proje hakkında', en: 'About the project' })}</p>
+              <p className="ui-label ui-label--plain mb-4">{t({ tr: 'Proje hakkında', en: 'About the project', no: 'Om prosjektet' })}</p>
               <h2 className="text-3xl lg:text-4xl font-semibold tracking-[-0.035em] leading-tight">
-                {t({ tr: 'Ne yaptım, ', en: 'What I built ' })}
-                <span className="ui-accent">{t({ tr: 'nasıl yaptım.', en: 'and how.' })}</span>
+                {t({ tr: 'Ne yaptım, ', en: 'What I built ', no: 'Hva jeg laget ' })}
+                <span className="ui-accent">{t({ tr: 'nasıl yaptım.', en: 'and how.', no: 'og hvordan.' })}</span>
               </h2>
             </div>
             <div className="space-y-5 text-base lg:text-lg leading-relaxed text-white/70">
@@ -107,7 +107,7 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
           </section>
 
           <section className="mt-16 lg:mt-24">
-            <p className="ui-label ui-label--plain mb-6">{t({ tr: 'Öne çıkanlar', en: 'Highlights' })}</p>
+            <p className="ui-label ui-label--plain mb-6">{t({ tr: 'Öne çıkanlar', en: 'Highlights', no: 'Høydepunkter' })}</p>
             <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
               {project.features.map((f, i) => (
                 <li key={f.title.en} className="ui-card p-6 lg:p-7">
@@ -121,7 +121,7 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
 
           {project.gallery.length > 0 && (
             <section className="mt-16 lg:mt-24">
-              <p className="ui-label ui-label--plain mb-6">{t({ tr: 'Görseller', en: 'Gallery' })}</p>
+              <p className="ui-label ui-label--plain mb-6">{t({ tr: 'Görseller', en: 'Gallery', no: 'Bilder' })}</p>
               <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
                 {project.gallery.map((g, i) => (
                   <figure key={g.src} className={project.gallery.length % 2 === 1 && i === 0 ? 'md:col-span-2' : ''}>
@@ -138,10 +138,10 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
           {video && (
             <section className="mt-16 lg:mt-24 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8 lg:gap-16 items-center">
               <div>
-                <p className="ui-label ui-label--plain mb-4">{t({ tr: 'Video', en: 'Video' })}</p>
+                <p className="ui-label ui-label--plain mb-4">{t({ tr: 'Video', en: 'Video', no: 'Video' })}</p>
                 <h2 className="text-3xl lg:text-4xl font-semibold tracking-[-0.035em] leading-tight">
-                  {t({ tr: 'Geliştirme sürecini ', en: 'Watch how ' })}
-                  <span className="ui-accent">{t({ tr: "YouTube'da anlattım.", en: 'I built it.' })}</span>
+                  {t({ tr: 'Geliştirme sürecini ', en: 'Watch how ', no: 'Se hvordan ' })}
+                  <span className="ui-accent">{t({ tr: "YouTube'da anlattım.", en: 'I built it.', no: 'jeg laget det.' })}</span>
                 </h2>
               </div>
               <VideoCard video={video} big onPlay={setPlaying} />
@@ -153,7 +153,7 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
             className="group ui-card !rounded-[32px] mt-20 lg:mt-28 flex flex-col sm:flex-row sm:items-center justify-between gap-6 p-7 lg:p-10"
           >
             <span>
-              <span className="block font-mono text-xs text-white/55">{t({ tr: 'Sıradaki proje', en: 'Next project' })}</span>
+              <span className="block font-mono text-xs text-white/55">{t({ tr: 'Sıradaki proje', en: 'Next project', no: 'Neste prosjekt' })}</span>
               <span className="mt-2 block text-3xl lg:text-5xl font-semibold tracking-[-0.04em]">{next.name}</span>
               <span className="mt-2 block text-sm text-white/55">{t(next.kind)}</span>
             </span>

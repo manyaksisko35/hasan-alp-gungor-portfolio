@@ -71,21 +71,23 @@ export default function Work() {
         className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 px-6 lg:px-[8%] py-24 lg:py-0 lg:h-full lg:w-max will-change-transform"
       >
         <div className="lg:w-[34vw] lg:shrink-0 lg:pr-8">
-          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Projeler', en: 'Work' })}</p>
+          <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Projeler', en: 'Work', no: 'Prosjekter' })}</p>
           <h2 className="ui-title">
-            {t({ tr: 'Seçili ', en: 'Selected ' })}
-            <strong className="ui-accent">{t({ tr: 'projeler.', en: 'work.' })}</strong>
+            {t({ tr: 'Seçili ', en: 'Selected ', no: 'Utvalgte ' })}
+            <strong className="ui-accent">{t({ tr: 'projeler.', en: 'work.', no: 'prosjekter.' })}</strong>
           </h2>
           <p className="ui-lead mt-4 lg:mt-6 max-w-md">
             {t({
               tr: 'Samsung Galaxy ürünleri için geliştirdiğim etkileşimli konsept siteler. Next.js, React Three Fiber ve GSAP ile sıfırdan geliştirildi; tümü yayında ve açık kaynak.',
               en: 'Interactive concept sites I developed for Samsung Galaxy products. Built from scratch with Next.js, React Three Fiber and GSAP; all live and open source.',
+              no: 'Interaktive konseptsider jeg har laget for Samsung Galaxy-produkter. Bygd fra bunnen av med Next.js, React Three Fiber og GSAP; alle er live og har åpen kildekode.',
             })}
           </p>
           <p className="mt-6 text-xs text-white/55 font-light max-w-sm">
             {t({
               tr: 'Hayran yapımı konseptlerdir. Samsung ile bağlantılı değildir.',
               en: 'Fan-made concepts. Not affiliated with Samsung.',
+              no: 'Konsepter laget av en fan. Ikke tilknyttet Samsung.',
             })}
           </p>
         </div>
@@ -117,11 +119,11 @@ export default function Work() {
               </div>
               <div className="flex gap-2 shrink-0">
                 <a href={detailHref(c.slug, lang)} className="ui-btn !py-2.5 !px-5 !text-sm">
-                  {t({ tr: 'Detaylar', en: 'Details' })}
+                  {t({ tr: 'Detaylar', en: 'Details', no: 'Detaljer' })}
                   <ArrowIcon className="rotate-45" />
                 </a>
                 <a href={c.href} target="_blank" rel="noopener noreferrer" className="ui-btn ui-btn--ghost !py-2.5 !px-4 !text-sm">
-                  {t({ tr: 'Siteyi aç', en: 'Open site' })}
+                  {t({ tr: 'Siteyi aç', en: 'Open site', no: 'Åpne siden' })}
                   <ArrowIcon />
                 </a>
                 <a
@@ -147,11 +149,11 @@ export default function Work() {
           <div className="absolute inset-0 -z-10 opacity-80" style={{ background: 'radial-gradient(60% 50% at 70% 30%, rgba(255,255,255,0.14), transparent 70%)' }} />
           <p className="ui-label ui-label--plain font-mono text-xs text-white/55 mb-3">GitHub</p>
           <p className="text-3xl lg:text-5xl font-medium tracking-[-0.04em] leading-[1.02]">
-            {t({ tr: 'Diğer kodlarım ', en: 'The rest of my code is ' })}
-            <strong className="ui-accent font-semibold">{t({ tr: "GitHub'da.", en: 'on GitHub.' })}</strong>
+            {t({ tr: 'Diğer kodlarım ', en: 'The rest of my code is ', no: 'Resten av koden min ' })}
+            <strong className="ui-accent font-semibold">{t({ tr: "GitHub'da.", en: 'on GitHub.', no: 'ligger på GitHub.' })}</strong>
           </p>
           <span className="mt-6 inline-flex items-center gap-2 text-sm text-white/70 group-hover:text-white transition-colors">
-            {t({ tr: 'Profilime bak', en: 'See my profile' })}
+            {t({ tr: 'Profilime bak', en: 'See my profile', no: 'Se profilen min' })}
             <ArrowIcon />
           </span>
         </a>

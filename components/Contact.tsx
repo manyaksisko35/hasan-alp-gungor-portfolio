@@ -5,10 +5,10 @@ import { LINKS } from '@/lib/data';
 import { useT, type Localized } from '@/lib/i18n';
 
 const PLATFORMS: { name: string; handle: string; href: string; Icon: (p: { className?: string }) => React.ReactElement; text: Localized }[] = [
-  { name: 'LinkedIn', handle: 'Hasan Alp Güngör', href: LINKS.linkedin, Icon: LinkedInIcon, text: { tr: 'Profesyonel profil', en: 'Professional profile' } },
-  { name: 'GitHub', handle: '@manyaksisko35', href: LINKS.github, Icon: GitHubIcon, text: { tr: 'Açık kaynak projeler', en: 'Open source projects' } },
-  { name: 'YouTube', handle: '@hasanalpgungor', href: LINKS.youtube, Icon: YouTubeIcon, text: { tr: 'Teknik proje videoları', en: 'Technical project videos' } },
-  { name: 'itch.io', handle: 'hasan-alp-gungor', href: LINKS.itch, Icon: ItchIcon, text: { tr: 'Oyun yerelleştirme aracım', en: 'My game localization tool' } },
+  { name: 'LinkedIn', handle: 'Hasan Alp Güngör', href: LINKS.linkedin, Icon: LinkedInIcon, text: { tr: 'Profesyonel profil', en: 'Professional profile', no: 'Profesjonell profil' } },
+  { name: 'GitHub', handle: '@manyaksisko35', href: LINKS.github, Icon: GitHubIcon, text: { tr: 'Açık kaynak projeler', en: 'Open source projects', no: 'Prosjekter med åpen kildekode' } },
+  { name: 'YouTube', handle: '@hasanalpgungor', href: LINKS.youtube, Icon: YouTubeIcon, text: { tr: 'Teknik proje videoları', en: 'Technical project videos', no: 'Videoer av tekniske prosjekter' } },
+  { name: 'itch.io', handle: 'hasan-alp-gungor', href: LINKS.itch, Icon: ItchIcon, text: { tr: 'Oyun yerelleştirme aracım', en: 'My game localization tool', no: 'Verktøyet mitt for spillokalisering' } },
 ];
 
 export default function Contact() {
@@ -21,20 +21,21 @@ export default function Contact() {
 
           <div className="relative grid lg:grid-cols-2 gap-12 px-6 py-14 lg:px-14 lg:py-20">
             <div>
-              <p className="ui-label mb-5 lg:mb-7">{t({ tr: 'İletişim', en: 'Contact' })}</p>
+              <p className="ui-label mb-5 lg:mb-7">{t({ tr: 'İletişim', en: 'Contact', no: 'Kontakt' })}</p>
               <h2 className="ui-title ui-title-xl">
-                {t({ tr: 'Birlikte ', en: "Let's work " })}
-                <strong className="ui-accent">{t({ tr: 'çalışalım.', en: 'together.' })}</strong>
+                {t({ tr: 'Birlikte ', en: "Let's work ", no: 'La oss jobbe ' })}
+                <strong className="ui-accent">{t({ tr: 'çalışalım.', en: 'together.', no: 'sammen.' })}</strong>
               </h2>
               <p className="ui-lead mt-6 max-w-md">
                 {t({
                   tr: 'Staj, iş fırsatları ve proje iş birlikleri için LinkedIn üzerinden ulaşabilirsiniz.',
                   en: 'For internships, job opportunities and project collaborations, reach me on LinkedIn.',
+                  no: 'Ta kontakt på LinkedIn for praksisplass, jobbmuligheter eller prosjektsamarbeid.',
                 })}
               </p>
               <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="ui-btn mt-8">
                 <LinkedInIcon className="w-4 h-4" />
-                {t({ tr: "LinkedIn'den mesaj gönder", en: 'Message me on LinkedIn' })}
+                {t({ tr: "LinkedIn'den mesaj gönder", en: 'Message me on LinkedIn', no: 'Send meg en melding på LinkedIn' })}
               </a>
             </div>
 
@@ -73,6 +74,7 @@ export default function Contact() {
             {t({
               tr: 'Next.js, Three.js ve TypeScript ile geliştirildi.',
               en: 'Built with Next.js, Three.js and TypeScript.',
+              no: 'Laget med Next.js, Three.js og TypeScript.',
             })}
           </p>
         </div>

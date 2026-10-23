@@ -12,15 +12,16 @@ export default function Skills() {
       <div className="sticky top-0 h-svh px-6 lg:px-[8%] pt-24 lg:pt-28 pb-8 flex flex-col">
         <div className="max-w-7xl w-full mx-auto flex-1 flex flex-col lg:justify-center">
           <div className="lg:max-w-sm">
-            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Yetenekler', en: 'Skills' })}</p>
+            <p className="ui-label mb-3 lg:mb-5">{t({ tr: 'Yetenekler', en: 'Skills', no: 'Ferdigheter' })}</p>
             <h2 className="ui-title">
-              {t({ tr: 'Teknik ', en: 'Technical ' })}
-              <strong className="ui-accent">{t({ tr: 'yetkinlikler.', en: 'skills.' })}</strong>
+              {t({ tr: 'Teknik ', en: 'Technical ', no: 'Tekniske ' })}
+              <strong className="ui-accent">{t({ tr: 'yetkinlikler.', en: 'skills.', no: 'ferdigheter.' })}</strong>
             </h2>
             <p className="ui-lead mt-4 lg:mt-6 hidden sm:block">
               {t({
                 tr: 'Logomun her parçası kullandığım bir teknolojiyi temsil ediyor. Cam logo, Three.js ile gerçek zamanlı olarak kodla oluşturuldu.',
                 en: 'Each piece of my logo stands for a technology I use. The glass logo is built in code and rendered in real time with Three.js.',
+                no: 'Hver del av logoen min står for en teknologi jeg bruker. Glasslogoen er bygd i kode og rendres i sanntid med Three.js.',
               })}
             </p>
           </div>

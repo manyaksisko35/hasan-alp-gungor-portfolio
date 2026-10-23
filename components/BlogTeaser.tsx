@@ -16,18 +16,19 @@ export default function BlogTeaser() {
           <div>
             <p className="ui-label mb-3 lg:mb-5">Blog</p>
             <h2 className="ui-title">
-              {t({ tr: 'Nasıl ', en: 'How I ' })}
-              <strong className="ui-accent">{t({ tr: 'yaptım.', en: 'built it.' })}</strong>
+              {t({ tr: 'Nasıl ', en: 'How I ', no: 'Slik ' })}
+              <strong className="ui-accent">{t({ tr: 'yaptım.', en: 'built it.', no: 'laget jeg det.' })}</strong>
             </h2>
             <p className="ui-lead mt-4 lg:mt-6 max-w-xl">
               {t({
                 tr: 'Projelerimi yaparken karşılaştığım sorunları ve onları nasıl çözdüğümü yazıyorum.',
                 en: 'I write about the problems I ran into while building my projects and how I solved them.',
+                no: 'Jeg skriver om problemene jeg støtte på mens jeg bygde prosjektene mine, og hvordan jeg løste dem.',
               })}
             </p>
           </div>
           <a href={blogHref(lang)} className="ui-btn shrink-0 self-start lg:self-end">
-            {t({ tr: 'Tüm yazılar', en: 'All posts' })}
+            {t({ tr: 'Tüm yazılar', en: 'All posts', no: 'Alle innlegg' })}
             <ArrowIcon className="rotate-45" />
           </a>
         </div>
