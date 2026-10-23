@@ -1,7 +1,7 @@
 'use client';
 
-import { ArrowIcon, GitHubIcon, ItchIcon, LinkedInIcon, YouTubeIcon } from '@/components/Icons';
-import { LINKS } from '@/lib/data';
+import { ArrowIcon, GitHubIcon, ItchIcon, LinkedInIcon, MailIcon, YouTubeIcon } from '@/components/Icons';
+import { EMAIL, LINKS } from '@/lib/data';
 import { useT, type Localized } from '@/lib/i18n';
 
 const PLATFORMS: { name: string; handle: string; href: string; Icon: (p: { className?: string }) => React.ReactElement; text: Localized }[] = [
@@ -28,15 +28,21 @@ export default function Contact() {
               </h2>
               <p className="ui-lead mt-6 max-w-md">
                 {t({
-                  tr: 'Staj, iş fırsatları ve proje iş birlikleri için LinkedIn üzerinden ulaşabilirsiniz.',
-                  en: 'For internships, job opportunities and project collaborations, reach me on LinkedIn.',
-                  no: 'Ta kontakt på LinkedIn for praksisplass, jobbmuligheter eller prosjektsamarbeid.',
+                  tr: 'Staj, iş fırsatları ve proje iş birlikleri için bana e-postayla ya da LinkedIn üzerinden ulaşabilirsiniz.',
+                  en: 'For internships, job opportunities and project collaborations, email me or reach me on LinkedIn.',
+                  no: 'Send meg en e-post eller ta kontakt på LinkedIn for praksisplass, jobbmuligheter eller prosjektsamarbeid.',
                 })}
               </p>
-              <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="ui-btn mt-8">
-                <LinkedInIcon className="w-4 h-4" />
-                {t({ tr: "LinkedIn'den mesaj gönder", en: 'Message me on LinkedIn', no: 'Send meg en melding på LinkedIn' })}
-              </a>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`mailto:${EMAIL}`} className="ui-btn">
+                  <MailIcon className="w-4 h-4" />
+                  {EMAIL}
+                </a>
+                <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="ui-btn ui-btn--ghost">
+                  <LinkedInIcon className="w-4 h-4" />
+                  {t({ tr: "LinkedIn'den mesaj gönder", en: 'Message me on LinkedIn', no: 'Send meg en melding på LinkedIn' })}
+                </a>
+              </div>
             </div>
 
             <ul className="grid sm:grid-cols-2 gap-3 self-end">

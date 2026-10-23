@@ -1,4 +1,4 @@
-import { LINKS } from '@/lib/data';
+import { EMAIL, LINKS } from '@/lib/data';
 
 /** Public address of the site. Set NEXT_PUBLIC_SITE_URL once a custom domain is attached. */
 export const SITE_URL = (
@@ -25,6 +25,7 @@ export const PERSON_JSON_LD = {
     alternateName: 'İzmir University of Economics',
   },
   address: { '@type': 'PostalAddress', addressLocality: 'İzmir', addressCountry: 'TR' },
+  email: EMAIL,
   knowsLanguage: ['tr', 'en', 'no'],
   knowsAbout: [
     'Software Development',

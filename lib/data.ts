@@ -2,6 +2,8 @@ import type { Localized } from '@/lib/i18n';
 
 const GH = 'https://github.com/manyaksisko35';
 
+export const EMAIL = 'hasan@hasanalpgungor.com';
+
 export const LINKS = {
   github: GH,
   youtube: 'https://www.youtube.com/@hasanalpgungor',
