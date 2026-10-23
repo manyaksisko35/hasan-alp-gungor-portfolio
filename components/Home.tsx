@@ -12,6 +12,7 @@ import ScrollProgress from '@/components/ScrollProgress';
 import Reveal from '@/components/Reveal';
 import Skills from '@/components/Skills';
 import SmoothScroll from '@/components/SmoothScroll';
+import BlogTeaser from '@/components/BlogTeaser';
 import Videos from '@/components/Videos';
 import Work from '@/components/Work';
 import { useT } from '@/lib/i18n';
@@ -57,6 +58,7 @@ export default function Home() {
         <Work />
         <MoreWork />
         <Videos />
+        <BlogTeaser />
         <Contact />
       </main>
     </>
