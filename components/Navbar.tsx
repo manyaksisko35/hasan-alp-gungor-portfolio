@@ -44,6 +44,8 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-3 md:top-4 inset-x-3 md:inset-x-0 z-50 flex justify-center pointer-events-none">
+      {/* Tapping outside the open menu closes it. */}
+      {open && <button aria-hidden tabIndex={-1} onClick={() => setOpen(false)} className="lg:hidden fixed inset-0 -z-10 pointer-events-auto cursor-default" />}
       <div className="glass pointer-events-auto w-full md:w-auto flex items-center gap-2 md:gap-6 rounded-full pl-2 pr-2 py-2">
         <a href="#top" onClick={(e) => go(e, 'top')} className="flex items-center gap-2.5 pr-1">
           <span className="ui-btn !p-0 w-9 h-9">
@@ -83,26 +85,26 @@ export default function Navbar() {
             <span className={`w-5 h-px bg-white transition-transform ${open ? '-translate-y-[3px] -rotate-45' : ''}`} />
           </button>
         </div>
-
-        {open && (
-          <nav className="glass lg:hidden absolute top-[calc(100%+10px)] inset-x-0 rounded-[28px] flex flex-col p-2">
-            {SECTIONS.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                onClick={(e) => go(e, s.id)}
-                className={`rounded-full px-4 py-3 text-base ${active === s.id ? 'bg-white/10 text-white' : 'text-white/60'}`}
-              >
-                {t(s.label)}
-              </a>
-            ))}
-            <div className="flex items-center justify-between px-4 py-3 text-base text-white/60">
-              <span>{t({ tr: 'Dil', en: 'Language', no: 'Språk' })}</span>
-              <LangToggle />
-            </div>
-          </nav>
-        )}
       </div>
+
+      {open && (
+        <nav className="glass lg:hidden pointer-events-auto absolute top-[calc(100%+10px)] inset-x-0 md:inset-x-3 rounded-[28px] flex flex-col p-2 !bg-[#18181b]/85">
+          {SECTIONS.map((s) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              onClick={(e) => go(e, s.id)}
+              className={`rounded-full px-4 py-3 text-base ${active === s.id ? 'bg-white/10 text-white' : 'text-white/60'}`}
+            >
+              {t(s.label)}
+            </a>
+          ))}
+          <div className="flex items-center justify-between px-4 py-3 text-base text-white/60">
+            <span>{t({ tr: 'Dil', en: 'Language', no: 'Språk' })}</span>
+            <LangToggle />
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

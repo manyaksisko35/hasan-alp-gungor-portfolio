@@ -113,7 +113,10 @@ h2.ui-title-xl { font-size: clamp(2.6rem, 1.3rem + 5.6vw, 6.5rem); }
     0 20px 50px -22px rgba(0, 0, 0, 0.6);
   transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
-.glass { position: relative; }
+/* In a layer so positioning utilities (absolute, fixed) on a glass element still win. */
+@layer components {
+  .glass { position: relative; }
+}
 /* Rim light: a gradient hairline that is brightest on the top-left and bottom-right edges. */
 .ui-card::before,
 .glass::before {
