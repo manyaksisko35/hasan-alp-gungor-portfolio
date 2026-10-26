@@ -165,14 +165,26 @@ export const PROJECTS: Project[] = [
   {
     name: 'PcProgramKurucu',
     href: `${GH}/PcProgramKurucu`,
-    tag: { tr: 'Araç', en: 'Tool', no: 'Verktøy' },
+    tag: { tr: 'Masaüstü · Araç', en: 'Desktop · Tool', no: 'Skrivebordsapp · Verktøy' },
     text: {
-      tr: 'Bilgisayara programları otomatik kurmak için yazdığım bir Batch betiği.',
-      en: 'A Batch script I wrote to install programs on a PC automatically.',
-      no: 'Et Batch-skript jeg skrev for å installere programmer automatisk på en PC.',
+      tr: 'Yeni bir Windows bilgisayarı kurmak için yazdığım C# uygulaması. Sık kullanılan 73 programı winget ile tek tıkla kuruyor; yanında CPU, GPU ve disk kullanımını grafikle, işlemci ve ekran kartı sıcaklıklarını da anlık gösteriyor.',
+      en: 'A C# app I wrote for setting up a new Windows PC. It installs 73 common programs with one click through winget and charts CPU, GPU and disk usage with live CPU and GPU temperatures.',
+      no: 'En C#-app jeg skrev for å sette opp en ny Windows-PC. Den installerer 73 vanlige programmer med ett klikk via winget og viser CPU-, GPU- og diskbruk i grafer, med CPU- og GPU-temperatur i sanntid.',
     },
-    stack: ['Batch', 'Windows'],
+    stack: ['C#', 'WinForms', 'winget', 'LibreHardwareMonitor'],
     accent: '#f4f4f5',
+  },
+  {
+    name: 'SkinVault',
+    href: `${GH}/SkinVault`,
+    tag: { tr: 'Masaüstü · Veritabanı', en: 'Desktop · Database', no: 'Skrivebordsapp · Database' },
+    text: {
+      tr: 'Counter-Strike skinlerini SQL Server\'da tutan bir C# Windows Forms uygulaması. Yöneticiler skinleri float, kondisyon ve fiyatıyla ekleyip düzenliyor; kullanıcılar onları kartlar halinde görüp Steam üzerinden oyunda inceleyebiliyor.',
+      en: 'A C# Windows Forms app that keeps Counter-Strike skins in SQL Server. Admins add and edit skins with their float, condition and price; users browse them as cards and inspect them in game through Steam.',
+      no: 'En C# Windows Forms-app som lagrer Counter-Strike-skins i SQL Server. Administratorer legger til og redigerer skins med float, tilstand og pris; brukere blar gjennom dem som kort og inspiserer dem i spillet via Steam.',
+    },
+    stack: ['C#', 'WinForms', 'SQL Server'],
+    accent: '#d4d4d8',
   },
   {
     name: 'Mağaza Satış Analiz Programı',
@@ -190,7 +202,6 @@ export const PROJECTS: Project[] = [
 
 /** Repos without a public description: listed by name only. */
 export const MORE_REPOS = [
-  { name: 'SkinVault', lang: 'C#', href: `${GH}/SkinVault` },
   { name: 'json_ile_ogrenci_durumu', lang: 'PHP', href: `${GH}/json_ile_ogrenci_durumu` },
 ];
 
