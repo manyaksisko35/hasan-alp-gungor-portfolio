@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { homeHref, LANG_INFO, LANGS, languageAlternates, type Lang } from '@/lib/lang';
-import { PERSON_NAME } from '@/lib/site';
+import { PERSON_ID, PERSON_NAME, SITE_URL, WEBSITE_ID } from '@/lib/site';
 
 // Page titles and descriptions for the home page in each language.
 
@@ -41,5 +41,21 @@ export function homeMetadata(lang: Lang): Metadata {
       username: 'manyaksisko35',
     },
     twitter: { card: 'summary_large_image', title, description },
+  };
+}
+
+/** The home page is the profile page of the person the site is about. */
+export function profilePageJsonLd(lang: Lang) {
+  const url = `${SITE_URL}${lang === 'tr' ? '' : homeHref(lang)}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${url}#profilepage`,
+    url,
+    name: HOME[lang].title,
+    description: HOME[lang].description,
+    inLanguage: lang,
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntity: { '@id': PERSON_ID },
   };
 }

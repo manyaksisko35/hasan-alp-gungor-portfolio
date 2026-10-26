@@ -8,11 +8,19 @@ export const SITE_URL = (
 
 export const PERSON_NAME = 'Hasan Alp Güngör';
 
+export const PERSON_ID = `${SITE_URL}/#person`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+
+/** How other structured data points at the person, e.g. as the author of a post. */
+export const PERSON_REF = { '@type': 'Person', '@id': PERSON_ID, name: PERSON_NAME, url: SITE_URL };
+
 /** schema.org Person: tells search engines who this site is about. */
-export const PERSON_JSON_LD = {
-  '@context': 'https://schema.org',
+const PERSON = {
   '@type': 'Person',
+  '@id': PERSON_ID,
   name: PERSON_NAME,
+  givenName: 'Hasan Alp',
+  familyName: 'Güngör',
   alternateName: ['Hasan Alp Gungor', 'Hasan Güngör', 'manyaksisko35'],
   url: SITE_URL,
   image: `${SITE_URL}/hasan-alp-gungor.jpg`,
@@ -48,4 +56,20 @@ export const PERSON_JSON_LD = {
     'Arduino',
   ],
   sameAs: [LINKS.linkedin, LINKS.github, LINKS.youtube, LINKS.itch],
+};
+
+/** On every page: the site and the person it belongs to. */
+export const SITE_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': WEBSITE_ID,
+      url: SITE_URL,
+      name: PERSON_NAME,
+      inLanguage: ['tr', 'en', 'no'],
+      publisher: { '@id': PERSON_ID },
+    },
+    PERSON,
+  ],
 };

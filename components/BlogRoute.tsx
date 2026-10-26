@@ -1,19 +1,17 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BlogIndex, BlogPost } from '@/components/BlogPages';
+import JsonLd from '@/components/JsonLd';
 import LangRedirect from '@/components/LangRedirect';
 import { getPost, POSTS } from '@/lib/blog';
 import { LangProvider } from '@/lib/i18n';
 import { blogHref, homeHref, LANG_INFO, languageAlternates, type Lang } from '@/lib/lang';
-import { PERSON_NAME, SITE_URL } from '@/lib/site';
+import { PERSON_NAME, PERSON_REF, SITE_URL } from '@/lib/site';
 
 // Server side of the blog pages, shared by /blog, /en/blog and /no/blog.
 
 const abs = (path: string) => `${SITE_URL}${path === '/' ? '' : path}`;
 const languages = (slug?: string) => languageAlternates((l) => blogHref(l, slug));
-const jsonLd = (data: object) => (
-  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }} />
-);
 
 const INDEX_TEXT = {
   tr: { title: `Blog | ${PERSON_NAME}`, description: 'Projelerimi yaparken karşılaştığım sorunlar ve onları nasıl çözdüğüm: 3D web, oyun yerelleştirme ve CS2 yayın arayüzü.' },
@@ -36,16 +34,18 @@ export function BlogIndexRoute({ lang }: { lang: Lang }) {
   return (
     <>
       {lang === 'tr' && <LangRedirect en={blogHref('en')} no={blogHref('no')} />}
-      {jsonLd({
-        '@context': 'https://schema.org',
-        '@type': 'Blog',
-        name: INDEX_TEXT[lang].title,
-        description: INDEX_TEXT[lang].description,
-        url: abs(blogHref(lang)),
-        inLanguage: lang,
-        author: { '@type': 'Person', name: PERSON_NAME, url: SITE_URL },
-        blogPost: POSTS.map((p) => ({ '@type': 'BlogPosting', headline: p.title[lang], url: abs(blogHref(lang, p.slug)), datePublished: p.date })),
-      })}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Blog',
+          name: INDEX_TEXT[lang].title,
+          description: INDEX_TEXT[lang].description,
+          url: abs(blogHref(lang)),
+          inLanguage: lang,
+          author: PERSON_REF,
+          blogPost: POSTS.map((p) => ({ '@type': 'BlogPosting', headline: p.title[lang], url: abs(blogHref(lang, p.slug)), datePublished: p.date })),
+        }}
+      />
       <LangProvider lang={lang}>
         <BlogIndex />
       </LangProvider>
@@ -87,33 +87,35 @@ export function PostRoute({ slug, lang }: { slug: string; lang: Lang }) {
   return (
     <>
       {lang === 'tr' && <LangRedirect en={blogHref('en', slug)} no={blogHref('no', slug)} />}
-      {jsonLd({
-        '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'BlogPosting',
-            headline: post.title[lang],
-            description: post.description[lang],
-            url,
-            mainEntityOfPage: url,
-            image: abs(post.cover),
-            datePublished: post.date,
-            dateModified: post.date,
-            inLanguage: lang,
-            keywords: post.tags.join(', '),
-            author: { '@type': 'Person', name: PERSON_NAME, url: SITE_URL },
-            publisher: { '@type': 'Person', name: PERSON_NAME, url: SITE_URL },
-          },
-          {
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: { tr: 'Ana sayfa', en: 'Home', no: 'Hjem' }[lang], item: abs(homeHref(lang)) },
-              { '@type': 'ListItem', position: 2, name: lang === 'no' ? 'Blogg' : 'Blog', item: abs(blogHref(lang)) },
-              { '@type': 'ListItem', position: 3, name: post.title[lang], item: url },
-            ],
-          },
-        ],
-      })}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'BlogPosting',
+              headline: post.title[lang],
+              description: post.description[lang],
+              url,
+              mainEntityOfPage: url,
+              image: abs(post.cover),
+              datePublished: post.date,
+              dateModified: post.date,
+              inLanguage: lang,
+              keywords: post.tags.join(', '),
+              author: PERSON_REF,
+              publisher: PERSON_REF,
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: { tr: 'Ana sayfa', en: 'Home', no: 'Hjem' }[lang], item: abs(homeHref(lang)) },
+                { '@type': 'ListItem', position: 2, name: lang === 'no' ? 'Blogg' : 'Blog', item: abs(blogHref(lang)) },
+                { '@type': 'ListItem', position: 3, name: post.title[lang], item: url },
+              ],
+            },
+          ],
+        }}
+      />
       <LangProvider lang={lang}>
         <BlogPost post={post} />
       </LangProvider>

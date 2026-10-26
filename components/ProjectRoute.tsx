@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import JsonLd from '@/components/JsonLd';
 import LangRedirect from '@/components/LangRedirect';
 import ProjectPage from '@/components/ProjectPage';
 import { LangProvider } from '@/lib/i18n';
 import { detailHref, homeHref, LANG_INFO, languageAlternates, type Lang } from '@/lib/lang';
 import { getDetail } from '@/lib/projects';
-import { PERSON_NAME, SITE_URL } from '@/lib/site';
+import { PERSON_NAME, PERSON_REF, SITE_URL } from '@/lib/site';
 
 // Server side of the project pages, shared by /projeler/[slug], /en/projects/[slug] and /no/prosjekter/[slug].
 
@@ -57,7 +58,7 @@ export function ProjectRoute({ slug, lang }: { slug: string; lang: Lang }) {
         image: `${SITE_URL}${project.share ?? project.cover.src}`,
         inLanguage: lang,
         keywords: project.stack.join(', '),
-        author: { '@type': 'Person', name: PERSON_NAME, url: SITE_URL },
+        author: PERSON_REF,
         ...(repo && { sameAs: repo }),
       },
       {
@@ -74,7 +75,7 @@ export function ProjectRoute({ slug, lang }: { slug: string; lang: Lang }) {
   return (
     <>
       {lang === 'tr' && <LangRedirect en={detailHref(slug, 'en')} no={detailHref(slug, 'no')} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
+      <JsonLd data={jsonLd} />
       <LangProvider lang={lang}>
         <ProjectPage project={project} />
       </LangProvider>
