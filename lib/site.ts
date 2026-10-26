@@ -55,7 +55,7 @@ const PERSON = {
     'ESP32',
     'Arduino',
   ],
-  sameAs: [LINKS.linkedin, LINKS.github, LINKS.youtube, LINKS.itch],
+  sameAs: [LINKS.linkedin, LINKS.github, LINKS.youtube, LINKS.itch, LINKS.devto],
 };
 
 /** On every page: the site and the person it belongs to. */

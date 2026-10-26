@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ArrowIcon } from '@/components/Icons';
 import { PageBackground, PageFooter, PageHeader } from '@/components/PageChrome';
 import { POSTS, type Block, type Post } from '@/lib/blog';
+import { LINKS } from '@/lib/data';
 import { useLang, useT, type Lang } from '@/lib/i18n';
 import { blogHref, detailHref, homeHref } from '@/lib/lang';
 import { getDetail } from '@/lib/projects';
@@ -68,6 +69,10 @@ export function BlogIndex() {
               no: 'Jeg skriver om problemene jeg støtte på mens jeg bygde prosjektene mine, og hvordan jeg løste dem.',
             })}
           </p>
+          <a href={LINKS.devto} target="_blank" rel="noopener noreferrer" className="ui-btn ui-btn--ghost mt-8 !py-2.5 !px-5 !text-sm">
+            {t({ tr: "Yazılarım dev.to'da da", en: 'My posts are on dev.to too', no: 'Innleggene mine finnes også på dev.to' })}
+            <ArrowIcon />
+          </a>
           <div className="mt-12 lg:mt-16 grid md:grid-cols-2 gap-4 lg:gap-6">
             <div className="md:col-span-2">
               <PostCard post={first} wide />
