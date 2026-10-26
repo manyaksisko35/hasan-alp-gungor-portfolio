@@ -10,6 +10,7 @@ export const LINKS = {
   itch: 'https://hasan-alp-gungor.itch.io/',
   linkedin: 'https://www.linkedin.com/in/hasan-alp-g%C3%BCng%C3%B6r-b1085131a/',
   devto: 'https://dev.to/hasanalpgungor',
+  hashnode: 'https://hasanalpgungor.hashnode.dev',
 };
 
 export const LOCAGEN_ITCH = 'https://hasan-alp-gungor.itch.io/locagen-pro-universal-game-localization-tool';
