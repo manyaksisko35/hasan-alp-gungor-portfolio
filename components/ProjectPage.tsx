@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import { ArrowIcon, GitHubIcon, ItchIcon, YouTubeIcon } from '@/components/Icons';
+import LocaGenDemo from '@/components/LocaGenDemo';
 import { PageBackground, PageFooter, PageHeader } from '@/components/PageChrome';
 import { VideoCard, VideoModal } from '@/components/VideoCard';
 import { VIDEOS, type Video } from '@/lib/data';
@@ -118,6 +119,8 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
               ))}
             </ul>
           </section>
+
+          {project.slug === 'locagen' && <LocaGenDemo />}
 
           {project.gallery.length > 0 && (
             <section className="mt-16 lg:mt-24">

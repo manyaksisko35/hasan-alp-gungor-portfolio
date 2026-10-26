@@ -416,3 +416,12 @@ a.rounded-full:focus-visible { border-radius: 999px; }
 @media (prefers-reduced-motion: reduce) {
   .nf-shard { animation: none; }
 }
+
+/* LocaGen demo: steps fade up one after another. */
+@keyframes demo-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*='animate-[demo-in'] { animation: none !important; }
+}
