@@ -389,6 +389,54 @@ export const DETAILS: ProjectDetail[] = [
     video: 'major-hud',
   },
   {
+    slug: 'ak47-controller',
+    name: 'AK-47 Controller for CS2',
+    kind: { tr: 'Donanım · Oyun kontrolcüsü', en: 'Hardware · Game controller', no: 'Maskinvare · Spillkontroller' },
+    summary: {
+      tr: 'Airsoft bir AK-47\'yi Counter-Strike 2 için oyun kontrolcüsüne çevirdim. Tüfeği nereye doğrultursan oyundaki nişan oraya gidiyor, tetiği çekince ateş ediyor.',
+      en: 'I turned an airsoft AK-47 into a controller for Counter-Strike 2. Wherever you point the rifle, your aim in game follows, and pulling the trigger fires.',
+      no: 'Jeg gjorde om en airsoft AK-47 til en kontroller for Counter-Strike 2. Der du peker geværet, følger siktet i spillet etter, og når du trykker på avtrekkeren, skyter du.',
+    },
+    about: [
+      {
+        tr: 'CS2\'yi gerçekten bir tüfek tutuyormuş gibi oynamak istedim. Tüfeğin üzerine bir MPU-6050 jiroskop sensörü yerleştirdim ve onu bir Arduino Uno ile okuyorum. Tüfeği hareket ettirdikçe jiroskoptan gelen veri bilgisayarda fare hareketine dönüşüyor; yani nişan almak için gerçekten namluyu çeviriyorsun.',
+        en: 'I wanted to play CS2 as if I were really holding a rifle. An MPU-6050 gyro sits on the rifle and is read by an Arduino Uno. As you move the rifle, the gyro readings turn into mouse movement on the PC, so you aim by actually turning the barrel.',
+        no: 'Jeg ville spille CS2 som om jeg faktisk holdt et gevær. En MPU-6050-gyro sitter på geværet og leses av en Arduino Uno. Når du beveger geværet, blir gyrodataene til musebevegelser på PC-en, så du sikter ved å faktisk vri løpet.',
+      },
+      {
+        tr: 'Arduino bilgisayara USB kabloyla bağlı ve tetiği çekince oyunda ateş ediliyor. Yürümek için bir direksiyon setinin pedalını kullanıyorum; böylece iki elim de tüfekte kalıyor. Bütün bir maçı bu tüfekle oynadığım video aşağıda.',
+        en: 'The Arduino is connected to the PC over USB, and pulling the trigger fires in game. For walking I use the pedal from a racing wheel set, so both hands stay on the rifle. The video of a full match played with it is below.',
+        no: 'Arduinoen er koblet til PC-en med USB, og når du trykker på avtrekkeren, skyter du i spillet. For å gå bruker jeg pedalen fra et rattsett, så begge hendene blir på geværet. Videoen av en hel kamp spilt med den ligger nedenfor.',
+      },
+    ],
+    features: [
+      {
+        title: { tr: 'Jiroskopla nişan', en: 'Gyro aiming', no: 'Sikting med gyro' },
+        text: { tr: 'MPU-6050 tüfeğin dönüşünü ölçüyor; bu hareket oyunda fare hareketine dönüşüyor.', en: 'The MPU-6050 measures how the rifle turns, and that turns into mouse movement in game.', no: 'MPU-6050 måler hvordan geværet vris, og det blir til musebevegelser i spillet.' },
+      },
+      {
+        title: { tr: 'Gerçek tetik', en: 'A real trigger', no: 'En ekte avtrekker' },
+        text: { tr: 'Tüfeğin kendi tetiğini çekince oyunda ateş ediliyor.', en: "Pulling the rifle's own trigger fires in game.", no: 'Når du trykker på geværets egen avtrekker, skyter du i spillet.' },
+      },
+      {
+        title: { tr: 'Pedalla yürüme', en: 'Walking with a pedal', no: 'Gå med pedal' },
+        text: { tr: 'Direksiyon setinin pedalı yürümek için kullanılıyor, iki el de tüfekte kalıyor.', en: 'A racing wheel pedal handles walking, so both hands stay on the rifle.', no: 'En pedal fra et rattsett brukes til å gå, så begge hendene blir på geværet.' },
+      },
+      {
+        title: { tr: 'USB ile bağlantı', en: 'Wired over USB', no: 'Kablet med USB' },
+        text: { tr: 'Arduino Uno bilgisayara kabloyla bağlı, kurulum basit.', en: 'The Arduino Uno is wired to the PC, which keeps the setup simple.', no: 'Arduino Uno er koblet til PC-en med kabel, noe som holder oppsettet enkelt.' },
+      },
+    ],
+    stack: ['Arduino Uno', 'C++', 'MPU-6050', 'Gyroscope'],
+    cover: { src: '/projects/ak47-controller/cover.jpg', fit: 'cover', glow: 'radial-gradient(60% 60% at 50% 50%, rgba(255,200,80,0.14), transparent 72%)' },
+    gallery: [],
+    links: [
+      { kind: 'live', label: { tr: "Hackaday.io'da", en: 'On Hackaday.io', no: 'På Hackaday.io' }, href: 'https://hackaday.io/project/207240-ak-47-controller-for-counter-strike-2' },
+      { kind: 'youtube', label: { tr: 'Videoyu izle', en: 'Watch the video', no: 'Se videoen' }, href: 'https://www.youtube.com/watch?v=DKzpmteFwCs' },
+    ],
+    video: 'ak47',
+  },
+  {
     slug: 'goal-detector',
     name: 'Goal Detector System',
     kind: { tr: 'Donanım projesi', en: 'Hardware project', no: 'Maskinvareprosjekt' },

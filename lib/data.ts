@@ -128,6 +128,19 @@ export const PROJECTS: Project[] = [
     accent: '#e4e4e7',
   },
   {
+    slug: 'ak47-controller',
+    name: 'AK-47 Controller for CS2',
+    href: 'https://hackaday.io/project/207240-ak-47-controller-for-counter-strike-2',
+    tag: { tr: 'Donanım · Oyun', en: 'Hardware · Games', no: 'Maskinvare · Spill' },
+    text: {
+      tr: 'Airsoft bir AK-47\'yi MPU-6050 jiroskop ve Arduino Uno ile CS2 kontrolcüsüne çevirdim. Tüfeği doğrultarak nişan alıyorsun, tetikle ateş ediyorsun, pedalla yürüyorsun.',
+      en: 'I turned an airsoft AK-47 into a CS2 controller with an MPU-6050 gyro and an Arduino Uno. You aim by pointing the rifle, fire with the trigger and walk with a pedal.',
+      no: 'Jeg gjorde om en airsoft AK-47 til en CS2-kontroller med en MPU-6050-gyro og en Arduino Uno. Du sikter ved å peke geværet, skyter med avtrekkeren og går med en pedal.',
+    },
+    stack: ['Arduino', 'MPU-6050', 'C++'],
+    accent: '#a1a1aa',
+  },
+  {
     slug: 'goal-detector',
     name: 'Goal Detector System',
     href: `${GH}/GoalDetectorSystem`,
