@@ -161,6 +161,107 @@ export const POSTS: Post[] = [
     ],
   },
   {
+    slug: 'pcprogramkurucu-winget',
+    date: '2026-11-02',
+    title: {
+      tr: 'Yeni bir Windows bilgisayarı tek tıkla kurmak: winget ve canlı donanım grafikleri',
+      en: 'Setting up a new Windows PC in one click: winget and live hardware charts',
+      no: 'Sette opp en ny Windows-PC med ett klikk: winget og live maskinvaregrafer',
+    },
+    description: {
+      tr: 'PcProgramKurucu\'yu nasıl yaptım: 73 programı winget ile arka planda kurmak, arayüzü dondurmamak, Intel ve AMD\'de sıcaklık sensörünü bulmak ve 73 kartı akıcı kaydırmak.',
+      en: 'How I built PcProgramKurucu: installing 73 programs with winget in the background, keeping the window responsive, finding the temperature sensor on Intel and AMD, and scrolling 73 cards smoothly.',
+      no: 'Slik bygde jeg PcProgramKurucu: installere 73 programmer med winget i bakgrunnen, holde vinduet responsivt, finne temperatursensoren på Intel og AMD, og rulle 73 kort jevnt.',
+    },
+    tags: ['C#', 'WinForms', 'winget', 'LibreHardwareMonitor'],
+    cover: '/blog/pcprogramkurucu.jpg',
+    body: [
+      p(
+        'Her yeni bilgisayar kurduğumda aynı şeyi yapıyordum: tarayıcıyı açıp Chrome\'u, Steam\'i, Discord\'u, VS Code\'u tek tek indirmek ve kurulum sihirbazlarında "İleri"ye basmak. Bunu tek tıka indirmek için PcProgramKurucu\'yu yazdım. C# ve Windows Forms ile yazılmış bir uygulama; sık kullanılan 73 programı listeliyor, yanında da bilgisayarın donanımını canlı grafiklerle gösteriyor.',
+        'Every time I set up a new PC I did the same thing: open a browser, download Chrome, Steam, Discord and VS Code one by one, and click "Next" through every installer. I wrote PcProgramKurucu ("PC program installer") to turn that into one click. It is a C# Windows Forms app that lists 73 common programs, and next to them shows the PC\'s hardware in live charts.',
+        'Hver gang jeg satte opp en ny PC, gjorde jeg det samme: åpnet en nettleser, lastet ned Chrome, Steam, Discord og VS Code én etter én, og trykket "Neste" gjennom hvert installasjonsprogram. Jeg skrev PcProgramKurucu ("PC-programinstallerer") for å gjøre det til ett klikk. Det er en C# Windows Forms-app som viser 73 vanlige programmer, og ved siden av viser den PC-ens maskinvare i live grafer.',
+      ),
+      h2('winget: kurulum sihirbazı olmadan kurmak', 'winget: installing without the setup wizard', 'winget: installere uten installasjonsveiviseren'),
+      p(
+        'Windows\'un kendi paket yöneticisi winget, bir programı tek komutla indirip sessizce kurabiliyor. Her programın winget-pkgs deposunda bir kimliği var (Google.Chrome, Valve.Steam, Microsoft.VisualStudioCode gibi). Listedeki 73 programın hepsini bu depodaki gerçek kimliklerle eşleştirdim. "İndir" butonuna basınca uygulama arka planda şu komutu çalıştırıyor:',
+        'winget, Windows\'s own package manager, can download a program and install it silently with one command. Every program has an ID in the winget-pkgs repository (like Google.Chrome, Valve.Steam or Microsoft.VisualStudioCode). I matched all 73 programs in the list to their real IDs there. When you press the download button, the app runs this command in the background:',
+        'winget, Windows sin egen pakkebehandler, kan laste ned et program og installere det stille med én kommando. Hvert program har en ID i winget-pkgs-depotet (som Google.Chrome, Valve.Steam eller Microsoft.VisualStudioCode). Jeg koblet alle de 73 programmene i listen til de ekte ID-ene der. Når du trykker på nedlastingsknappen, kjører appen denne kommandoen i bakgrunnen:',
+      ),
+      { type: 'code', lang: 'bash', code: 'winget install --id Google.Chrome -e --accept-package-agreements --accept-source-agreements' },
+      p(
+        '-e tam eşleşme demek; yanlışlıkla adı benzeyen başka bir paketi kurmasını engelliyor. Son iki parametre de lisans onaylarını otomatik kabul ediyor, böylece kurulum yarıda soru sorup takılmıyor.',
+        '-e means exact match, so it never installs a package with a similar name by mistake. The last two flags accept the license agreements up front, so the install never stops halfway to ask a question.',
+        '-e betyr eksakt treff, så den installerer aldri en pakke med et lignende navn ved en feil. De to siste flaggene godtar lisensavtalene på forhånd, så installasjonen aldri stopper halvveis for å stille et spørsmål.',
+      ),
+      h2('Arayüzü dondurmamak', 'Keeping the window responsive', 'Holde vinduet responsivt'),
+      p(
+        'Bir kurulum dakikalar sürebiliyor. Komutu doğrudan çalıştırsaydım, kurulum bitene kadar bütün pencere donardı. Bu yüzden winget\'i görünmez bir konsolda, ayrı bir iş parçacığında başlatıyorum ve bitmesini await ile bekliyorum. Bu sırada arayüz çalışmaya devam ediyor: sağdaki panelde programın adı, logosu ve bir ilerleme çubuğu görünüyor. Kurulum bitince çıkış koduna bakıyorum; 0 değilse winget\'in kendi çıktısını hata penceresinde gösteriyorum.',
+        'An install can take minutes. If I ran the command directly, the whole window would freeze until it finished. So I start winget in a hidden console on a separate thread and wait for it with await. Meanwhile the interface keeps working: a side panel shows the program\'s name, logo and a progress bar. When it finishes I check the exit code, and if it isn\'t 0 I show winget\'s own output in an error dialog.',
+        'En installasjon kan ta flere minutter. Hvis jeg kjørte kommandoen direkte, ville hele vinduet fryse til den var ferdig. Derfor starter jeg winget i en skjult konsoll på en egen tråd og venter på den med await. Imens fortsetter grensesnittet å fungere: et sidepanel viser programmets navn, logo og en fremdriftslinje. Når den er ferdig, sjekker jeg avslutningskoden, og hvis den ikke er 0, viser jeg winget sin egen utdata i en feilmelding.',
+      ),
+      {
+        type: 'code',
+        lang: 'csharp',
+        code: `await Task.Run(() =>
+{
+    var process = new Process();
+    process.StartInfo.FileName = "cmd.exe";
+    process.StartInfo.Arguments = $"/c winget install --id {wingetId} -e --accept-package-agreements --accept-source-agreements";
+    process.StartInfo.UseShellExecute = false;
+    process.StartInfo.CreateNoWindow = true;
+    process.StartInfo.RedirectStandardOutput = true;
+    process.StartInfo.RedirectStandardError = true;
+    process.Start();
+
+    output = process.StandardOutput.ReadToEnd();
+    errors = process.StandardError.ReadToEnd();
+    process.WaitForExit();
+    exitCode = process.ExitCode;
+});`,
+      },
+      p(
+        'Uygulama yönetici olarak açılıyor; programların bilgisayarın tamamına kurulabilmesi ve donanım sensörlerinin okunabilmesi için bu gerekiyor.',
+        'The app starts with administrator rights; that is needed both to install programs machine-wide and to read the hardware sensors.',
+        'Appen starter med administratorrettigheter; det trengs både for å installere programmer for hele maskinen og for å lese maskinvaresensorene.',
+      ),
+      h2('Intel ve AMD\'de sıcaklık sensörünü bulmak', 'Finding the temperature sensor on Intel and AMD', 'Finne temperatursensoren på Intel og AMD'),
+      p(
+        'Donanım bilgisi için LibreHardwareMonitor kütüphanesini kullanıyorum. İşlemci yükünü okumak kolay, ama sıcaklıkta bir sorun çıktı: sensörlerin adı üreticiye göre değişiyor. Intel işlemcilerde genelde "Core Average" var; AMD Ryzen\'de bu yok, onun yerine "CPU Package" ya da "Core (Tctl/Tdie)" gibi adlar geçiyor. Çözüm olarak bilinen adları sırayla deniyorum, hiçbiri yoksa bulduğum ilk sıcaklık sensörünü kullanıyorum:',
+        'For hardware data I use the LibreHardwareMonitor library. Reading the CPU load is easy, but temperature had a catch: sensor names differ by manufacturer. Intel CPUs usually have "Core Average"; AMD Ryzen doesn\'t, and uses names like "CPU Package" or "Core (Tctl/Tdie)" instead. My fix is to try the known names in order and, if none exist, use the first temperature sensor I can find:',
+        'For maskinvaredata bruker jeg biblioteket LibreHardwareMonitor. Å lese CPU-belastningen er enkelt, men temperaturen hadde en hake: sensornavnene varierer etter produsent. Intel-prosessorer har vanligvis "Core Average"; AMD Ryzen har ikke det, og bruker navn som "CPU Package" eller "Core (Tctl/Tdie)" i stedet. Løsningen min er å prøve de kjente navnene i rekkefølge, og hvis ingen finnes, bruke den første temperatursensoren jeg finner:',
+      ),
+      {
+        type: 'code',
+        lang: 'csharp',
+        code: `string[] knownNames = { "Core Average", "CPU Package", "Core (Tctl/Tdie)", "Core Max" };
+ISensor tempSensor = null;
+foreach (var name in knownNames)
+{
+    tempSensor = cpu.Sensors.FirstOrDefault(s => s.SensorType == SensorType.Temperature && s.Name == name);
+    if (tempSensor != null) break;
+}
+if (tempSensor == null)
+    tempSensor = cpu.Sensors.FirstOrDefault(s => s.SensorType == SensorType.Temperature);`,
+      },
+      p(
+        'Ekran kartında işler daha kolay: NVIDIA ve AMD kartlarda yük ve sıcaklık "GPU Core" adıyla geliyor. Disk etkinliği için Windows\'un kendi performans sayacını (PhysicalDisk, % Disk Time) kullanıyorum. Bütün değerler saniyede bir güncelleniyor ve grafikler son 40 ölçümü gösteriyor.',
+        'The graphics card is easier: on NVIDIA and AMD cards, load and temperature both come under the name "GPU Core". For disk activity I use Windows\'s own performance counter (PhysicalDisk, % Disk Time). Every value updates once a second, and the charts keep the last 40 readings.',
+        'Skjermkortet er enklere: på NVIDIA- og AMD-kort kommer både belastning og temperatur under navnet "GPU Core". For diskaktivitet bruker jeg Windows sin egen ytelsesteller (PhysicalDisk, % Disk Time). Alle verdier oppdateres én gang i sekundet, og grafene viser de siste 40 målingene.',
+      ),
+      h2('73 kartı akıcı kaydırmak', 'Scrolling 73 cards smoothly', 'Rulle 73 kort jevnt'),
+      p(
+        'İlk sürümde her program için ayrı bir kart kontrolü vardı ve Windows\'un kendi kaydırma çubuğunu kullanıyordum. 73 kartla kaydırma takılıyor, kaydırma çubuğu da içerikle senkronunu kaybediyordu. Sonunda bütün listeyi tek bir kontrol olarak yeniden yazdım: kartların hepsini tek bir Paint çağrısında kendim çiziyorum ve kendi ince kaydırma çubuğumu kullanıyorum. Fare tekerleği, çubuğu sürükleme ve çubuğun boş kısmına tıklama hepsi çalışıyor; liste artık akıcı kayıyor.',
+        'The first version had a separate card control for each program and used Windows\'s native scrollbar. With 73 cards, scrolling stuttered and the scrollbar kept losing sync with the content. In the end I rewrote the whole list as a single control: I draw every card myself in one Paint call and use my own thin scrollbar. The mouse wheel, dragging the thumb and clicking the track all work, and the list now scrolls smoothly.',
+        'Den første versjonen hadde en egen kortkontroll for hvert program og brukte Windows sin innebygde rullefelt. Med 73 kort hakket rullingen, og rullefeltet mistet stadig synkroniseringen med innholdet. Til slutt skrev jeg hele listen om til én kontroll: jeg tegner alle kortene selv i ett Paint-kall og bruker mitt eget tynne rullefelt. Musehjulet, å dra i rullefeltet og å klikke på sporet fungerer, og listen ruller nå jevnt.',
+      ),
+      p(
+        'Programların logolarını Google\'ın favicon servisinden, her programın web sitesinin alan adıyla çekiyorum; 73 logo dosyasını uygulamanın içine gömmek zorunda kalmadım. Uygulama tek bir exe olarak geliyor (kullandığı kütüphaneler Costura.Fody ile içine gömülü) ve açılışta GitHub\'da yeni bir sürüm olup olmadığına bakıyor. Kodun tamamı GitHub\'da.',
+        'The program logos come from Google\'s favicon service, using each program\'s website domain, so I didn\'t have to ship 73 logo files with the app. The app comes as a single exe (its libraries are embedded with Costura.Fody) and checks GitHub for a new version on startup. All the code is on GitHub.',
+        'Programlogoene hentes fra Googles favicon-tjeneste med domenet til hvert programs nettsted, så jeg slapp å legge ved 73 logofiler i appen. Appen kommer som én exe (bibliotekene er bygd inn med Costura.Fody) og sjekker GitHub for en ny versjon ved oppstart. All koden ligger på GitHub.',
+      ),
+    ],
+  },
+  {
     slug: 'glass-logo',
     date: '2026-10-23',
     title: {
