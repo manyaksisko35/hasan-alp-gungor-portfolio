@@ -12,6 +12,7 @@ export const LINKS = {
   devto: 'https://dev.to/hasanalpgungor',
   hashnode: 'https://hasanalpgungor.hashnode.dev',
   gravatar: 'https://gravatar.com/hasanalpgungor35',
+  hackaday: 'https://hackaday.io/hasanalpgungor',
 };
 
 export const LOCAGEN_ITCH = 'https://hasan-alp-gungor.itch.io/locagen-pro-universal-game-localization-tool';
