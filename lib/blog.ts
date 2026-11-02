@@ -24,6 +24,143 @@ const h2 = (tr: string, en: string, no: string): Block => ({ type: 'h2', text: {
 
 export const POSTS: Post[] = [
   {
+    slug: 'cs2-custom-hud-setup',
+    date: '2026-11-02',
+    title: {
+      tr: "CS2'de özel yayın HUD'u nasıl kurulur? Adım adım GSI rehberi",
+      en: 'How to set up a custom CS2 broadcast HUD: a step-by-step GSI guide',
+      no: 'Slik setter du opp en egen CS2-HUD for streaming: steg for steg med GSI',
+    },
+    description: {
+      tr: "Counter-Strike 2'de Major tarzı bir yayın HUD'unu kurmak için gereken her şey: GSI cfg dosyası, Python sunucusu, OBS ayarı ve en sık karşılaşılan sorunların çözümü.",
+      en: 'Everything you need to run a Major-style broadcast HUD in Counter-Strike 2: the GSI cfg file, the Python server, the OBS setup and fixes for the most common problems.',
+      no: 'Alt du trenger for å kjøre en HUD i Major-stil i Counter-Strike 2: GSI-cfg-filen, Python-serveren, oppsettet i OBS og løsninger på de vanligste problemene.',
+    },
+    tags: ['CS2', 'HUD', 'OBS', 'Game State Integration'],
+    cover: '/projects/cs2-hud/hud.jpg',
+    project: 'cs2-major-hud',
+    body: [
+      p(
+        "Turnuva yayınlarında gördüğün o özel arayüzler (takım panelleri, killfeed, bomba sayacı) aslında oyunun kendisinden gelmiyor. Oyunun dışarıya verdiği canlı maç verisini okuyan ayrı bir arayüz, yayın programında oyun görüntüsünün üstüne bindiriliyor. Bu rehberde kendi yazdığım açık kaynak CS2 Major HUD'unu adım adım kurmayı anlatıyorum. Aynı mantık başka GSI tabanlı HUD'lar için de geçerli.",
+        'The custom overlays you see on tournament streams (team panels, the killfeed, the bomb timer) do not come from the game itself. A separate overlay reads the live match data the game sends out, and the streaming software puts it on top of the game. In this guide I set up my own open source CS2 Major HUD step by step. The same idea works for other GSI-based HUDs too.',
+        'De egne grafikkene du ser på turneringssendinger (lagpaneler, killfeed, bombetimer) kommer ikke fra selve spillet. Et eget overlegg leser live kampdata som spillet sender ut, og streamingprogrammet legger det oppå spillbildet. I denne guiden setter jeg opp min egen CS2 Major HUD med åpen kildekode, steg for steg. Den samme ideen fungerer for andre GSI-baserte HUD-er også.',
+      ),
+      h2('Ne gerekiyor?', 'What you need', 'Hva du trenger'),
+      {
+        type: 'list',
+        items: [
+          { tr: 'Counter-Strike 2 (Steam)', en: 'Counter-Strike 2 (Steam)', no: 'Counter-Strike 2 (Steam)' },
+          { tr: 'Python 3 (python.org\'dan indirilebilir)', en: 'Python 3 (from python.org)', no: 'Python 3 (fra python.org)' },
+          { tr: 'OBS Studio ya da tarayıcı kaynağı ekleyebilen başka bir yayın programı', en: 'OBS Studio, or any streaming software that can add a browser source', no: 'OBS Studio, eller et annet streamingprogram som kan legge til en nettleserkilde' },
+          { tr: 'HUD dosyaları: github.com/manyaksisko35/CounterStrike2MajorHUD', en: 'The HUD files: github.com/manyaksisko35/CounterStrike2MajorHUD', no: 'HUD-filene: github.com/manyaksisko35/CounterStrike2MajorHUD' },
+        ],
+      },
+      h2('1. GSI cfg dosyasını oyuna ekle', '1. Add the GSI cfg file to the game', '1. Legg GSI-cfg-filen inn i spillet'),
+      p(
+        "CS2'nin Game State Integration (GSI) özelliği, maç sırasında oyunun durumunu belirlediğin bir adrese JSON olarak gönderiyor. Bunu açmak için oyunun cfg klasörüne adı gamestate_integration_ ile başlayıp .cfg ile biten bir dosya koyman yeterli. Projedeki gamestate_integration_manyak.cfg dosyasını şu klasöre kopyala:",
+        "CS2's Game State Integration (GSI) sends the state of the match as JSON to an address you choose. To turn it on, put a file whose name starts with gamestate_integration_ and ends with .cfg into the game's cfg folder. Copy gamestate_integration_manyak.cfg from the project into this folder:",
+        'CS2s Game State Integration (GSI) sender kampens tilstand som JSON til en adresse du velger. For å slå det på legger du en fil som starter med gamestate_integration_ og slutter på .cfg i spillets cfg-mappe. Kopier gamestate_integration_manyak.cfg fra prosjektet til denne mappen:',
+      ),
+      { type: 'code', lang: 'path', code: 'Steam\\steamapps\\common\\Counter-Strike Global Offensive\\game\\csgo\\cfg' },
+      p(
+        "Klasörü bulmanın kolay yolu: Steam'de CS2'ye sağ tıkla, Yönet → Yerel dosyalara göz at, sonra game → csgo → cfg. Dosyanın içi şöyle; oyun her 0,1 saniyede bir veriyi 127.0.0.1:3000 adresine gönderiyor:",
+        'The easy way to find the folder: in Steam, right-click CS2, choose Manage → Browse local files, then open game → csgo → cfg. This is what the file contains; the game sends data to 127.0.0.1:3000 every 0.1 seconds:',
+        'Den enkle måten å finne mappen på: høyreklikk CS2 i Steam, velg Administrer → Bla gjennom lokale filer, og åpne game → csgo → cfg. Slik ser filen ut; spillet sender data til 127.0.0.1:3000 hvert 0,1 sekund:',
+      ),
+      {
+        type: 'code',
+        lang: 'cfg',
+        code: `"Manyaksisko35 GSI v1"
+{
+ "uri" "http://127.0.0.1:3000"
+ "timeout" "5.0"
+ "buffer"  "0.1"
+ "throttle" "0.1"
+ "heartbeat" "30.0"
+ "data"
+ {
+   "provider"            "1"
+   "map"                 "1"
+   "round"               "1"
+   "player_id"           "1"
+   "player_state"        "1"
+   "player_weapons"      "1"
+   "player_match_stats"  "1"
+   "allplayers_id"       "1"
+   "allplayers_state"    "1"
+   "allplayers_weapons"  "1"
+   "allplayers_match_stats" "1"
+   "phase_countdowns"    "1"
+   "allplayers_position" "1"
+ }
+}`,
+      },
+      p(
+        "Oyun cfg dosyalarını açılışta okuduğu için CS2 açıksa kapatıp yeniden aç.",
+        'The game reads cfg files when it starts, so if CS2 is open, restart it.',
+        'Spillet leser cfg-filer når det starter, så hvis CS2 er åpent, må du starte det på nytt.',
+      ),
+      h2('2. Python sunucusunu çalıştır', '2. Start the Python server', '2. Start Python-serveren'),
+      p(
+        "Oyunun gönderdiği veriyi alan küçük bir Flask sunucusu var. Proje klasöründe bir terminal aç ve gerekli paketleri kurup sunucuyu başlat:",
+        'A small Flask server receives the data the game sends. Open a terminal in the project folder, install the packages and start the server:',
+        'En liten Flask-server tar imot dataene spillet sender. Åpne en terminal i prosjektmappen, installer pakkene og start serveren:',
+      ),
+      { type: 'code', lang: 'bash', code: 'pip install -r requirements.txt\npython main.py' },
+      p(
+        "Çalıştığını görmek için tarayıcıda http://127.0.0.1:3000 adresini aç; \"CS2 GSI Sunucusu Aktif\" yazısı görmelisin. Maç sırasında http://127.0.0.1:3000/canli_veri adresi de HUD'un okuduğu sadeleştirilmiş veriyi gösteriyor. Bir sorun olduğunda ilk bakacağın yer burası.",
+        'To check that it works, open http://127.0.0.1:3000 in a browser; you should see "CS2 GSI Sunucusu Aktif" ("CS2 GSI server is running"). During a match, http://127.0.0.1:3000/canli_veri shows the cleaned-up data the HUD reads. That is the first place to look when something is wrong.',
+        'For å sjekke at det fungerer, åpner du http://127.0.0.1:3000 i en nettleser; du skal se "CS2 GSI Sunucusu Aktif" ("CS2 GSI-serveren kjører"). Under en kamp viser http://127.0.0.1:3000/canli_veri de forenklede dataene HUD-en leser. Det er det første stedet du bør se når noe er galt.',
+      ),
+      h2("3. HUD'u OBS'e ekle", '3. Add the HUD to OBS', '3. Legg HUD-en til i OBS'),
+      {
+        type: 'list',
+        items: [
+          { tr: "OBS'te Kaynaklar kutusunda + → Tarayıcı'yı seç.", en: 'In OBS, click + in the Sources box and choose Browser.', no: 'I OBS klikker du + i Kilder-boksen og velger Nettleser.' },
+          { tr: "\"Yerel dosya\" kutusunu işaretle ve projedeki index.html dosyasını seç.", en: 'Tick "Local file" and pick index.html from the project.', no: 'Kryss av for "Lokal fil" og velg index.html fra prosjektet.' },
+          { tr: 'Genişliği 1920, yüksekliği 1080 yap. Arka plan şeffaf, ek bir ayar gerekmiyor.', en: 'Set the width to 1920 and the height to 1080. The background is transparent, so nothing else is needed.', no: 'Sett bredden til 1920 og høyden til 1080. Bakgrunnen er gjennomsiktig, så du trenger ikke mer.' },
+          { tr: 'Tarayıcı kaynağını oyun yakalama kaynağının üstüne taşı.', en: 'Move the browser source above your game capture.', no: 'Flytt nettleserkilden over spillopptaket.' },
+        ],
+      },
+      p(
+        "HUD saniyede 10 kez sunucuya sorup sadece değişen kısımları güncelliyor, bu yüzden yayında titreme olmuyor. Takım adları ve logoları index.html dosyasının içinde yazılı; kendi maçına göre oradan değiştirebilirsin.",
+        'The HUD asks the server 10 times a second and only updates what changed, so it does not flicker on stream. Team names and logos are written in index.html; change them there for your own match.',
+        'HUD-en spør serveren 10 ganger i sekundet og oppdaterer bare det som endret seg, så det flimrer ikke på streamen. Lagnavn og logoer står i index.html; endre dem der for din egen kamp.',
+      ),
+      h2('Sık karşılaşılan sorunlar', 'Common problems', 'Vanlige problemer'),
+      {
+        type: 'list',
+        items: [
+          {
+            tr: "HUD'da hiç veri yok, süre \"--:--\" kalıyor: cfg dosyasının adının gamestate_integration_ ile başladığını ve doğru klasörde olduğunu kontrol et, sonra CS2'yi yeniden başlat. Sunucunun açık olduğundan emin ol.",
+            en: 'The HUD shows no data and the timer stays at "--:--": check that the cfg file name starts with gamestate_integration_ and that it is in the right folder, then restart CS2. Make sure the server is running.',
+            no: 'HUD-en viser ingen data og tiden står på "--:--": sjekk at cfg-filen starter med gamestate_integration_ og ligger i riktig mappe, og start CS2 på nytt. Sørg for at serveren kjører.',
+          },
+          {
+            tr: "Takım panelleri boş: oyun, bütün oyuncuların verisini (allplayers) sadece izleyici olarak maçı izlerken gönderiyor; kendin oynarken göndermiyor. Yayın HUD'ları bu yüzden izleyici modu ya da GOTV ile kullanılıyor.",
+            en: 'The team panels are empty: the game only sends every player\'s data (allplayers) while you are spectating, not while you are playing yourself. That is why broadcast HUDs are used in spectator mode or with GOTV.',
+            no: 'Lagpanelene er tomme: spillet sender bare data om alle spillerne (allplayers) når du ser på som tilskuer, ikke når du spiller selv. Det er derfor broadcast-HUD-er brukes i tilskuermodus eller med GOTV.',
+          },
+          {
+            tr: "\"Adres kullanımda\" hatası: 3000 portunu başka bir program kullanıyor. main.py'deki portu, cfg'deki uri satırını ve index.html'deki adresi aynı yeni porta çevir.",
+            en: '"Address already in use": another program is using port 3000. Change the port in main.py, the uri line in the cfg and the address in index.html to the same new port.',
+            no: '"Adressen er allerede i bruk": et annet program bruker port 3000. Endre porten i main.py, uri-linjen i cfg-filen og adressen i index.html til den samme nye porten.',
+          },
+          {
+            tr: "Silah ikonları görünmüyor: ikonlar internetten yükleniyor. İnternet yoksa ya da adres değiştiyse HUD silahın adını yazıya çeviriyor, çalışmaya devam ediyor.",
+            en: 'Weapon icons are missing: the icons load from the internet. Without a connection, or if the address changes, the HUD shows the weapon name as text and keeps working.',
+            no: 'Våpenikonene vises ikke: ikonene lastes fra internett. Uten tilkobling, eller hvis adressen endres, viser HUD-en våpennavnet som tekst og fortsetter å fungere.',
+          },
+        ],
+      },
+      p(
+        "HUD'u kurmadan önce nasıl göründüğüne bakmak istersen, proje sayfasında örnek bir maçla çalışan canlı demosu var. Kod GitHub'da açık; nasıl yazdığımı da ayrı bir yazıda anlattım.",
+        'If you want to see how the HUD looks before setting it up, the project page has a live demo running a sample match. The code is open on GitHub, and I wrote about how I built it in a separate post.',
+        'Hvis du vil se hvordan HUD-en ser ut før du setter den opp, har prosjektsiden en live demo som spiller en eksempelkamp. Koden er åpen på GitHub, og jeg har skrevet om hvordan jeg bygde den i et eget innlegg.',
+      ),
+    ],
+  },
+  {
     slug: 'glass-logo',
     date: '2026-10-23',
     title: {
