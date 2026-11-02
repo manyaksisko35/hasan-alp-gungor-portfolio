@@ -108,11 +108,11 @@ export const PROJECTS: Project[] = [
     href: LOCAGEN_ITCH,
     tag: { tr: 'Oyun · Yerelleştirme', en: 'Games · Localization', no: 'Spill · Lokalisering' },
     text: {
-      tr: 'Oyunların JSON dil dosyalarını değişkenleri bozmadan başka dillere çeviren aracım. Python ile yazılmış ücretsiz bir masaüstü sürümü ve Gemini kullanan bir PHP web sürümü var.',
-      en: 'My tool that translates game JSON language files into other languages without breaking placeholders. There is a free desktop version in Python and a PHP web version that uses Gemini.',
-      no: 'Verktøyet mitt som oversetter JSON-språkfiler fra spill til andre språk uten å ødelegge plassholderne. Det finnes en gratis skrivebordsversjon i Python og en webversjon i PHP som bruker Gemini.',
+      tr: 'Oyunların JSON dil dosyalarını değişkenleri bozmadan başka dillere çeviren aracım. Python ile yazdığım Free ve PRO masaüstü sürümleri ve Gemini kullanan ayrı bir PHP web sürümü var.',
+      en: 'My tool that translates game JSON language files into other languages without breaking placeholders. There are Free and PRO desktop editions written in Python, and a separate PHP web version that uses Gemini.',
+      no: 'Verktøyet mitt som oversetter JSON-språkfiler fra spill til andre språk uten å ødelegge plassholderne. Det finnes en Free- og en PRO-utgave for skrivebordet skrevet i Python, og en egen nettversjon i PHP som bruker Gemini.',
     },
-    stack: ['Python', 'PHP', 'MySQL', 'Gemini API'],
+    stack: ['Python', 'CustomTkinter', 'PHP', 'Gemini API'],
     accent: '#e4e4e7',
   },
   {

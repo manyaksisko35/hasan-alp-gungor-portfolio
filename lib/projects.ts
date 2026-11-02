@@ -288,9 +288,9 @@ export const DETAILS: ProjectDetail[] = [
     name: 'LocaGen',
     kind: { tr: 'Oyun yerelleştirme aracı', en: 'Game localization tool', no: 'Lokaliseringsverktøy for spill' },
     summary: {
-      tr: 'Oyunların dil dosyalarını başka dillere çeviren yerelleştirme aracım. Ücretsiz bir masaüstü sürümü ve yapay zekâ kullanan bir PRO web sürümü var.',
-      en: 'My localization tool that translates game language files into other languages. It has a free desktop version and a PRO web version that uses AI.',
-      no: 'Lokaliseringsverktøyet mitt, som oversetter språkfiler i spill til andre språk. Det finnes en gratis desktopversjon og en PRO-nettversjon som bruker AI.',
+      tr: 'Oyunların dil dosyalarını başka dillere çeviren yerelleştirme aracım. Python ile yazdığım Free ve PRO masaüstü sürümleri itch.io\'da; PHP ile yazılmış ayrı bir web sürümü de var.',
+      en: 'My localization tool that translates game language files into other languages. The Free and PRO desktop editions are written in Python and available on itch.io, and there is a separate web version built with PHP.',
+      no: 'Lokaliseringsverktøyet mitt, som oversetter språkfiler i spill til andre språk. Free- og PRO-utgaven er desktop-apper skrevet i Python og ligger på itch.io, og i tillegg finnes en egen nettversjon bygd med PHP.',
     },
     about: [
       {
@@ -299,9 +299,14 @@ export const DETAILS: ProjectDetail[] = [
         no: 'Tekst i spill ligger som regel i JSON-språkfiler. LocaGen tar den filen, oversetter bare verdiene uten å røre nøklene, og lager en ny fil som spillet kan bruke direkte.',
       },
       {
-        tr: 'Ücretsiz sürüm Python ile yazılmış bir masaüstü uygulaması ve Google Translate kullanıyor. PRO sürüm PHP ile yazılmış bir web uygulaması; çeviriyi Gemini yapıyor ve oyun terimlerini robotik değil, bir oyuncunun kullanacağı dille çeviriyor.',
-        en: 'The free version is a desktop app written in Python that uses Google Translate. The PRO version is a PHP web app where Gemini does the translation, translating game terms the way a player would say them instead of word for word.',
-        no: 'Gratisversjonen er en desktop-app skrevet i Python som bruker Google Translate. PRO-versjonen er en nettapp i PHP der Gemini står for oversettelsen, og den oversetter spillord slik en spiller faktisk ville sagt dem, ikke ord for ord.',
+        tr: 'Free ve PRO sürümleri Python ve CustomTkinter ile yazdığım Windows uygulamaları; Nuitka ile tek bir exe olarak derleniyorlar. Free sürüm JSON dosyalarını Google Translate ile 6 dile çeviriyor. PRO sürüm JSON, CSV ve TXT dosyalarını 25\'ten fazla dile çeviriyor ve Smart Glossary ile oyunun kendi terimlerini doğru çevirtiyor: bir RPG\'de "Chest" göğüs değil sandık, "Party" parti değil ekip oluyor.',
+        en: 'The Free and PRO editions are Windows apps I wrote in Python with CustomTkinter, compiled into a single exe with Nuitka. The Free edition translates JSON files into 6 languages with Google Translate. The PRO edition handles JSON, CSV and TXT files in more than 25 languages, and its Smart Glossary makes sure a game\'s own terms come out right: in an RPG, "Chest" becomes a treasure chest instead of a body part, and "Party" becomes your squad instead of a celebration.',
+        no: 'Free- og PRO-utgaven er Windows-apper jeg skrev i Python med CustomTkinter, kompilert til én exe-fil med Nuitka. Free-utgaven oversetter JSON-filer til 6 språk med Google Translate. PRO-utgaven håndterer JSON-, CSV- og TXT-filer på over 25 språk, og Smart Glossary sørger for at spillets egne ord blir riktige: i et rollespill blir "Chest" en skattekiste og ikke en kroppsdel, og "Party" blir laget ditt og ikke en fest.',
+      },
+      {
+        tr: 'LocaGen PHP ise ayrı bir web projesi. PHP ve MySQL ile yazdım; çeviriyi Gemini 2.5 Flash yapıyor ve oyun terimlerini kelime kelime değil, bir oyuncunun kullanacağı dille çeviriyor. Kullanıcı girişi, çeviri kaydı ve bir yönetici paneli var.',
+        en: 'LocaGen PHP is a separate web project. I built it with PHP and MySQL; Gemini 2.5 Flash does the translation and translates game terms the way a player would say them instead of word for word. It has user login, a translation log and an admin panel.',
+        no: 'LocaGen PHP er et eget nettprosjekt. Jeg bygde det med PHP og MySQL; Gemini 2.5 Flash står for oversettelsen og oversetter spillord slik en spiller ville sagt dem, ikke ord for ord. Det har innlogging, en logg over oversettelser og et adminpanel.',
       },
     ],
     features: [
@@ -310,37 +315,37 @@ export const DETAILS: ProjectDetail[] = [
         text: { tr: '{player}, <b>, %s ve %d gibi yer tutucular çeviriden önce korunup sonra yerine konuyor, böylece oyunda metinler bozulmuyor.', en: 'Placeholders such as {player}, <b>, %s and %d are protected before translation and put back afterwards, so nothing breaks in game.', no: 'Plassholdere som {player}, <b>, %s og %d beskyttes før oversettelsen og settes tilbake etterpå, så ingenting går i stykker i spillet.' },
       },
       {
-        title: { tr: 'Anahtarlara dokunmuyor', en: 'Keys stay untouched', no: 'Nøklene får være i fred' },
-        text: { tr: 'Sadece değerler çevriliyor; hem düz hem liste şeklindeki JSON yapıları destekleniyor.', en: 'Only the values are translated, for both flat and list-shaped JSON files.', no: 'Bare verdiene oversettes, både i flate JSON-filer og i JSON-filer bygd opp som lister.' },
+        title: { tr: 'Smart Glossary (PRO)', en: 'Smart Glossary (PRO)', no: 'Smart Glossary (PRO)' },
+        text: { tr: 'Oyununa özel terimleri sen belirliyorsun: "Defuse Kit" çözme kiti değil imha kiti, menüdeki "Save" kurtar değil kaydet olarak çevriliyor.', en: 'You set your game\'s own terms: "Defuse Kit" becomes "İmha Kiti" instead of a word-for-word "Çözme Kiti", and "Save" in a menu means saving the game, not rescuing someone.', no: 'Du bestemmer spillets egne ord: "Defuse Kit" blir "İmha Kiti" i stedet for ordrette "Çözme Kiti", og "Save" i en meny betyr å lagre spillet, ikke å redde noen.' },
       },
       {
-        title: { tr: 'Oyuncu diliyle çeviri (PRO)', en: 'Translates like a gamer (PRO)', no: 'Oversetter som en gamer (PRO)' },
-        text: { tr: 'Gemini 2.5 Flash, "kılıç", "zırh", "can iksiri" gibi terimleri oyunun atmosferine uygun şekilde çeviriyor.', en: 'Gemini 2.5 Flash translates terms like "sword", "armor" and "health potion" to match the mood of the game.', no: 'Gemini 2.5 Flash oversetter ord som "sverd", "rustning" og "helsedrikk" så de passer stemningen i spillet.' },
+        title: { tr: 'JSON, CSV ve TXT (PRO)', en: 'JSON, CSV and TXT (PRO)', no: 'JSON, CSV og TXT (PRO)' },
+        text: { tr: 'PRO sürüm üç dosya türünü 25\'ten fazla dile çeviriyor; Unity, Unreal Engine, Godot ve web projeleriyle uyumlu.', en: 'The PRO edition translates all three file types into more than 25 languages and works with Unity, Unreal Engine, Godot and web projects.', no: 'PRO-utgaven oversetter alle tre filtypene til over 25 språk og fungerer med Unity, Unreal Engine, Godot og nettprosjekter.' },
       },
       {
-        title: { tr: 'Hesaplar ve geçmiş (PRO)', en: 'Accounts and history (PRO)', no: 'Kontoer og historikk (PRO)' },
-        text: { tr: 'Kullanıcı girişi, çeviri geçmişi ve bir yönetici paneli; hepsi PHP ve MySQL ile.', en: 'User login, translation history and an admin panel, all built with PHP and MySQL.', no: 'Innlogging, oversettelseshistorikk og et adminpanel, alt bygd med PHP og MySQL.' },
+        title: { tr: 'Gemini ile web sürümü (PHP)', en: 'Web version with Gemini (PHP)', no: 'Nettversjon med Gemini (PHP)' },
+        text: { tr: 'LocaGen PHP\'de çeviriyi Gemini 2.5 Flash yapıyor; kullanıcı girişi, çeviri kaydı ve yönetici paneli PHP ve MySQL ile.', en: 'In LocaGen PHP, Gemini 2.5 Flash does the translation; user login, the translation log and the admin panel are built with PHP and MySQL.', no: 'I LocaGen PHP står Gemini 2.5 Flash for oversettelsen; innlogging, oversettelsesloggen og adminpanelet er bygd med PHP og MySQL.' },
       },
       {
         title: { tr: 'Otomatik güncelleme', en: 'Auto-update', no: 'Automatisk oppdatering' },
-        text: { tr: 'Masaüstü sürümü açılışta GitHub\'daki son sürümü kontrol edip yenisini kendisi indiriyor.', en: 'The desktop version checks GitHub for the latest release on launch and downloads it itself.', no: 'Desktopversjonen sjekker GitHub etter nyeste versjon når den starter, og laster den ned selv.' },
+        text: { tr: 'Masaüstü sürümleri açılışta yeni sürüm olup olmadığını kontrol ediyor ve güncellemeyi kendisi indiriyor.', en: 'The desktop editions check for a new version on launch and download the update themselves.', no: 'Desktop-utgavene sjekker om det finnes en ny versjon når de starter, og laster ned oppdateringen selv.' },
       },
       {
         title: { tr: 'Terminal tasarımı', en: 'Terminal design', no: 'Terminaldesign' },
         text: { tr: 'Neon renkli, terminal görünümlü bir arayüz ve yazı animasyonları.', en: 'A neon, terminal-style interface with typing animations.', no: 'Et neonfarget grensesnitt i terminalstil med skriveanimasjoner.' },
       },
     ],
-    stack: ['Python', 'CustomTkinter', 'PHP', 'MySQL', 'Gemini API', 'JSON'],
+    stack: ['Python', 'CustomTkinter', 'Nuitka', 'PHP', 'MySQL', 'Gemini API'],
     cover: { src: '/projects/locagen/logo.webp', fit: 'contain', glow: 'radial-gradient(55% 60% at 50% 50%, rgba(0,180,255,0.22), transparent 72%)' },
     share: '/projects/locagen/banner.jpg',
     gallery: [
-      { src: '/projects/locagen/pro.jpg', caption: { tr: 'LocaGen PRO web arayüzü', en: 'The LocaGen PRO web interface', no: 'Nettgrensesnittet til LocaGen PRO' } },
+      { src: '/projects/locagen/pro.jpg', caption: { tr: 'LocaGen PHP web arayüzü', en: 'The LocaGen PHP web interface', no: 'Nettgrensesnittet til LocaGen PHP' } },
       { src: '/projects/locagen/banner.jpg', caption: { tr: 'LocaGen: Universal Game Translator', en: 'LocaGen: Universal Game Translator', no: 'LocaGen: Universal Game Translator' } },
     ],
     links: [
       { kind: 'itch', label: { tr: "itch.io'da indir", en: 'Get it on itch.io', no: 'Last ned på itch.io' }, href: LOCAGEN_ITCH },
       { kind: 'github', label: { tr: 'Ücretsiz sürüm', en: 'Free version', no: 'Gratisversjon' }, href: `${GH}/LocaGenFree` },
-      { kind: 'github', label: { tr: 'PRO web sürümü', en: 'PRO web version', no: 'PRO-nettversjon' }, href: `${GH}/LocaGenPHP` },
+      { kind: 'github', label: { tr: 'PHP web sürümü', en: 'PHP web version', no: 'PHP-nettversjon' }, href: `${GH}/LocaGenPHP` },
     ],
   },
   {
