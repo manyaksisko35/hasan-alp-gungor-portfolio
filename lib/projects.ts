@@ -16,7 +16,8 @@ export interface ProjectDetail {
   cover: { src: string; fit: 'cover' | 'contain'; glow: string };
   /** Share image when the cover is not a good fit for link previews. */
   share?: string;
-  gallery: { src: string; caption: Localized }[];
+  /** fit 'contain' shows the whole image (tall app windows) instead of cropping it. */
+  gallery: { src: string; caption: Localized; fit?: 'contain' }[];
   links: { kind: LinkKind; label: Localized; href: string }[];
   /** Key of a related video in VIDEOS. */
   video?: string;
@@ -339,6 +340,11 @@ export const DETAILS: ProjectDetail[] = [
     cover: { src: '/projects/locagen/logo.webp', fit: 'contain', glow: 'radial-gradient(55% 60% at 50% 50%, rgba(0,180,255,0.22), transparent 72%)' },
     share: '/projects/locagen/banner.jpg',
     gallery: [
+      { src: '/projects/locagen/before-after.png', fit: 'contain', caption: { tr: 'Çeviriden önce ve sonra: İngilizce dil dosyası ve LocaGen\'in ürettiği Türkçe dosya', en: 'Before and after: the English language file and the Turkish file LocaGen produced', no: 'Før og etter: den engelske språkfilen og den tyrkiske filen LocaGen laget' } },
+      { src: '/projects/locagen/pro-main.png', fit: 'contain', caption: { tr: 'LocaGen PRO ana penceresi', en: 'The LocaGen PRO main window', no: 'Hovedvinduet i LocaGen PRO' } },
+      { src: '/projects/locagen/free-main.png', fit: 'contain', caption: { tr: 'LocaGen Free: sadece JSON, Google Translate ile', en: 'LocaGen Free: JSON only, with Google Translate', no: 'LocaGen Free: bare JSON, med Google Translate' } },
+      { src: '/projects/locagen/pro-glossary.png', fit: 'contain', caption: { tr: 'PRO\'daki Smart Glossary: "Chest" her seferinde "Sandık" olarak çevriliyor', en: 'Smart Glossary in PRO: "Chest" is translated as "Sandık" (treasure chest) every time', no: 'Smart Glossary i PRO: "Chest" blir alltid oversatt til "Sandık" (skattekiste)' } },
+      { src: '/projects/locagen/pro-languages.png', fit: 'contain', caption: { tr: 'PRO\'da 25\'ten fazla hedef dil', en: 'More than 25 target languages in PRO', no: 'Over 25 målspråk i PRO' } },
       { src: '/projects/locagen/pro.jpg', caption: { tr: 'LocaGen PHP web arayüzü', en: 'The LocaGen PHP web interface', no: 'Nettgrensesnittet til LocaGen PHP' } },
       { src: '/projects/locagen/banner.jpg', caption: { tr: 'LocaGen: Universal Game Translator', en: 'LocaGen: Universal Game Translator', no: 'LocaGen: Universal Game Translator' } },
     ],

@@ -386,7 +386,7 @@ uv += normalize(toMouse + 1e-5) * wave * 0.03;`,
       no: 'Maskinoversettelse ødelegger plassholdere som {player} og %d i spillfiler. Her er hvordan jeg løste det i LocaGen, og hvordan PHP-nettversjonen bruker Gemini.',
     },
     tags: ['Python', 'PHP', 'Gemini API', 'Localization'],
-    cover: '/projects/locagen/pro.jpg',
+    cover: '/projects/locagen/before-after.png',
     project: 'locagen',
     body: [
       p(

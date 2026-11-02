@@ -131,7 +131,7 @@ export default function ProjectPage({ project }: { project: ProjectDetail }) {
                 {project.gallery.map((g, i) => (
                   <figure key={g.src} className={project.gallery.length % 2 === 1 && i === 0 ? 'md:col-span-2' : ''}>
                     <div className="ui-card !rounded-[24px] overflow-hidden relative aspect-[16/10]">
-                      <Image src={g.src} alt={t(g.caption)} fill sizes="(min-width: 768px) 46vw, 92vw" className="object-cover" />
+                      <Image src={g.src} alt={t(g.caption)} fill sizes="(min-width: 768px) 46vw, 92vw" className={g.fit === 'contain' ? 'object-contain p-4 lg:p-6' : 'object-cover'} />
                     </div>
                     <figcaption className="mt-3 px-1 text-sm text-white/55">{t(g.caption)}</figcaption>
                   </figure>
