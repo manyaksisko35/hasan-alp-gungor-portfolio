@@ -11,6 +11,7 @@ export const LINKS = {
   linkedin: 'https://www.linkedin.com/in/hasanalpgungor/',
   devto: 'https://dev.to/hasanalpgungor',
   hashnode: 'https://hasanalpgungor.hashnode.dev',
+  gravatar: 'https://gravatar.com/hasanalpgungor35',
 };
 
 export const LOCAGEN_ITCH = 'https://hasan-alp-gungor.itch.io/locagen-pro-universal-game-localization-tool';
