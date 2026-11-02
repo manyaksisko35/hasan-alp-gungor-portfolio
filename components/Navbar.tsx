@@ -1,8 +1,9 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import LogoMark from '@/components/LogoMark';
+import LogoPuzzle from '@/components/LogoPuzzle';
 import { switchLang, useLang, useT } from '@/lib/i18n';
 import { LANGS } from '@/lib/lang';
 import { scrollToId } from '@/lib/lenis';
@@ -35,6 +36,24 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const active = useActiveSection();
 
+  // Five quick clicks on the logo (each within a second of the last) open a hidden puzzle.
+  const [puzzle, setPuzzle] = useState(false);
+  const clicks = useRef<number[]>([]);
+  const closePuzzle = useCallback(() => setPuzzle(false), []);
+  const onLogo = (e: React.MouseEvent) => {
+    const now = e.timeStamp;
+    const last = clicks.current.at(-1);
+    clicks.current = last !== undefined && now - last < 1000 ? [...clicks.current, now] : [now];
+    if (clicks.current.length >= 5) {
+      clicks.current = [];
+      e.preventDefault();
+      setOpen(false);
+      setPuzzle(true);
+      return;
+    }
+    go(e, 'top');
+  };
+
   const go = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -47,7 +66,7 @@ export default function Navbar() {
       {/* Tapping outside the open menu closes it. */}
       {open && <button aria-hidden tabIndex={-1} onClick={() => setOpen(false)} className="lg:hidden fixed inset-0 -z-10 pointer-events-auto cursor-default" />}
       <div className="glass pointer-events-auto w-full md:w-auto flex items-center gap-2 md:gap-6 rounded-full pl-2 pr-2 py-2">
-        <a href="#top" onClick={(e) => go(e, 'top')} className="flex items-center gap-2.5 pr-1">
+        <a href="#top" onClick={onLogo} className="flex items-center gap-2.5 pr-1">
           <span className="ui-btn !p-0 w-9 h-9">
             <LogoMark className="w-5 h-5" />
           </span>
@@ -105,6 +124,7 @@ export default function Navbar() {
           </div>
         </nav>
       )}
+      {puzzle && <LogoPuzzle onClose={closePuzzle} />}
     </header>
   );
 }
