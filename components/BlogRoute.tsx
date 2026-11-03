@@ -6,12 +6,15 @@ import LangRedirect from '@/components/LangRedirect';
 import { getPost, POSTS } from '@/lib/blog';
 import { LangProvider } from '@/lib/i18n';
 import { blogHref, homeHref, LANG_INFO, languageAlternates, type Lang } from '@/lib/lang';
+import { feedHref } from '@/lib/rss';
 import { PERSON_NAME, PERSON_REF, SITE_URL } from '@/lib/site';
 
 // Server side of the blog pages, shared by /blog, /en/blog and /no/blog.
 
 const abs = (path: string) => `${SITE_URL}${path === '/' ? '' : path}`;
 const languages = (slug?: string) => languageAlternates((l) => blogHref(l, slug));
+/** Lets browsers and feed readers find the RSS feed from any blog page. */
+const feed = (lang: Lang) => ({ 'application/rss+xml': [{ url: feedHref(lang), title: `${PERSON_NAME} | Blog` }] });
 
 const INDEX_TEXT = {
   tr: { title: `Blog | ${PERSON_NAME}`, description: 'Projelerimi yaparken karşılaştığım sorunlar ve onları nasıl çözdüğüm: 3D web, oyun yerelleştirme ve CS2 yayın arayüzü.' },
@@ -24,7 +27,7 @@ export function blogIndexMetadata(lang: Lang): Metadata {
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: blogHref(lang), languages: languages() },
+    alternates: { canonical: blogHref(lang), languages: languages(), types: feed(lang) },
     openGraph: { type: 'website', url: blogHref(lang), siteName: PERSON_NAME, title, description, locale: LANG_INFO[lang].ogLocale, images: [POSTS[0].cover] },
     twitter: { card: 'summary_large_image', title, description, images: [POSTS[0].cover] },
   };
@@ -63,7 +66,7 @@ export function postMetadata(slug: string, lang: Lang): Metadata {
     description,
     keywords: post.tags,
     authors: [{ name: PERSON_NAME, url: SITE_URL }],
-    alternates: { canonical: blogHref(lang, slug), languages: languages(slug) },
+    alternates: { canonical: blogHref(lang, slug), languages: languages(slug), types: feed(lang) },
     openGraph: {
       type: 'article',
       url: blogHref(lang, slug),
