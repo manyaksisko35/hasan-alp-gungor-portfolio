@@ -54,6 +54,7 @@
         .weapon-box { width: 60px; height: 22px; background-size: contain; background-repeat: no-repeat; background-position: left center; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.8)); opacity: 0.95; display: inline-block; }
         .ct-row .weapon-box { background-position: right center; }
         .p-utility { display: flex; align-items: center; gap: 4px; height: 18px; }
+        .util-text { font-size: 10px; font-weight: 900; color: #ccc; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; padding: 0 3px; line-height: 16px; display: inline-block; }
         .util-box { width: 18px; height: 18px; background-size: contain; background-repeat: no-repeat; background-position: center; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.8)); opacity: 0.9; display: inline-block; }
 
         .hp-container { display: flex; align-items: center; width: 100%; gap: 10px; }
@@ -161,7 +162,10 @@
     <script>
     let isDefusing = false;
     let maxDefuseTime = 10.0;
-    const iconBaseUrl = "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/master/csgo/pak01_dir/materials/panorama/images/icons/equipment/";
+    // Demo: Valve's icon files are no longer hosted publicly, so weapons and grenades are shown as text
+    // instead of requesting icons that would only fail. Set a base URL here to use icons again.
+    const iconBaseUrl = "";
+    const NADE_LABEL = { flashbang: "FL", hegrenade: "HE", smokegrenade: "SM", molotov: "MO", incgrenade: "IN", decoy: "DE" };
 
     let oncekiOyuncular = {};
 
@@ -177,7 +181,9 @@
 
         row.innerHTML = `
             <div class="k-isim ${kColor}">${killer.isim}</div>
-            <img src="${iconBaseUrl}${wIsim}.svg" class="k-silah" onerror="this.outerHTML='<span class=&quot;k-silah-text&quot;>'+this.alt+'</span>'" alt="${(killer.silah || 'GLOCK').replace('_SILENCER', '-S')}">
+            ${iconBaseUrl
+                ? `<img src="${iconBaseUrl}${wIsim}.svg" class="k-silah" onerror="this.outerHTML='<span class=&quot;k-silah-text&quot;>'+this.alt+'</span>'" alt="${(killer.silah || 'GLOCK').replace('_SILENCER', '-S')}">`
+                : `<span class="k-silah-text">${(killer.silah || 'GLOCK').replace('_SILENCER', '-S')}</span>`}
             <div class="k-isim ${vColor}">${victim.isim}</div>
         `;
         feed.appendChild(row);
@@ -246,7 +252,11 @@
                 }
 
                 let silahIsmi = p.silah ? p.silah.toLowerCase() : "";
-                if (silahIsmi) {
+                if (silahIsmi && !iconBaseUrl) {
+                    weapImgEl.style.backgroundImage = "none";
+                    weapImgEl.style.display = "none";
+                    weapTextEl.innerText = p.silah.replace('_SILENCER', '-S').toUpperCase();
+                } else if (silahIsmi) {
                     let bgUrl = `url('${iconBaseUrl}${silahIsmi}.svg')`;
                     if (weapImgEl.style.backgroundImage !== bgUrl) {
                         weapImgEl.style.backgroundImage = bgUrl;
@@ -263,8 +273,9 @@
                     weapTextEl.innerText = "";
                 }
 
-                let expectedUtilHtml = p.bombalar ? p.bombalar.map(b => 
-                    `<span class="util-box" style="background-image: url('${iconBaseUrl}${b.toLowerCase()}.svg')"></span>`
+                let expectedUtilHtml = p.bombalar ? p.bombalar.map(b => iconBaseUrl
+                    ? `<span class="util-box" style="background-image: url('${iconBaseUrl}${b.toLowerCase()}.svg')"></span>`
+                    : `<span class="util-text">${NADE_LABEL[b.toLowerCase()] || b.slice(0, 2).toUpperCase()}</span>`
                 ).join("") : "";
                 if(utilEl.innerHTML !== expectedUtilHtml) utilEl.innerHTML = expectedUtilHtml;
             }

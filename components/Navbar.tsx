@@ -1,14 +1,17 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
 import LogoMark from '@/components/LogoMark';
-import LogoPuzzle from '@/components/LogoPuzzle';
 import { switchLang, useLang, useT } from '@/lib/i18n';
 import { LANGS } from '@/lib/lang';
 import { scrollToId } from '@/lib/lenis';
 import { SECTIONS } from '@/lib/sections';
 import { useActiveSection } from '@/lib/useActiveSection';
+
+// The hidden puzzle is only downloaded once someone actually opens it.
+const LogoPuzzle = dynamic(() => import('@/components/LogoPuzzle'), { ssr: false });
 
 const NAV = SECTIONS.filter((s) => s.nav);
 
